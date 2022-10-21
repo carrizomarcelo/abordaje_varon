@@ -1,0 +1,93 @@
+            campos encuesta
+
+fechacreacion               Fecha Ficha                 si
+
+equipo                      Equipo                      si
+
+nombre                      Nombre                      si
+
+apellido                    Apellido                    si
+
+nro_du                      D.U                         modificar
+
+fecha_nacimiento            Fecha de Nacimiento         modificar
+
+edad                        Edad                        eliminar
+
+nacionalidad                Nacionalidad                si
+
+calle                       Calle                       si
+
+rocalle                     Numero de Calle             modificar
+
+mbt                         Mnza/Mblck/Torre            si
+
+pdc                         Piso/Casa/Dpto              si
+
+bfpa                        Barrio/Finca/Puesto/Asentamiento    si
+
+departamento                Departamento                si
+
+distrito                    Distrito                    si
+
+telefono                    Telefono                    si
+
+telefonoa                   Telefono Alternativo        si
+
+estado_civil                Estado Civil                si
+
+ostiene                     Obra Social                 modificar
+
+oscual                      Nombre de la Obra Social    si
+
+nivel_educacion             Nivel Educativo             si
+
+situacion_laboral           Situacion laboral           si      -->     modelo(SituacionLaboral)
+
+horas_situacionlabora                                   eliminar
+
+fuerza_seguridad            ocupacion en la fuerza de seguridad segun incumbencia       Agregar     --> Modelo(FuerzaSeguridad)
+
+categoria_ocupacional       Categoria Ocupacional       si      -->     modelo(CategoriaOcupacional)
+
+actividad_laboral           Actividad laboral           si
+
+domicilio_laboral           Domicilio Laboral           si
+
+categoria_inactividad       Categoria Inactividad       eliminar
+
+miembros_intervinientes     Miembros Intervinientes     /*ver*/
+
+ayuda_centroa               ¿Como Llega al Centro de Abordaje?  si      -->     modelo(CentroAbordaje)
+casahouse
+ayduda_centroa_cual         Especificar cual            eliminar
+
+jfinterviniente             Juzgado/Fiscalia Interviniente      si      -->     preguntar si va a ser campo libre o lista (Oficina Fiscal,Unidad Fiscal de Violencia de Género,Unidad Fiscal de Violencia de Género y Delitos contra la Integridad Sexual,Juzgado de Familia,Juzgado de Paz)
+
+obasistencia                Obligatoriedad de Asistencia        modificar      -->     si/no
+
+detenido                    Detenido                    modificar   -->     si/no   seleccion y agregar tiempo
+
+prohibicion_acercamiento    prohibicion de Acercamiento     si
+
+prohibicion_quien           Hacia quien es              modificar       -->     modelo() ex-pareja, Hijos, denunciante
+
+pulsera                     Pulsera Electronica
+
+acceso_arma                 Tiene Accesoaa arma de fuego o similar      si
+
+arma_tipo                                               eliminar
+
+antecedentes_vg             Antecedentes Judiciales     modificarvariable
+antecedentes_otros =
+pddnombre = models.Ch
+    pddtelefono = models.
+    pdddomicilio_conocido
+    dpanombre = models.Ch
+    dpatelefono = models.
+    dpadomicilio_conocido
+    apanteriodes = models
+    apvigentes = models.C
+    aptratamiento =  mode
+    aptratamiento_cual =
+    observaciones = model

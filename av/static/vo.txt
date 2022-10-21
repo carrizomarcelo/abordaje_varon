@@ -1,0 +1,20 @@
+Valores obligatorios
+--------------------
+
+Nombre
+Apellido
+Departamento
+Telefono
+Obra Social
+Educacion
+Situacion laboral
+Categoria Ocupacional
+miembros convivientes
+como llega al centro de abordaje
+Pulsera electronica
+
+
+Eliminar---
+cantidad de horas que trabaja
+Categoria de inactividad
+tipo de arma

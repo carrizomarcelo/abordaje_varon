@@ -1,0 +1,892 @@
+{% extends 'layout.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2.min.css' %}">
+<link href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+<script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/select2.min.js' %}"></script>
+<script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/i18n/es.js' %}"></script>
+
+{% endblock head %}
+
+{% block content %}
+   <form method="post" action="." enctype="multipart/form-data">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    {% if action == 'add' %}
+                        <i class="fas fa-plus"></i>
+                    {% else %}
+                        <i class="fas fa-edit"></i>
+                    {% endif %}
+
+                    {{ title }} {% comment %}  {{ date_now }} {% endcomment %}
+                </h3>
+            </div>
+            <div class="card-body">
+              {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% comment %} {% for field in form.visible_fields %}
+                    <div class="form-group ">
+                        <label for="email">{{ field.label }}:</label>
+                        {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                    </div>
+                {% endfor %} {% endcomment %}
+
+            
+                <div class="card-header text-center bg-secondary" ><h5>Datos Personales</h5></div>
+                    <div class="card-body bg-light">
+                      <div class="card bg-light ">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">{{ form.fechacreacion.label}}</span>
+                          </div>
+                          {{ form.fechacreacion }}
+                        </div>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">{{ form.equipo.label}}</span>
+                          </div>
+                          {{ form.equipo }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nombre.label}}</span>
+                            </div>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.apellido.label}}</span>
+                            </div>
+                            {{ form.apellido }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nro_dni.label}}</span>
+                            </div>
+                            {{ form.nro_dni }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.fecha_nacimiento.label}}</span>
+                            </div>
+                            {{ form.fecha_nacimiento }}
+                            
+                        </div>
+
+                        {% comment %} <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.edad.label}}</span>
+                            </div>
+                            {{ form.edad }}
+                        </div> {% endcomment %}
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nacionalidad.label}}</span>
+                            </div>
+                            
+                            {{ form.nacionalidad }}
+                          
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.calle.label}}</span>
+                            </div>
+                            {{ form.calle }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.rocalle.label}}</span>
+                            </div>
+                            {{ form.rocalle }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.mbt.label}}</span>
+                            </div>
+                            {{ form.mbt }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.pdc.label}}</span>
+                            </div>
+                            {{ form.pdc }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.bfpa.label}}</span>
+                            </div>
+                            {{ form.bfpa }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.departamento.label}}</span>
+                            </div>
+                            {{ form.departamento }}
+                            
+                        </div>
+
+                        <div class="input-group mb-3 form-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.distrito.label}}</span>
+                            </div>
+                            {{ form.distrito }}
+                        </div>
+
+                        <div class="input-group mb-3 form-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.telefono.label}}</span>
+                            </div>
+                            {{ form.telefono }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.telefonoa.label}}</span>
+                            </div>
+                            {{ form.telefonoa }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.estado_civil.label}}</span>
+                            </div>
+                            {{ form.estado_civil }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.ostiene.label}}</span>
+                            </div>
+                            {{ form.ostiene }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.oscual.label}}</span>
+                            </div>
+                            {{ form.oscual }}
+                        </div>
+
+                    
+
+
+
+                </div>
+                    
+                
+            
+            
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary"><h5>EDUCACION maximo nivel alcanzado</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nivel_educacion.label}}</span>
+                            </div>
+                            {{ form.nivel_educacion }}
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            
+
+
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary"><h5>Situacion Laboral</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.situacion_laboral.label}}</span>
+                            </div>
+                            {{ form.situacion_laboral }}
+                        </div>
+
+                        {% comment %} <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.horas_situacionlaboral.label}}</span>
+                            </div>
+                            {{ form.horas_situacionlaboral }}
+                        </div> {% endcomment %}
+
+                        <div class="form-group">
+                          <label for="sel1">ocupacion en la fuerza de seguridad segun incumbencia</label>
+                          <select class="form-control" id="sel1" value="NO">
+                            <option>NO</option>
+                            <option>Policia</option>
+                            <option>Penitenciaria</option>
+                            <option>Gendarmeria</option>
+                            <option>Fuerzas Armadas</option>
+                          </select>
+                    </div>
+                  </div>
+                </div>
+                
+            
+                <div class="card bg-light ">
+                    <div class="card-header text-center bg-secondary"><h5>Categoría Ocupacional</h5></div>
+                        
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.categoria_ocupacional.label}}</span>
+                                </div>
+                                {{ form.categoria_ocupacional }}
+                            </div>
+    
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.actividad_laboral.label}}</span>
+                                </div>
+                                {{ form.actividad_laboral }}
+                            </div>
+    
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.domicilio_laboral.label}}</span>
+                                </div>
+                                {{ form.domicilio_laboral }}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card bg-light ">
+                      <div class="card-header text-center bg-secondary"><h5>Miembros Convivientes</h5></div>
+                          
+                         
+                          
+                      </div>
+
+                      <div class="card bg-light ">
+                          <div class="card-header text-center bg-secondary"><h5>¿Como llega al centro de abordaje?</h5></div>
+                              
+                              <div class="card-body">
+                                  <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text">{{ form.ayuda_centroa.label}}</span>
+                                      </div>
+                                      {{ form.ayuda_centroa }}
+                                  </div>
+          
+                                  
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.ayduda_centroa_cual.label}}</span>
+                                          </div>
+                                          {{ form.ayduda_centroa_cual }}
+                                      </div>
+                                </div>
+
+                      </div>
+
+                          <div class="card bg-light ">
+                              <div class="card-header text-center bg-secondary"><h5>Datos de la Causa/Motivo de Intervención/Intervención de la Justicia</h5></div>
+                                  
+                                  <div class="card-body">
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.jfinterviniente.label}}</span>
+                                          </div>
+                                          {{ form.jfinterviniente }}
+                                      </div>
+              
+                                  
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.obasistencia.label}}</span>
+                                          </div>
+                                          {{ form.obasistencia }}
+                                      </div>
+                                  
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.detenido.label}} (Tiempo de detención)</span>
+                                          </div>
+                                          {{ form.detenido }}
+                                      </div>
+
+
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.prohibicion_acercamiento.label}}</span>
+                                          </div>
+                                          {{ form.prohibicion_acercamiento }}
+                                      </div>
+                                      
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.prohibicion_quien.label}}</span>
+                                          </div>
+                                          {{ form.prohibicion_quien }}
+                                      </div>
+
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.pulsera.label}}</span>
+                                          </div>
+                                          {{ form.pulsera }}
+                                      </div>
+
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.acceso_arma.label}}</span>
+                                          </div>
+                                          {{ form.acceso_arma }}
+                                      </div>
+
+                                      {% comment %} <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.arma_tipo.label}}</span>
+                                          </div>
+                                          {{ form.arma_tipo }}
+                                      </div> {% endcomment %}
+                                      
+                                      
+                                        <div class="card text-black">
+                                          <div class="card-header bg-primary text-center">Antecedentes Judiciales</div>
+                                          <div class="card-body border border-info fondo shadow">
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Antecedentes Penales</label>
+                                            </div>
+                                            
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Antecedentes Juzgado Flia</label>
+                                            </div>
+                                            
+                                          </div>                                                                                                     
+                                      
+                                
+                                        </div>
+                                        
+                                        <div class="card text-black">
+                                          <div class="card-header bg-primary text-center">Otros (en relación a la figura legal por VG u otros):</div>
+                                          <div class="card-body border border-info fondo shadow">
+                                            
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delito Contra la Persona</label>
+                                            </div>
+                                            
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delito contra la vida</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Intento de femicidio</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Lesiones Leves</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Lesiones Graves</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Lesiones Gravisima</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Abuso de Armas (con lesiones)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Abuso de Armas (sin lesiones)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Abandono de la persona</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delitos contra la integridad  sexual</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delitos contra la libertad (Amenaza)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delitos contra la libertad (Violacion de Domicilio)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delitos contra la propiedad (Hurto)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Delitos contra la propiedad (Robo)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Violacion de Domicilio (Extorsión)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Violacion de Domicilio (Usurpación)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Violacion de Domicilio (Daños)</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                              <label><input type="checkbox" value=""> Violacion de Domicilio (Desobediencia)</label>
+                                            </div>
+
+
+
+                                          </div>                                                                                                     
+                                      
+                                
+                                        </div>   
+
+                                         
+                                      
+                                        
+
+                                        
+                                        </div>
+                                        
+                                      </div>
+                                     
+                                             
+                                            
+                                          </div>    
+                                          <div class="card bg-light">
+                                            <div class="card-header text-center bg-secondary"><h5>Datos del Denunciante</h5></div>
+                                            <div class="card-body border border-info fondo shadow">
+                                              <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">Nombre</span>
+                                                </div>
+                                                {{ form.pddnombre }}
+                                            </div>
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text">Apellido</span>
+                                              </div>
+                                              {{ form.pddnombre }}
+                                            </div>
+    
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">DNI:</span>
+                                                </div>
+                                                {{ form.pddnombre }}
+                                              <div> 
+                                              
+                                            </div>                                                                                                     
+                                        
+                                  
+                                          </div>                                                                                                
+                                
+                                        </div>                                      
+                                    
+                                      </div>
+                                      <div class="card bg-light ">
+                                        <div class="card-header text-center bg-secondary"><h5>Antecedentes de Tratamientos Psicosociales</h5></div>
+                                        <div class="card-body rounded shadow">
+                                            <div class="card-body">
+                                            
+                                            <div class="checkbox row-cols-1">
+                                              <label><input type="checkbox" value=""> Psicologico</label>
+                                            </div>
+                                            <div class="checkbox">
+                                              <label><input type="checkbox" value=""> Psiquiatrico</label>
+                                            </div>  
+                                          </div>                                       
+  
+                                                <div class="input-group mb-3">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">Toma Medicación</span>
+                                                  </div>
+                                                  {{ form.aptratamiento }}
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">{{ form.aptratamiento_cual.label}}</span>
+                                                  </div>
+                                                  {{ form.aptratamiento_cual }}
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                  <label for="sel1">Vigentes</label>
+                                                  <select class="form-control" id="sel1">
+                                                    <option>SI</option>
+                                                    <option>NO</option>
+                                                    
+                                                  </select>
+  
+                                                  <div class="form-group">
+                                                    <label for="sel1">Duracion 6 meses</label>
+                                                    <select class="form-control" id="sel1">
+                                                      <option>Mas</option>
+                                                      <option>Menos</option>
+                                                      
+                                                    </select>
+                                                </div>
+                                                <div class="input-group mb-3 border border-info fondo shadow">
+                                                  <div class="input-group-prepend">
+                                                    <span class="input-group-text">{{ form.observaciones.label}}</span>
+                                                  </div>
+                                                  {{ form.observaciones }}
+                                                </div>
+                                                
+              
+                                    
+                                              </div>
+                                            </div>
+                                            </div> 
+                                       
+                                        <div class="card bg-light ">
+                                          <div class="card-header text-center bg-secondary"><h5>ANTECEDENTES DE VIOLENCIA EN FAMILIA DE ORIGEN, GRUPO SOCIALES O INSTITUCIONES </h5></div>
+                                              <div class="card-body rounded shadow">
+                                                <div class="table-responsive">          
+                                                  <table class="table  table-striped">
+                                                    <thead class="thead-dark">
+                                                      <tr class="text-center">
+                                                        <th >Tipo de violencia</th>
+                                                        <th>Personales</th>
+                                                        <th>familiares</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>Fisica</td>
+                                                        <td class="text-center"><div class="checkbox">
+                                                          <label><input type="checkbox" value=""></label>
+                                                        </div></td>
+                                                        <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Violencia Psicologica</td>
+                                                        <td  class="text-center"><div class="checkbox">
+                                                          <label><input type="checkbox" value=""></label>
+                                                        </div></td>
+                                                        <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Violencia Sexual</td>
+                                                        <td class="text-center"><div class="checkbox">
+                                                          <label><input type="checkbox" value=""></label>
+                                                        </div></td>
+                                                        <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Violencia Economica y patrimonial</td>
+                                                        <td class="text-center"><div class="checkbox">
+                                                          <label><input type="checkbox" value=""></label>
+                                                        </div></td>
+                                                        <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Violencia Simbolica</td>
+                                                        <td class="text-center"><div class="checkbox">
+                                                          <label><input type="checkbox" value=""></label>
+                                                        </div></td>
+                                                        <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Violencia Ambiental</td>
+                                                        <td class="text-center"><div class="checkbox">
+                                                          <label><input type="checkbox" value=""></label>
+                                                        </div></td>
+                                                        <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                  </div>
+                          
+                                                  <div class="table-responsive">          
+                                                    <table class="table  table-striped">
+                                                      <thead class="thead-dark">
+                                                        <tr class="text-center">
+                                                          <th >Modalidad</th>
+                                                          <th>Personales</th>
+                                                          <th>familiares</th>
+                                                        </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td>Domestica</td>
+                                                          <td class="text-center"><div class="checkbox">
+                                                            <label><input type="checkbox" value=""></label>
+                                                          </div></td>
+                                                          <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Institucional</td>
+                                                          <td  class="text-center"><div class="checkbox">
+                                                            <label><input type="checkbox" value=""></label>
+                                                          </div></td>
+                                                          <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Laboral</td>
+                                                          <td class="text-center"><div class="checkbox">
+                                                            <label><input type="checkbox" value=""></label>
+                                                          </div></td>
+                                                          <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Contra la libertad reprodictiva y obstétrica</td>
+                                                          <td class="text-center"><div class="checkbox">
+                                                            <label><input type="checkbox" value=""></label>
+                                                          </div></td>
+                                                          <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Mediatica</td>
+                                                          <td class="text-center"><div class="checkbox">
+                                                            <label><input type="checkbox" value=""></label>
+                                                          </div></td>
+                                                          <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>Violencia Ambiental</td>
+                                                          <td class="text-center"><div class="checkbox">
+                                                            <label><input type="checkbox" value=""></label>
+                                                          </div></td>
+                                                          <td class="text-center"><label><input type="checkbox" value=""></label></td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                    </div>
+                            
+                            
+                                                </div>
+                                              </div>
+                                              <br>
+                                              <div class="card bg-light ">
+                                                <div class="card-header text-center bg-secondary"><h5>VALORACION DE RIESGO  DE VIOLENCIA EN LA SITUACION </h5></div>
+                                                    
+                                                <div class="card-body card-deck rounded">    
+                                                      <div class="card text-black">
+                                                        <div class="card-header bg-primary text-center">Agresor</div>
+                                                        <div class="card-body border border-info fondo shadow">
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Condicion Migratoria </label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Estres Psicosocial</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Abuso de Sustancias Psicoactivas</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Antecedentes de Violencia en su Biografia</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Tenencia y uso de Armas</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Antecedentes depresivos</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Presencia de miedo o rechazo a los abandonos</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Inestabilidad anímica</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Egocentrismo</label>
+                                                          </div>
+                                                        </div>
+                                
+                                
+                                                      </div>
+                                                      <div class="card text-black">
+                                                        <div class="card-header bg-primary text-center">Mujer</div>
+                                                        <div class="card-body border border-info fondo shadow">
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Vulnerabilidad Social</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Retractarse de separacion o denuncia al agresor</label>
+                                                          </div>
+                                                          
+                                                          <div class="custom-control custom-checkbox">
+                                                            <label><input type="checkbox" value=""> Presencia de hijo no biológico en la convivencia con el agresor</label>
+                                                          </div>
+                                                          
+                                                        </div>                                                                                                     
+                                                    
+                                              
+                                                      </div>      
+                                                      <div class="card text-black">
+                                                          <div class="card-header bg-primary text-center">Situacion</div>
+                                                          <div class="card-body border border-info fondo shadow">
+                                                            <div class="custom-control custom-checkbox">
+                                                              <label><input type="checkbox" value=""> Relacion en convivencia o matrimonial</label>
+                                                            </div>
+                                                            
+                                                            <div class="custom-control custom-checkbox">
+                                                              <label><input type="checkbox" value=""> Solicitud de separacion por parte de la mujer</label>
+                                                            </div>
+                                                            
+                                                            <div class="custom-control custom-checkbox">
+                                                              <label><input type="checkbox" value=""> ideación de celos del estilo posesivos</label>
+                                                            </div>
+                                                            
+                                                            <div class="custom-control custom-checkbox">
+                                                              <label><input type="checkbox" value=""> Transitar embarazo</label>
+                                                            </div>
+                                                            <div class="custom-control custom-checkbox">
+                                                              <label><input type="checkbox" value=""> presedente de conductas de acoso</label>
+                                                            </div>
+                                                            <div class="custom-control custom-checkbox">
+                                                              <label><input type="checkbox" value=""> conductas de amenazas</label>
+                                                            </div>
+                                                            
+                                                          </div>
+      
+      
+                                                        </div>
+                                                      </div>
+                                                  </div>
+                                                    
+                                              </div>
+                                            </div>      
+                                            
+                                        
+                                          </div>
+                                        </div>
+                                      </div>
+                                        
+                                      </div>
+                                      
+                                       
+                               
+
+
+                                      
+                 
+                                      
+                                      
+                                     
+                                  
+                                     
+                                        
+
+                                        
+                                      </div>
+
+                                    </div>  
+
+                                        
+                                        
+
+
+
+
+
+
+
+                                  </div>
+                              </div>
+                                  
+                          </div>
+
+                              
+                                  
+                          <div class="card-footer row justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-flat">
+                                <i class="fas fa-save"></i> Guardar registro
+                            </button>&nbsp&nbsp&nbsp
+                            <a href="{{ list_url }}" class="btn btn-danger btn-flat ">
+                                <i class="fas fa-times"></i> Cancelar
+                              </a>
+                        </div>
+          
+                              
+                              
+                      </div>
+
+
+
+
+                    
+          </div>
+
+                  </div>
+                    
+                  {% comment %} <div class="card bg-light ">
+                    <div class="card-header text-center bg-secondary"><h5>Categoría de Inactividad</h5></div>
+                                
+                            <div class="card-body">
+                              <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">{{ form.categoria_inactividad.label}}</span>
+                                  </div>
+                                  {{ form.categoria_inactividad }}
+                              </div>
+                            </div>
+                    </div> {% endcomment %}
+                  
+
+                           
+                    
+
+           
+            
+        </div>
+    </form>
+   
+   <script>
+
+    $('form').on('submit', function (e) {
+      e.preventDefault();
+      // var parameters = $(this).serializeArray();
+      var parameters = new FormData(this);
+      submit_with_ajax(window.location.pathname, parameters, function(){
+          location.href = '{{ list_url }}';
+      });
+
+  });
+
+  {% comment %} $(function (){
+
+    $('.select2').select2({
+        theme: "bootstrap4",
+        placeholder: "Seleccione...",
+        
+   
+        
+    });
+
+  }); {% endcomment %}
+    
+
+    
+    
+      
+
+       
+      
+</script> 
+
+{% endblock %}

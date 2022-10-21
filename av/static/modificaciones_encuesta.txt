@@ -1,0 +1,15 @@
+from sqlite3 import TimestampFromTicks
+from tkinter.messagebox import NO
+
+
+Juzgado/Fiscalia Interviniente -> lista ++ (listado)
+
+nada por defecto (ningun campo)
+
+obligatoriedad de asistencia --> SI / NO
+
+Detenido (tiempo de detencion) --> SI / NO --->Tiempo 
+
+prohibicion de acercamiento SI/NO ---> hacia quien/es --> Lista Ex-Pareja, Hijos, Denunciante
+
+eliminar tipo de arma de fuego
