@@ -4,6 +4,7 @@ from datetime import datetime
 from django.forms.models import model_to_dict
 from av.models import BaseModel
 from crum import get_current_user
+from multiselectfield import MultiSelectField
 # from encuesta.forms import EncuestaForm
 
 
@@ -115,6 +116,19 @@ class SituacionLaboral(models.Model):
         verbose_name_plural = 'Situaciones Laborales'
         ordering = ['id']
 
+class IncumbenciaSeguridad(models.Model):
+    id = models.AutoField(primary_key=True)
+    incumbencia_seguridad = models.CharField(max_length=50, verbose_name='Ocupacion en la fuerza de seguridad, segun incumbencia')
+
+    def __str__(self):
+        return str(self.estado_civil)
+
+    class Meta:
+        db_table = 'incumbencia_seguridad'
+        verbose_name = 'Incumbencia Seguridad'
+        verbose_name_plural = 'Incumbencias Seguridad'
+        ordering = ['id']
+
 class CategoriaOcupacional(models.Model):
     id = models.AutoField(primary_key=True)
     categoria_ocupacion = models.CharField(max_length=50, verbose_name='Categoria Ocupacional')
@@ -171,17 +185,110 @@ class CentroAbordaje(models.Model):
         verbose_name_plural = 'Centros de Abordaje'
         ordering = ['id']
 
+class TipoViolenciaPersonal(models.Model):
+    id = models.AutoField(primary_key=True)
+    fisica = models.CharField(max_length=50,)
+    psicologica = models.BooleanField(default=False)
+    sexual= models.BooleanField(default=False)
+    economica = models.BooleanField(default=False)
+    simbolica = models.BooleanField(default=False)
+    ambiental = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        db_table = 'tv_personal'
+        verbose_name = 'Violencia - Personal'
+        verbose_name_plural = 'Violencia - Personales'
+        ordering = ['id']
+
+class TipoViolenciaFamiliar(models.Model):
+    id = models.AutoField(primary_key=True)
+    fisica = models.CharField(max_length=50,)
+    psicologica = models.BooleanField(default=False)
+    sexual= models.BooleanField(default=False)
+    economica = models.BooleanField(default=False)
+    simbolica = models.BooleanField(default=False)
+    ambiental = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        db_table = 'tv_familiar'
+        verbose_name = 'Violencia - Familiar'
+        verbose_name_plural = 'Violencia - Familia'
+        ordering = ['id']
+
+class ModalidadPersonal(models.Model):
+    id = models.AutoField(primary_key=True)
+    domestica = models.CharField(max_length=50,)
+    institucional = models.BooleanField(default=False)
+    laboral = models.BooleanField(default=False)
+    libertad = models.BooleanField(default=False)
+    mediatica = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        db_table = 'modalidad_personal'
+        verbose_name = 'Modalidad - Personal'
+        verbose_name_plural = 'Modalidad - Personales'
+        ordering = ['id']
+
+class ModalidadFamiliar(models.Model):
+    id = models.AutoField(primary_key=True)
+    domestica = models.CharField(max_length=50,)
+    institucional = models.BooleanField(default=False)
+    laboral = models.BooleanField(default=False)
+    libertad = models.BooleanField(default=False)
+    mediatica = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        db_table = 'modalidad_familiar'
+        verbose_name = 'Modalidad - Familiar'
+        verbose_name_plural = 'Modalidad - Familiar'
+        ordering = ['id']
+
+MY_CHOICES = (('item_key1', 'Condicion Migratoria'),
+              ('item_key2', 'Estres Psicosocial'),
+              ('item_key3', 'Abuso de Sustancias Psicoactivas'),
+              ('item_key4', 'Antecedentes de Violencia en su Biografia'),
+              ('item_key5', 'Tenencia y uso de Armas'),
+              ('item_key5', 'Antecedentes depresivos'),
+              ('item_key5', 'Presencia de miedo o rechazo a los abandonos'),
+              ('item_key5', 'Inestabilidad anímica'),
+              ('item_key5', 'Egocentrismo'))
+
+MY_CHOICES2 = ((1, 'Vulnerabilidad Social'),
+               (2, 'Retractarse de separacion o denuncia al agresor'),
+               (3, 'Presencia de hijo no biológico en la convivencia con el agresor'),
+               (4, 'Item title 2.4'),
+               (5, 'Item title 2.5'))
+
+MY_CHOICES3 = ((1, 'Relacion en convivencia o matrimonial'),
+               (2, 'Solicitud de separacion por parte de la mujer'),
+               (3, 'ideación de celos del estilo posesivos'),
+               (4, 'Transitar embarazo'),
+               (5, 'presedente de conductas de acoso'),
+               (6, 'conductas de amenazas'))
 
 class Encuesta(BaseModel):
     id = models.AutoField(primary_key=True)
+    fechacreacion = models.DateTimeField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
+    equipo = models.CharField(max_length=50, verbose_name='Equipo', blank=True, null=True)
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
     nro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DNI')
     fecha_nacimiento = models.DateTimeField(default=datetime.now, null=True)
-    edad = models.PositiveIntegerField(verbose_name='Edad', blank=True, null=True)
     nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT, verbose_name='Nacionalidad', null=True, default=9)
     calle = models.CharField(max_length=50, verbose_name='Calle', blank=True, null=True)
-    rocalle = models.PositiveIntegerField(verbose_name='Calle Nro', blank=True, null=True)
+    nrocalle = models.PositiveIntegerField(verbose_name='Calle Nro', blank=True, null=True)
     mbt = models.CharField(max_length=50, verbose_name='Mnza/Mblck/Torre', blank=True, null=True)
     pdc = models.CharField(max_length=50, verbose_name='Piso/Casa/Dpto', blank=True, null=True)
     bfpa = models.CharField(max_length=50, verbose_name='Barrio/Finca/Puesto/Asentamiento', blank=True, null=True)
@@ -191,43 +298,59 @@ class Encuesta(BaseModel):
     telefonoa = models.PositiveIntegerField(verbose_name='Telefono Alternativo', blank=True, null=True)
     estado_civil = models.ForeignKey(EstadoCivil, on_delete=models.PROTECT, verbose_name='Estado Civil', blank=True, null=True)
     ostiene = models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='ostiene', verbose_name='Tiene Obra Social', blank=True, null=True)
-    oscual = models.CharField(max_length=50, verbose_name='Nombre de la Obra Social', blank=True, null=True)
+    osnombre = models.CharField(max_length=50, verbose_name='Nombre de la Obra Social', blank=True, null=True)
     nivel_educacion = models.ForeignKey(Educacion, on_delete=models.PROTECT, verbose_name='Educacion (Maximo Nivel Alcanzado)', blank=True, null=True)
     situacion_laboral = models.ForeignKey(SituacionLaboral, on_delete=models.PROTECT, verbose_name='Situacion Laboral', blank=True, null=True)
-    horas_situacionlaboral = models.PositiveIntegerField(verbose_name='Cantidad de Horas que Trabajo por Semana', blank=True, null=True)
+    incumbencia_seguridad = models.ForeignKey(IncumbenciaSeguridad, on_delete=models.PROTECT, verbose_name='Ocupación en la fuerza de seguridad, segun incumbencia', blank=True, null=True)
     categoria_ocupacional = models.ForeignKey(CategoriaOcupacional, on_delete=models.PROTECT, verbose_name='Categoria Ocupacional', blank=True, null=True)
     actividad_laboral = models.CharField(max_length=50, verbose_name='Actividad que Realiza', blank=True, null=True)
     domicilio_laboral = models.CharField(max_length=50, verbose_name='Domicilio Laboral', blank=True, null=True)
+    
     categoria_inactividad = models.ForeignKey(CategoriaInactividad, on_delete=models.PROTECT, verbose_name='Categoria Inactividad', blank=True, null=True)
+    
     miembros_intervinientes = models.ForeignKey(MiembrosConvivientes, on_delete=models.PROTECT, verbose_name='Miembros Convivientes', blank=True, null=True)
+    
     ayuda_centroa = models.ForeignKey(CentroAbordaje, on_delete=models.PROTECT, verbose_name='¿Como Llega al Centro de Abordaje?', blank=True, null=True)
     ayduda_centroa_cual = models.CharField(max_length=50, verbose_name='Especificar Cual', blank=True, null=True)
     jfinterviniente = models.CharField(max_length=50, verbose_name='Juzgado/Fiscalía Interviniente', blank=True, null=True)
     obasistencia = models.CharField(max_length=50, verbose_name='Obligatoriedad de Asistencia', blank=True, null=True)
-    detenido = models.CharField(max_length=50, verbose_name='Detenido', blank=True, null=True)
+    
     prohibicion_acercamiento = models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='prohibicion_acercamiento', verbose_name='Prohibicion de Acercamiento', blank=True, null=True)
     prohibicion_quien = models.CharField(max_length=50, verbose_name='Hacia quien/es', blank=True, null=True)
     pulsera = models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='pulsera', verbose_name='Pulsera Electronica', blank=True, null=True)
     acceso_arma =  models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='acceso_arma', verbose_name='¿Tiene Acceso a armas de fuego o similar?', blank=True, null=True)
-    arma_tipo = models.CharField(max_length=50, verbose_name='Tipo de Arma', blank=True, null=True)
-    antecedentes_vg = models.CharField(max_length=200, verbose_name='Por VG', blank=True, null=True)
+    
+    
+    antecedentes_judiciales = models.CharField(max_length=200, verbose_name='Antecedentes Judiciales', blank=True, null=True)
+    
     antecedentes_otros = models.CharField(max_length=200, verbose_name='Otros', blank=True, null=True)
-    pddnombre = models.CharField(max_length=50, verbose_name='Nombre Completo', blank=True, null=True)
-    pddtelefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
-    pdddomicilio_conocido = models.CharField(max_length=200, verbose_name='Domicilo Conocido', blank=True, null=True)
-    dpanombre = models.CharField(max_length=50, verbose_name='Nombre Completo', blank=True, null=True)
-    dpatelefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
-    dpadomicilio_conocido = models.CharField(max_length=50, verbose_name='Nombre Completo', blank=True, null=True)
-    apanteriodes = models.CharField(max_length=50, verbose_name='Anteriores', blank=True, null=True)
-    apvigentes = models.CharField(max_length=50, verbose_name='Vigentes', blank=True, null=True)
-    aptratamiento =  models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='aptratamiento', verbose_name='Tratamiento Farmacologico', blank=True, null=True)
-    aptratamiento_cual = models.CharField(max_length=50, verbose_name='¿Cual?', blank=True, null=True)
+    
+    ddnombre = models.CharField(max_length=50, verbose_name='Nombre/s', blank=True, null=True)
+    ddapellido = models.CharField(max_length=50, verbose_name='Apellido/s', blank=True, null=True)
+    ddnro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DNI')
+
+    atps_psico_psiqui = models.CharField(max_length=200, verbose_name='Piscologico Psiquiatrico', blank=True, null=True)
+    atps_medicacion = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Toma Medicación',related_name='medicacion', blank=True, null=True)
+    atps_medicacion_nombre = models.CharField(max_length=200, verbose_name='Nombre Medicación', blank=True, null=True)
+    atps_medicacion_vigente = models.ForeignKey(Opcion, on_delete=models.PROTECT,related_name='medicacion_vigente', verbose_name='Medicación vigente', blank=True, null=True)
+    atps_psico_psiqui_6_meses = models.CharField(max_length=200, verbose_name='Duracion 6 meses', blank=True, null=True)
     observaciones = models.TextField(verbose_name='OBSERVACIONES', blank=True, null=True)
-    equipo = models.CharField(max_length=50, verbose_name='Equipo', blank=True, null=True)
-    # fecharegistro = models.DateField(default=datetime.now, null=True)
-    fechacreacion = models.DateTimeField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
-    # fechaactualiza = models.DateField(auto_now_add=True, null=True)   
-    baja = models.BooleanField(default=True)
+    
+    tv_personal = models.ForeignKey(TipoViolenciaPersonal, on_delete=models.PROTECT, verbose_name='Personal',null=True)
+
+    tv_familiar = models.ForeignKey(TipoViolenciaFamiliar, on_delete=models.PROTECT, verbose_name='Familiar',null=True)
+
+    modalidad_personal = models.ForeignKey(ModalidadPersonal, on_delete=models.PROTECT, verbose_name='Personal',null=True)
+
+    modalidad_familiar = models.ForeignKey(ModalidadFamiliar, on_delete=models.PROTECT, verbose_name='Familiar',null=True)
+
+    agresor = MultiSelectField(choices=MY_CHOICES)
+
+    mujer = MultiSelectField(choices=MY_CHOICES2)
+
+    situacion = MultiSelectField(choices=MY_CHOICES3)
+
+    estado = models.BooleanField(default=True)
     
     def __str__(self):
         return str(self.id)

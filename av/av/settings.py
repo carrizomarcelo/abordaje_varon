@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Libs
     'widget_tweaks',
     'django_extensions',
+    'multiselectfield'
 ]
 
 MIDDLEWARE = [

@@ -41,59 +41,72 @@ class EncuestaForm(ModelForm):
     class Meta:
         model = Encuesta
         fields = [
+            'fechacreacion',
+            'equipo',
             'nombre',
             'apellido',
             'nro_dni',
             'fecha_nacimiento',
-            # 'edad',
             'nacionalidad',
-            'departamento',
-            'distrito',
             'calle',
-            'rocalle',
+            'nrocalle',
             'mbt',
             'pdc',
             'bfpa',
+            'departamento',
+            'distrito',          
             'telefono',
             'telefonoa',
             'estado_civil',
             'ostiene',
-            'oscual',
+            'osnombre',
             'nivel_educacion',
             'situacion_laboral',
-            'horas_situacionlaboral',
+            'incumbencia_seguridad',
             'categoria_ocupacional',
             'actividad_laboral',
             'domicilio_laboral',
-            'categoria_inactividad',
             'miembros_intervinientes',
             'ayuda_centroa',
             'ayduda_centroa_cual',
             'jfinterviniente',
             'obasistencia',
-            'detenido',
             'prohibicion_acercamiento',
             'prohibicion_quien',
             'pulsera',
             'acceso_arma',
-            'arma_tipo',
-            'antecedentes_vg',
+            'antecedentes_judiciales',
             'antecedentes_otros',
-            'pddnombre',
-            'pddtelefono',
-            'pdddomicilio_conocido',
-            'dpanombre',
-            'dpatelefono',
-            'dpadomicilio_conocido',
-            'apanteriodes',
-            'apvigentes',
-            'aptratamiento',
-            'aptratamiento_cual',
+
+            'ddnombre',
+            'ddapellido',
+            'ddnro_dni',
+            'atps_psico_psiqui',
+            'atps_medicacion',
+            'atps_medicacion_nombre',
+            'atps_medicacion_vigente',
+            'atps_psico_psiqui_6_meses',
             'observaciones',
-            'equipo',
-            'fechacreacion',
+            'tv_personal',
+            'tv_familiar',
+            'modalidad_personal',
+            'modalidad_familiar',
+            'agresor',
+            'mujer',
+            'situacion'
+            
         ]
         widgets = {
+
+
+            'fechacreacion': DateInput(format='%d/%m/%Y',
+                                       attrs={
+                                           'value': datetime.now().strftime('%d/%m/%Y')
+                                       }),
+
+            'equipo': TextInput(attrs={
+                            'placeholder': '...Completar'
+                        }),
 
             'nombre': TextInput(
                 attrs={
@@ -113,9 +126,6 @@ class EncuestaForm(ModelForm):
                                         
                                        }),
 
-            # 'edad': NumberInput(attrs={
-            #     'placeholder': 'Ingrese Edad'
-            # }),
 
             'nacionalidad': Select(attrs={
                 'placeholder': '',
@@ -126,7 +136,7 @@ class EncuestaForm(ModelForm):
                 'placeholder': 'Nombre de la Calle'
             }),
 
-            'rocalle': NumberInput(attrs={
+            'nrocalle': NumberInput(attrs={
                 'placeholder': 'Sin Nro, elija el numero 0'
             }),
 
@@ -158,29 +168,26 @@ class EncuestaForm(ModelForm):
                 'placeholder': ''
             }),
 
-            # 'estado_civil': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'estado_civil': Select(attrs={
+                'placeholder': ''
+            }),
 
             'ostiene': Select(attrs={
                 'placeholder': ''
             }),
 
-            'oscual': TextInput(attrs={
+            'osnombre': TextInput(attrs={
                 'placeholder': 'Nombre de la Obras social que posee'
             }),
 
-            # 'nivel_educacion': Select(attrs={
-            #     'placeholder': ''
-            # }),
-
-            # 'situacion_laboral': Select(attrs={
-            #     'placeholder': ''
-            # }),
-
-            'horas_situacionlaboral': NumberInput(attrs={
-                'placeholder': 'Ingrese la cantidad de horas Semanales'
+            'nivel_educacion': Select(attrs={
+                'placeholder': ''
             }),
+
+            'situacion_laboral': Select(attrs={
+                'placeholder': ''
+            }),
+
 
             # 'categoria_ocupacional': Select(attrs={
             #     'placeholder': ''
@@ -296,9 +303,7 @@ class EncuestaForm(ModelForm):
                 'cols': "40"
             }),
 
-            'equipo': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
+            
 
             'fechacreacion': DateInput(format='%d/%m/%Y',
                                        attrs={
