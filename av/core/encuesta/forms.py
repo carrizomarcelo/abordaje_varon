@@ -32,7 +32,7 @@ class EncuestaForm(ModelForm):
             # self.fields['pulsera'].widget.attrs.update({'class': 'select2'})
             # self.fields['aptratamiento'].widget.attrs.update({'class': 'select2'})
             # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
-            self.fields['nombre'].widget.attrs['autofocus'] = True
+            self.fields['atps_psiquiatrico'].widget.attrs['autofocus'] = True
     departamento = ModelChoiceField(
         queryset=Departamento.objects.all(), widget=Select(attrs={}))
     distrito = ModelChoiceField(
@@ -81,7 +81,8 @@ class EncuestaForm(ModelForm):
             'ddnombre',
             'ddapellido',
             'ddnro_dni',
-            'atps_psico_psiqui',
+            'atps_psicologico',
+            'atps_psiquiatrico',
             'atps_medicacion',
             'atps_medicacion_nombre',
             'atps_medicacion_vigente',
@@ -188,11 +189,14 @@ class EncuestaForm(ModelForm):
                 'placeholder': ''
             }),
 
-
-            # 'categoria_ocupacional': Select(attrs={
-            #     'placeholder': ''
-            # }),
-
+            'incumbencia_seguridad': Select(attrs={
+                'placeholder': ''
+            }),
+            
+            'categoria_ocupacional': Select(attrs={
+                'placeholder': ''
+            }),
+          
             'actividad_laboral': TextInput(attrs={
                 'placeholder': '...Completar'
             }),
@@ -201,17 +205,17 @@ class EncuestaForm(ModelForm):
                 'placeholder': '...Completar'
             }),
 
-            # 'categoria_inactividad': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'categoria_inactividad': Select(attrs={
+                'placeholder': ''
+            }),
 
             'miembros_intervinientes': TextInput(attrs={
                 'placeholder': ''
             }),
 
-            # 'ayuda_centroa': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'ayuda_centroa': Select(attrs={
+                'placeholder': ''
+            }),
 
             'ayduda_centroa_cual': TextInput(attrs={
                 'placeholder': '...Completar'
@@ -225,76 +229,65 @@ class EncuestaForm(ModelForm):
                 'placeholder': '...Completar'
             }),
 
-            'detenido': TextInput(attrs={
-                'placeholder': '...Completar'
+            'prohibicion_acercamiento': Select(attrs={
+                'placeholder': ''
             }),
-
-            # 'prohibicion_acercamiento': Select(attrs={
-            #     'placeholder': ''
-            # }),
 
             'prohibicion_quien': TextInput(attrs={
                 'placeholder': '...Completar'
             }),
 
-            # 'pulsera': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'pulsera': Select(attrs={
+                'placeholder': ''
+            }),
 
             'acceso_arma': Select(attrs={
                 'placeholder': '...Completar'
             }),
 
-            'arma_tipo': TextInput(attrs={
-                'placeholder': '...Completar'
+
+            'antecedentes_judiciales': Select(attrs={
+                
             }),
 
-            'antecedentes_vg': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
+            # 'antecedentes_otros': TextInput(attrs={
 
-            'antecedentes_otros': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'pddnombre': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'pddtelefono': NumberInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'pdddomicilio_conocido': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'dpanombre': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'dpatelefono': NumberInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'dpadomicilio_conocido': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'apanteriodes': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            'apvigentes': TextInput(attrs={
-                'placeholder': '...Completar'
-            }),
-
-            # 'aptratamiento': TextInput(attrs={
-            #     'placeholder': ''
             # }),
 
-            'aptratamiento_cual': TextInput(attrs={
+            'ddnombre': TextInput(attrs={
                 'placeholder': '...Completar'
+            }),
+
+            'ddapellido': NumberInput(attrs={
+                'placeholder': '...Completar'
+            }),
+
+            'ddnro_dni': TextInput(attrs={
+                'placeholder': '...Completar'
+            }),
+
+            'atps_psicologico': Select(attrs={
+                'placeholder': '...Completar'
+            }),
+
+            'atps_psiquiatrico': Select(attrs={
+                'placeholder': '...Completar'
+            }),
+        
+            'atps_medicacion': Select(attrs={
+                'placeholder': '...Completar'
+            }),
+    
+            'atps_medicacion_nombre': TextInput(attrs={
+                'placeholder': '...Completar'
+            }),
+    
+            'atps_medicacion_vigente': Select(attrs={
+                'placeholder': '...Completar'
+            }),
+
+            'atps_psico_psiqui_6_meses': Select(attrs={
+
             }),
 
             'observaciones': Textarea(attrs={
@@ -302,15 +295,47 @@ class EncuestaForm(ModelForm):
                 'rows': "3",
                 'cols': "40"
             }),
+    
+    
+            'tv_personal': CheckboxSelectMultiple(attrs={
+                
+            }),
+
+            'tv_familiar': CheckboxSelectMultiple(attrs={
+                
+            }),
+
+            'modalidad_personal': CheckboxSelectMultiple(attrs={
+                
+            }),
+
+            'modalidad_familiar': CheckboxSelectMultiple(attrs={
+                
+            }),
 
             
+            
+            
+            
 
-            'fechacreacion': DateInput(format='%d/%m/%Y',
-                                       attrs={
-                                           'value': datetime.now().strftime('%d/%m/%Y')
-                                       }),
+            # 'agresor': CheckboxSelectMultiple(attrs={
+                
+            # }),
+
+            # 'mujer': CheckboxSelectMultiple(attrs={
+                
+            # }),
+
+            # 'situacion': CheckboxSelectMultiple(attrs={
+                
+            # }),
 
 
+
+            
+            
+            
+            
 
 
         }

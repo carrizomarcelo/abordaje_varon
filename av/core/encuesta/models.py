@@ -255,23 +255,81 @@ class ModalidadFamiliar(models.Model):
         verbose_name_plural = 'Modalidad - Familiar'
         ordering = ['id']
 
-MY_CHOICES = (('item_key1', 'Condicion Migratoria'),
-              ('item_key2', 'Estres Psicosocial'),
-              ('item_key3', 'Abuso de Sustancias Psicoactivas'),
-              ('item_key4', 'Antecedentes de Violencia en su Biografia'),
-              ('item_key5', 'Tenencia y uso de Armas'),
-              ('item_key5', 'Antecedentes depresivos'),
-              ('item_key5', 'Presencia de miedo o rechazo a los abandonos'),
-              ('item_key5', 'Inestabilidad anímica'),
-              ('item_key5', 'Egocentrismo'))
+class SeisMeses(models.Model):
+    id = models.AutoField(primary_key=True)
+    descripcion = models.CharField(max_length=50,blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.id)
 
-MY_CHOICES2 = ((1, 'Vulnerabilidad Social'),
-               (2, 'Retractarse de separacion o denuncia al agresor'),
-               (3, 'Presencia de hijo no biológico en la convivencia con el agresor'),
-               (4, 'Item title 2.4'),
-               (5, 'Item title 2.5'))
+    class Meta:
+        db_table = 'tiempo_tratamiento'
+        verbose_name = 'Tiempo Tratamiento'
+        verbose_name_plural = 'Tiempo Tratamiento'
+        ordering = ['id']
 
-MY_CHOICES3 = ((1, 'Relacion en convivencia o matrimonial'),
+
+TV_PERSONAL = ((1, 'Fisica'),
+               (2, 'Violencia Psicologica'),
+               (3, 'Violencia Sexual'),
+               (4, 'Violencia Economica y patrimonial'),
+               (5, 'Violencia Simbolica'),
+               (6, 'Violencia Ambiental'))
+
+TV_FAMILIAR = ((1, 'Fisica'),
+               (2, 'Violencia Psicologica'),
+               (3, 'Violencia Sexual'),
+               (4, 'Violencia Economica y patrimonial'),
+               (5, 'Violencia Simbolica'),
+               (6, 'Violencia Ambiental'))
+
+M_PERSONAL = ((1, 'Domestica'),
+               (2, 'Institucional'),
+               (3, 'Laboral'),
+               (4, 'Contra la libertad reprodictiva y obstétrica'),
+               (5, 'Mediatica'))
+
+M_FAMILIAR = ((1, 'Domestica'),
+               (2, 'Institucional'),
+               (3, 'Laboral'),
+               (4, 'Contra la libertad reprodictiva y obstétrica'),
+               (5, 'Mediatica'))
+
+
+VG_OTROS = (('1', 'Delito Contra la Persona'),
+              ('2', 'Delito contra la vida'),
+              ('3', 'Intento de femicidio'),
+              ('4', 'Lesiones Leves'),
+              ('5', 'Lesiones Graves'),
+              ('6', 'Lesiones Gravisimas'),
+              ('7', 'Abuso de Armas (con lesiones)'),
+              ('8', 'Abuso de Armas (sin lesiones)'),
+              ('9', 'Abandono de la persona'),
+              ('10', 'Delitos contra la integridad sexual'),
+              ('11', ' Delitos contra la libertad (Amenaza)'),
+              ('12', ' Delitos contra la libertad (Violacion de Domicilio)'),
+              ('13', ' Delitos contra la propiedad (Hurto)'),
+              ('14', ' Delitos contra la propiedad (Robo)'),
+              ('15', ' Violacion de Domicilio (Extorsión)'),
+              ('16', ' Violacion de Domicilio (Usurpación)'),
+              ('17', ' Violacion de Domicilio (Daños)'),
+              ('18', ' Violacion de Domicilio (Desobediencia)'))
+
+AGRESOR = (('1', 'Condicion Migratoria'),
+              ('2', 'Estres Psicosocial'),
+              ('3', 'Abuso de Sustancias Psicoactivas'),
+              ('4', 'Antecedentes de Violencia en su Biografia'),
+              ('5', 'Tenencia y uso de Armas'),
+              ('6', 'Antecedentes depresivos'),
+              ('7', 'Presencia de miedo o rechazo a los abandonos'),
+              ('8', 'Inestabilidad anímica'),
+              ('9', 'Egocentrismo'))
+
+MUJER = ((1, 'Vulnerabilidad Social'),
+         (2, 'Retractarse de separacion o denuncia al agresor'),
+         (3, 'Presencia de hijo no biológico en la convivencia con el agresor'))
+
+SITUACION = ((1, 'Relacion en convivencia o matrimonial'),
                (2, 'Solicitud de separacion por parte de la mujer'),
                (3, 'ideación de celos del estilo posesivos'),
                (4, 'Transitar embarazo'),
@@ -321,34 +379,35 @@ class Encuesta(BaseModel):
     acceso_arma =  models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='acceso_arma', verbose_name='¿Tiene Acceso a armas de fuego o similar?', blank=True, null=True)
     
     
-    antecedentes_judiciales = models.CharField(max_length=200, verbose_name='Antecedentes Judiciales', blank=True, null=True)
+    antecedentes_judiciales = models.ForeignKey(Opcion, on_delete=models.PROTECT,related_name='antecedentes_judiciales' ,verbose_name='Antecedentes Judiciales', blank=True, null=True)
     
-    antecedentes_otros = models.CharField(max_length=200, verbose_name='Otros', blank=True, null=True)
+    antecedentes_otros = MultiSelectField(choices=VG_OTROS)
     
     ddnombre = models.CharField(max_length=50, verbose_name='Nombre/s', blank=True, null=True)
     ddapellido = models.CharField(max_length=50, verbose_name='Apellido/s', blank=True, null=True)
     ddnro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DNI')
 
-    atps_psico_psiqui = models.CharField(max_length=200, verbose_name='Piscologico Psiquiatrico', blank=True, null=True)
+    atps_psicologico = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Antecedente Psicologico',related_name='psicologico', blank=True, null=True)
+    atps_psiquiatrico = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Antecedente Psiquiatrico',related_name='psiquiatrico', blank=True, null=True)
     atps_medicacion = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Toma Medicación',related_name='medicacion', blank=True, null=True)
-    atps_medicacion_nombre = models.CharField(max_length=200, verbose_name='Nombre Medicación', blank=True, null=True)
+    atps_medicacion_nombre = models.CharField(max_length=200, verbose_name='Nombre - Medicación', blank=True, null=True)
     atps_medicacion_vigente = models.ForeignKey(Opcion, on_delete=models.PROTECT,related_name='medicacion_vigente', verbose_name='Medicación vigente', blank=True, null=True)
-    atps_psico_psiqui_6_meses = models.CharField(max_length=200, verbose_name='Duracion 6 meses', blank=True, null=True)
+    atps_psico_psiqui_6_meses = models.ForeignKey(SeisMeses, on_delete=models.PROTECT,related_name='atps_psico_psiqui_6_meses', verbose_name='Tratamiento 6 meses', blank=True, null=True)
     observaciones = models.TextField(verbose_name='OBSERVACIONES', blank=True, null=True)
-    
-    tv_personal = models.ForeignKey(TipoViolenciaPersonal, on_delete=models.PROTECT, verbose_name='Personal',null=True)
+    ###
+    tv_personal = MultiSelectField(choices=TV_PERSONAL)
 
-    tv_familiar = models.ForeignKey(TipoViolenciaFamiliar, on_delete=models.PROTECT, verbose_name='Familiar',null=True)
+    tv_familiar = MultiSelectField(choices=TV_FAMILIAR)
 
-    modalidad_personal = models.ForeignKey(ModalidadPersonal, on_delete=models.PROTECT, verbose_name='Personal',null=True)
+    modalidad_personal = MultiSelectField(choices=M_FAMILIAR)
 
-    modalidad_familiar = models.ForeignKey(ModalidadFamiliar, on_delete=models.PROTECT, verbose_name='Familiar',null=True)
+    modalidad_familiar = MultiSelectField(choices=M_FAMILIAR)
 
-    agresor = MultiSelectField(choices=MY_CHOICES)
+    agresor = MultiSelectField(choices=AGRESOR)
 
-    mujer = MultiSelectField(choices=MY_CHOICES2)
+    mujer = MultiSelectField(choices=MUJER)
 
-    situacion = MultiSelectField(choices=MY_CHOICES3)
+    situacion = MultiSelectField(choices=SITUACION)
 
     estado = models.BooleanField(default=True)
     
