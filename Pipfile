@@ -33,6 +33,7 @@ typing-extensions = "==3.10.0.0"
 viewflow = "==0.0"
 wrapt = "==1.12.1"
 django-multiselectfield = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

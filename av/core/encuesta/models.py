@@ -203,71 +203,71 @@ class SeisMeses(models.Model):
 class Encuesta(BaseModel):
 
 
-    TV_PERSONAL = ((1, 'Fisica'),
-               (2, 'Violencia Psicologica'),
-               (3, 'Violencia Sexual'),
-               (4, 'Violencia Economica y patrimonial'),
-               (5, 'Violencia Simbolica'),
-               (6, 'Violencia Ambiental'))
-    TV_FAMILIAR = ((1, 'Fisica'),
-               (2, 'Violencia Psicologica'),
-               (3, 'Violencia Sexual'),
-               (4, 'Violencia Economica y patrimonial'),
-               (5, 'Violencia Simbolica'),
-               (6, 'Violencia Ambiental'))
+    TV_PERSONAL = (('Fisica', 'Fisica'),
+               ('Violencia Psicologica', 'Violencia Psicologica'),
+               ('Violencia Sexual', 'Violencia Sexual'),
+               ('Violencia Economica y patrimonial', 'Violencia Economica y patrimonial'),
+               ('Violencia Simbolica', 'Violencia Simbolica'),
+               ('Violencia Ambiental', 'Violencia Ambiental'))
+    TV_FAMILIAR = (('Fisica', 'Fisica'),
+               ('Violencia Psicologica', 'Violencia Psicologica'),
+               ('Violencia Sexual', 'Violencia Sexual'),
+               ('Violencia Economica y patrimonial', 'Violencia Economica y patrimonial'),
+               ('Violencia Simbolica', 'Violencia Simbolica'),
+               ('Violencia Ambiental', 'Violencia Ambiental'))
 
-    M_PERSONAL = ((1, 'Domestica'),
-               (2, 'Institucional'),
-               (3, 'Laboral'),
-               (4, 'Contra la libertad reprodictiva y obstétrica'),
-               (5, 'Mediatica'))
+    M_PERSONAL = (('Domestica', 'Domestica'),
+               ('Institucional', 'Institucional'),
+               ('Laboral', 'Laboral'),
+               ('Contra la libertad reprodictiva y obstétrica', 'Contra la libertad reprodictiva y obstétrica'),
+               ('Mediatica', 'Mediatica'))
 
-    M_FAMILIAR = ((1, 'Domestica'),
-               (2, 'Institucional'),
-               (3, 'Laboral'),
-               (4, 'Contra la libertad reprodictiva y obstétrica'),
-               (5, 'Mediatica'))
+    M_FAMILIAR = (('Domestica', 'Domestica'),
+               ('Institucional', 'Institucional'),
+               ('Laboral', 'Laboral'),
+               ('Contra la libertad reprodictiva y obstétrica', 'Contra la libertad reprodictiva y obstétrica'),
+               ('Mediatica', 'Mediatica'))
 
 
-    VG_OTROS = ((1, 'Delito Contra la Persona'),
-              (2, 'Delito contra la vida'),
-              (3, 'Intento de femicidio'),
-              (4, 'Lesiones Leves'),
-              (5, 'Lesiones Graves'),
-              (6, 'Lesiones Gravisimas'),
-              (7, 'Abuso de Armas (con lesiones)'),
-              (8, 'Abuso de Armas (sin lesiones)'),
-              (9, 'Abandono de la persona'),
-              (10, 'Delitos contra la integridad sexual'),
-              (11, ' Delitos contra la libertad (Amenaza)'),
-              (12, ' Delitos contra la libertad (Violacion de Domicilio)'),
-              (13, ' Delitos contra la propiedad (Hurto)'),
-              (14, ' Delitos contra la propiedad (Robo)'),
-              (15, ' Violacion de Domicilio (Extorsión)'),
-              (16, ' Violacion de Domicilio (Usurpación)'),
-              (17, ' Violacion de Domicilio (Daños)'),
-              (18, ' Violacion de Domicilio (Desobediencia)'))
+    VG_OTROS = (('Delito Contra la Persona', 'Delito Contra la Persona'),
+              ('Delito contra la vida', 'Delito contra la vida'),
+              ('Intento de femicidio', 'Intento de femicidio'),
+              ('Lesiones Leves', 'Lesiones Leves'),
+              ('Lesiones Graves', 'Lesiones Graves'),
+              ('Lesiones Gravisimas', 'Lesiones Gravisimas'),
+              ('Abuso de Armas (con lesiones)', 'Abuso de Armas (con lesiones)'),
+              ('Abuso de Armas (sin lesiones)', 'Abuso de Armas (sin lesiones)'),
+              ('Abandono de la persona', 'Abandono de la persona'),
+              ('Delitos contra la integridad sexual', 'Delitos contra la integridad sexual'),
+              ('Delitos contra la libertad (Amenaza)', ' Delitos contra la libertad (Amenaza)'),
+              ('Delitos contra la libertad (Violacion de Domicilio)', ' Delitos contra la libertad (Violacion de Domicilio)'),
+              ('Delitos contra la propiedad (Hurto)', ' Delitos contra la propiedad (Hurto)'),
+              ('Delitos contra la propiedad (Robo)', ' Delitos contra la propiedad (Robo)'),
+              ('Violacion de Domicilio (Extorsión)', ' Violacion de Domicilio (Extorsión)'),
+              ('Violacion de Domicilio (Usurpación)', ' Violacion de Domicilio (Usurpación)'),
+              ('Violacion de Domicilio (Daños)', ' Violacion de Domicilio (Daños)'),
+              ('Violacion de Domicilio (Desobediencia)', ' Violacion de Domicilio (Desobediencia)'))
 
-    AGRESOR = ((1, 'Condicion Migratoria'),
-              (2, 'Estres Psicosocial'),
-              (3, 'Abuso de Sustancias Psicoactivas'),
-              (4, 'Antecedentes de Violencia en su Biografia'),
-              (5, 'Tenencia y uso de Armas'),
-              (6, 'Antecedentes depresivos'),
-              (7, 'Presencia de miedo o rechazo a los abandonos'),
-              (8, 'Inestabilidad anímica'),
-              (9, 'Egocentrismo'))
+    AGRESOR = (('Condicion Migratoria', 'Condicion Migratoria'),
+              ('Estres Psicosocial', 'Estres Psicosocial'),
+              ('Abuso de Sustancias Psicoactivas', 'Abuso de Sustancias Psicoactivas'),
+              ('Antecedentes de Violencia en su Biografia', 'Antecedentes de Violencia en su Biografia'),
+              ('Tenencia y uso de Armas', 'Tenencia y uso de Armas'),
+              ('Antecedentes depresivos', 'Antecedentes depresivos'),
+              ('Presencia de miedo o rechazo a los abandonos', 'Presencia de miedo o rechazo a los abandonos'),
+              ('Inestabilidad anímica', 'Inestabilidad anímica'),
+              ('Egocentrismo', 'Egocentrismo'))
 
-    MUJER = ((1, 'Vulnerabilidad Social'),
-         (2, 'Retractarse de separacion o denuncia al agresor'),
-         (3, 'Presencia de hijo no biológico en la convivencia con el agresor'))
+    MUJER = (('Vulnerabilidad Social', 'Vulnerabilidad Social'),
+         ('Retractarse de separacion o denuncia al agresor', 'Retractarse de separacion o denuncia al agresor'),
+         ('Presencia de hijo no biológico en la convivencia con el agresor', 'Presencia de hijo no biológico en la convivencia con el agresor'))
 
-    SITUACION = ((1, 'Relacion en convivencia o matrimonial'),
-               (2, 'Solicitud de separacion por parte de la mujer'),
-               (3, 'ideación de celos del estilo posesivos'),
-               (4, 'Transitar embarazo'),
-               (5, 'presedente de conductas de acoso'),
-               (6, 'conductas de amenazas'))
+    SITUACION = (('Relacion en convivencia o matrimonial', 'Relacion en convivencia o matrimonial'),
+               ('Solicitud de separacion por parte de la mujer', 'Solicitud de separacion por parte de la mujer'),
+               ('ideación de celos del estilo posesivos', 'ideación de celos del estilo posesivos'),
+               ('Transitar embarazo', 'Transitar embarazo'),
+               ('presedente de conductas de acoso', 'presedente de conductas de acoso'),
+               ('conductas de amenazas', 'conductas de amenazas'))
 
     id = models.AutoField(primary_key=True)
     fechacreacion = models.DateTimeField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
@@ -327,19 +327,19 @@ class Encuesta(BaseModel):
     atps_psico_psiqui_6_meses = models.ForeignKey(SeisMeses, on_delete=models.PROTECT,related_name='atps_psico_psiqui_6_meses', verbose_name='Tratamiento 6 meses', blank=True, null=True)
     observaciones = models.TextField(verbose_name='OBSERVACIONES', blank=True, null=True)
     ###
-    tv_personal = MultiSelectField(choices=TV_PERSONAL, blank=True, null=True)
+    tv_personal = MultiSelectField(max_length=200, max_choices=6, choices=TV_PERSONAL, blank=True, null=True)
 
-    tv_familiar = MultiSelectField(choices=TV_FAMILIAR, blank=True, null=True)
+    tv_familiar = MultiSelectField(max_length=200, max_choices=6, choices=TV_FAMILIAR, blank=True, null=True)
 
-    modalidad_personal = MultiSelectField(choices=M_PERSONAL, blank=True, null=True)
+    modalidad_personal = MultiSelectField(max_length=200, max_choices=6, choices=M_PERSONAL, blank=True, null=True)
 
-    modalidad_familiar = MultiSelectField(choices=M_FAMILIAR, blank=True, null=True)
+    modalidad_familiar = MultiSelectField(max_length=200, max_choices=6, choices=M_FAMILIAR, blank=True, null=True)
 
-    agresor = MultiSelectField(choices=AGRESOR, blank=True, null=True)
+    agresor = MultiSelectField(max_length=200, max_choices=6, choices=AGRESOR, blank=True, null=True)
 
-    mujer = MultiSelectField(choices=MUJER, blank=True, null=True)
+    mujer = MultiSelectField(max_length=200, max_choices=6, choices=MUJER, blank=True, null=True)
 
-    situacion = MultiSelectField(choices=SITUACION, blank=True, null=True )
+    situacion = MultiSelectField(max_length=200, max_choices=6, choices=SITUACION, blank=True, null=True )
 
     estado = models.BooleanField(default=True)
     

@@ -481,6 +481,12 @@
                                             {{ form.atps_psico_psiqui_6_meses }}
                                           </div>
                                           
+                                          <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">{{ form.observaciones.label}}</span>
+                                            </div>
+                                            {{ form.observaciones }}
+                                          </div>
 
                                           </div>                                       
   
@@ -510,7 +516,7 @@
                                                       <div class="card-body border border-info fondo shadow">
   
                                                       {% for value, text in form.tv_familiar.field.choices %}
-                                                      <div class="ui slider checkbox">
+                                                      <div class="custom-control custom-checkbox">
                                                         <input id="id_tv_familiar_{{ forloop.counter0 }}" name="{{ form.encuesta.tv_familiar }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
                                                         <label>{{ text }}</label>
                                                       </div>

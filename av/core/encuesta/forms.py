@@ -297,7 +297,7 @@ class EncuestaForm(ModelForm):
             }),
     
     
-            'tv_personal': CheckboxSelectMultiple(attrs={
+            'tv_personal': CheckboxInput(attrs={
                 
             }),
 
