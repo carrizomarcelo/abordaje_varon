@@ -378,7 +378,7 @@
                                         </div>
                                         
                                         <div class="card text-black">
-                                          <div class="card-header bg-primary text-center">Otros (en relación a la figura legal por VG u otros):</div>
+                                          <div class="card-header bg-primary text-center">Otros Antecedentes (en relación a la figura legal por VG u otros):</div>
                                           <div class="card-body border border-info fondo shadow">
                                             
 
@@ -408,20 +408,20 @@
                                             <div class="card-body border border-info fondo shadow">
                                               <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                  <span class="input-group-text">Nombre</span>
+                                                  <span class="input-group-text">{{ form.ddnombre.label }}</span>
                                                 </div>
                                                 {{ form.ddnombre }}
                                             </div>
                                             <div class="input-group mb-3">
                                               <div class="input-group-prepend">
-                                                <span class="input-group-text">Apellido</span>
+                                                <span class="input-group-text">{{ form.ddapellido.label }}</span>
                                               </div>
-                                              {{ form.ddnombre }}
+                                              {{ form.ddapellido }}
                                             </div>
     
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                  <span class="input-group-text">DNI:</span>
+                                                  <span class="input-group-text">{{ form.ddnro_dni.label }}</span>
                                                 </div>
                                                 {{ form.ddnro_dni }}
                                               <div> 
@@ -491,9 +491,10 @@
                                        
                                         <div class="card bg-light ">
                                           <div class="card-header text-center bg-secondary"><h5>ANTECEDENTES DE VIOLENCIA EN FAMILIA DE ORIGEN, GRUPO SOCIALES O INSTITUCIONES </h5></div>
+                                  
                                               <div class="card-body rounded shadow">                                                
                                                 <div class="card text-black">
-                                                  <div class="card-header bg-primary text-center">Personal</div>
+                                                  <div class="card-header bg-primary text-center">Violencia - Personal</div>
                                                     <div class="card-body border border-info fondo shadow">
                                                     {% for value, text in form.tv_personal.field.choices %}
                                                     <div class="ui slider checkbox">
@@ -505,7 +506,7 @@
                                                   </div>
                                                   
                                                   <div class="card text-black">
-                                                    <div class="card-header bg-primary text-center">Familiar</div>
+                                                    <div class="card-header bg-primary text-center">Violencia - Familiar</div>
                                                       <div class="card-body border border-info fondo shadow">
   
                                                       {% for value, text in form.tv_familiar.field.choices %}
@@ -516,69 +517,98 @@
                                                       {% endfor %}
                                                       </div>
                                                   </div>
+
+                                                  <div class="card text-black">
+                                                    <div class="card-header bg-primary text-center">Modalidad - Personal</div>
+                                                      <div class="card-body border border-info fondo shadow">
+  
+                                                      {% for value, text in form.modalidad_familiar.field.choices %}
+                                                      <div class="ui slider checkbox">
+                                                        <input id="id_modalidad_familiar_{{ forloop.counter0 }}" name="{{ form.encuesta.modalidad_familiar }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                        <label>{{ text }}</label>
+                                                      </div>
+                                                      {% endfor %}
+                                                      </div>
+                                                  </div>
+                                                  <div class="card text-black">
+                                                    <div class="card-header bg-primary text-center">Modalidad - Familiar</div>
+                                                      <div class="card-body border border-info fondo shadow">
+  
+                                                      {% for value, text in form.modalidad_familiar.field.choices %}
+                                                      <div class="ui slider checkbox">
+                                                        <input id="id_modalidad_familiar_{{ forloop.counter0 }}" name="{{ form.encuesta.modalidad_familiar }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                        <label>{{ text }}</label>
+                                                      </div>
+                                                      {% endfor %}
+                                                      </div>
+                                                  </div>
                                                     </div>
                                                   </div>
-                                                 
+                                                  <div class="card bg-light ">
+                                                    <div class="card-header text-center bg-secondary"><h5>VALORACION DE RIESGO  DE VIOLENCIA EN LA SITUACION </h5></div>
+                                                        
+                                                    <div class="card-body rounded">    
+                                                          <div class="card text-black">
+                                                            <div class="card-header bg-primary text-center">Agresor</div>
+                                                            <div class="card-body border border-info fondo shadow">
+                                                           
+                                                              {% for value, text in form.agresor.field.choices %}
+                                                              <div class="ui slider checkbox">
+                                                                <input id="id_agresor_{{ forloop.counter0 }}" name="{{ form.encuesta.agresor }}" type="checkbox" value="{{ value }}"{% if value in checked_agresor %} checked="checked"{% endif %}>
+                                                                <label>{{ text }}</label>
+                                                              </div>
+                                                              {% endfor %}
+    
+                                                            </div>                                
+                                                          </div>
+                                                          
+                                                          <div class="card text-black">
+                                                            <div class="card-header bg-primary text-center">Mujer</div>
+                                                            <div class="card-body border border-info fondo shadow">
+                                                              
+                                                              {% for value, text in form.mujer.field.choices %}
+                                                              <div class="ui slider checkbox">
+                                                                <input id="id_mujer_{{ forloop.counter0 }}" name="{{ form.encuesta.mujer }}" type="checkbox" value="{{ value }}"{% if value in checked_mujer %} checked="checked"{% endif %}>
+                                                                <label>{{ text }}</label>
+                                                              </div>
+                                                              {% endfor %}
+                                                              
+                                                            </div>                                                                                                     
+                                                        
+                                                            
+                                                          </div>      
+                                                          <div class="card text-black">
+                                                            <div class="card-header bg-primary text-center">Situacion</div>
+                                                            <div class="card-body border border-info fondo shadow">
+  
+                                                              {% for value, text in form.situacion.field.choices %}
+                                                              <div class="ui slider checkbox">
+                                                                <input id="id_situacion_{{ forloop.counter0 }}" name="{{ form.encuesta.situacion }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                                <label>{{ text }}</label>
+                                                              </div>
+                                                              {% endfor %}
+                                                              </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                        </div>
+                                                </div>
                                                   </div>
                           
 
                                               
                                               
                                               <br>
-                                              <div class="card bg-light ">
-                                                <div class="card-header text-center bg-secondary"><h5>VALORACION DE RIESGO  DE VIOLENCIA EN LA SITUACION </h5></div>
-                                                    
-                                                <div class="card-body card-deck rounded">    
-                                                      <div class="card text-black">
-                                                        <div class="card-header bg-primary text-center">Agresor</div>
-                                                        <div class="card-body border border-info fondo shadow">
-                                                       
-                                                          {% for value, text in form.agresor.field.choices %}
-                                                          <div class="ui slider checkbox">
-                                                            <input id="id_agresor_{{ forloop.counter0 }}" name="{{ form.encuesta.agresor }}" type="checkbox" value="{{ value }}"{% if value in checked_agresor %} checked="checked"{% endif %}>
-                                                            <label>{{ text }}</label>
-                                                          </div>
-                                                          {% endfor %}
-
-                                                        </div>                                
-                                                      </div>
-                                                      
-                                                      <div class="card text-black">
-                                                        <div class="card-header bg-primary text-center">Mujer</div>
-                                                        <div class="card-body border border-info fondo shadow">
-                                                          
-                                                          {% for value, text in form.mujer.field.choices %}
-                                                          <div class="ui slider checkbox">
-                                                            <input id="id_mujer_{{ forloop.counter0 }}" name="{{ form.encuesta.mujer }}" type="checkbox" value="{{ value }}"{% if value in checked_mujer %} checked="checked"{% endif %}>
-                                                            <label>{{ text }}</label>
-                                                          </div>
-                                                          {% endfor %}
-                                                          
-                                                        </div>                                                                                                     
-                                                    
-                                                        <div class="card text-black">
-                                                          <div class="card-header bg-primary text-center">Situacion</div>
-                                                          <div class="card-body border border-info fondo shadow">
-
-                                                            {% for value, text in form.situacion.field.choices %}
-                                                            <div class="ui slider checkbox">
-                                                              <input id="id_situacion_{{ forloop.counter0 }}" name="{{ form.encuesta.situacion }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
-                                                              <label>{{ text }}</label>
-                                                            </div>
-                                                            {% endfor %}
-                                                            </div>
-                                                          </div>
-                                                          </div>
-                                                      </div>
-                                                      </div>      
-                                                      
-                                                    </div>
-                                            </div>  
+                                              
                                                   </div>      
                                             
                                         
                                           </div>
+                                          
                                         </div>
+
+                                        
                                       </div>
                                       </div>
                                         

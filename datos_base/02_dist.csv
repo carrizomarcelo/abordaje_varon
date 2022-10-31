@@ -1,0 +1,220 @@
+id,distrito,dpto_id
+1,1° Sec. Parque Central,1
+2,2° Sec. Barrio Cívico,1
+3,3° Sec. Parque O'Higgins,1
+4,4° Sec. Oeste,1
+5,4° Sec. Este Área Fundacional,1
+6,5° Sec. Residencial Sur,1
+7,6° Sec. Residencial Norte,1
+8,7° Sec. Residencial Parque,1
+9,8° Sec. Aeroparque,1
+10,9° Sec. Parque General San Martín,1
+11,10° Sec. Residencial Los Cerros,1
+12,11° Sec. San Agustín,1
+13,12° Sec. Piedemonte,1
+14,Alvear Oeste,2
+15,Bowen,2
+16,General Alvear,2
+17,San Pedro del Atuel,2
+18,Canalejas,2
+19,Carmesa,2
+20,Cochicó,2
+21,Corral de Lorca,2
+22,El Ceibo,2
+23,El Juncalito,2
+24,Goico,2
+25,La Escandinava,2
+26,La Mora,2
+27,Los Compartos,2
+28,Poste de Hierro,2
+29,Ciudad de Godoy Cruz,3
+30,Gobernador Benegas,3
+31,San Francisco del Monte,3
+32,Las Tortugas,3
+33,Presidente Sarmiento,3
+34,San Vicente,3
+35,Dorrego,4
+36,Jesús Nazareno,4
+37,San José,4
+38,Rodeo de la Cruz,4
+39,Pedro Molina,4
+40,El Sauce,4
+41,El Bermejo,4
+42,Colonia Segovia,4
+43,Belgrano,4
+44,Los Corralitos,4
+45,Buena Nueva,4
+46,Kilometro 11,4
+47,Nueva Ciudad,4
+48,Kilometro 8,4
+49,Villa Nueva,4
+50,Capilla del Rosario,4
+51,Las Cañas,4
+52,La Primavera,4
+53,San Francisco del Monte,4
+54,Puente de Hierro,4
+55,Colonia Molina,4
+56,Algarrobo Grande,5
+57,Alto Verde,5
+58,Ciudad,5
+59,Ingeniero Giagnoni,5
+60,La Colonia,5
+61,Los Barriales,5
+62,Medrano,5
+63,Mundo Nuevo,5
+64,Phillips,5
+65,Alto del Olvido,8
+66,Gustavo André,8
+67,Villa Tulumaya,8
+68,Jocolí,8
+69,El Carmen,8
+70,Oscar Mendoza,8
+71,La Bajada,8
+72,Las Violetas,8
+73,San Miguel de los Sauces,8
+74,Jocolí Viejo,8
+75,El Paramillo,8
+76,EL Vergel,8
+77,Tres de Mayo,8
+78,El Plumero,8
+79,Colonia Italia,8
+80,La Pega,8
+81,La Palmera,8
+82,San Francisco,8
+83,El Chilcal,8
+84,Lagunas del Rosario,8
+85,La Colmena,8
+86,Capdevilla,7
+87,La Cienaguita,7
+88,El Algarrobal,7
+89,El Borbollón,7
+90,El Challao,7
+91,El Pastal,7
+92,El Plumerillo,7
+93,El Resguardo,7
+94,El Zapallar,7
+95,Las Cuevas,7
+96,Las Heras,7
+97,Panquehua,7
+98,Penitentes,7
+99,Sierras de Encalada,7
+100,Uspallata,7
+101,Puente del Inca,7
+102,Desaguadero,6
+103,Las Chacritas,6
+104,La Menta,6
+105,Villa Antigua,6
+106,Villa Nueva,6
+107,Agrelo,9
+108,Ugarteche,9
+109,Perdriel,9
+110,Cacheuta,9
+111,Carrodilla,9
+112,Chacras de Coria,9
+113,Distrito Industrial,9
+114,El Carrizal,9
+115,La Puntilla,9
+116,Las Compuertas,9
+117,Luján Ciudad,9
+118,Mayor Drummond,9
+119,Potrerillos,9
+120,Vistalba,9
+121,Coquimbito,10
+122,Cruz de Piedra,10
+123,Fray Luis Beltrán,10
+124,General Gutiérrez,10
+125,General Ortega,10
+126,Barracas,10
+127,Lunlunta,10
+128,Luzuriaga,10
+129,Maipú,10
+130,Rodeo del Medio,10
+131,Russell,10
+132,San Roque,10
+133,Agua Escondida,11
+134,Malargüe,11
+135,Río Barracas,11
+136,Río Grande,11
+137,Andrade,12
+138,El Mirador,12
+139,La Central,12
+140,"La Libertad
+",12
+141,Los Árboles,12
+142,Los Campamentos,12
+143,Los Huarpes,12
+144,Medrano,12
+145,Mundo Nuevo,12
+146,Reducción,12
+147,Ciudad,12
+148,Santa María de Oro,12
+149,San Isidro,12
+150,Chilecito,13
+151,Eugenio Bustos,13
+152,La Consulta,13
+153,Pareditas,13
+154,Tres Esquinas,13
+155,Villa de San Carlos,13
+156,Alto Salvador,14
+157,Alto Verde,14
+158,Buen Orden,14
+159,Chapanay,14
+160,Chivilcoy,14
+161,El Central,14
+162,El Divisadero,14
+163,El Espino,14
+164,El Ramblóm,14
+165,Las Chimbas,14
+166,Montecaseros,14
+167,Nueva California,14
+168,Palmira,14
+169,Ciudad,14
+170,Tres Porteñas,14
+171,Cañada Seca,15
+172,Cuadro Benegas,15
+173,Cuadro Nacional,15
+174,El Cerrito,15
+175,EL Sosneado,15
+176,El Nihuil,15
+177,Goudge,15
+178,Jaime Prats,15
+179,La Llave,15
+180,Las Malvinas,15
+181,Las Paredes,15
+182,Monte Comán,15
+183,Punta del Agua,15
+184,Rama Caída,15
+185,Real del Padre,15
+186,San Rafael,15
+187,Villa Veinticinco de Mayo,15
+188,Villa Atuel,15
+189,Doce de Octubre,16
+190,La Dormida,16
+191,Las Catitas,16
+192,Ñacuñan,16
+193,Santa Rosa,16
+194,Campo de los Andes,17
+195,Colonia Las Rosas,17
+196,El Algarrobo,17
+197,El Totoral,17
+198,La Primavera,17
+199,Las Pintadas,17
+200,Los Árboles,17
+201,Los Chacayes,17
+202,Los Sauces,17
+203,Villa Seca,17
+204,Vista Flores,17
+205,Anchoris,18
+206,Cordón del Plata,18
+207,El Peral,18
+208,El Zampal,18
+209,El Zampalito,18
+210,Gualtallary,18
+211,La Arboleda,18
+212,La Carrera,18
+213,San José,18
+214,Santa Clara,18
+215,Tupungato,18
+216,Villa Bastías,18
+217,Zapata,18
+218,Tunuyán,17

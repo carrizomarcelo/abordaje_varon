@@ -1,0 +1,530 @@
+{% extends 'layout.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2.min.css' %}">
+<link href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+<script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/select2.min.js' %}"></script>
+<script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/i18n/es.js' %}"></script>
+
+{% endblock head %}
+
+{% block content %}
+   <form method="post" action="." enctype="multipart/form-data">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    {% if action == 'add' %}
+                        <i class="fas fa-plus"></i>
+                    {% else %}
+                        <i class="fas fa-edit"></i>
+                    {% endif %}
+
+                    {{ title }} {% comment %}  {{ date_now }} {% endcomment %}
+                </h3>
+            </div>
+            <div class="card-body">
+              {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% comment %} {% for field in form.visible_fields %}
+                    <div class="form-group ">
+                        <label for="email">{{ field.label }}:</label>
+                        {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                    </div>
+                {% endfor %} {% endcomment %}
+
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary" ><h5>Datos Personales</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nombre.label}}</span>
+                            </div>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.apellido.label}}</span>
+                            </div>
+                            {{ form.apellido }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nro_dni.label}}</span>
+                            </div>
+                            {{ form.nro_dni }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.fecha_nacimiento.label}}</span>
+                            </div>
+                            {{ form.fecha_nacimiento }}
+                        </div>
+
+                        {% comment %} <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.edad.label}}</span>
+                            </div>
+                            {{ form.edad }}
+                        </div> {% endcomment %}
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nacionalidad.label}}</span>
+                            </div>
+                            
+                            {{ form.nacionalidad }}
+                          
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.calle.label}}</span>
+                            </div>
+                            {{ form.calle }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.rocalle.label}}</span>
+                            </div>
+                            {{ form.rocalle }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.mbt.label}}</span>
+                            </div>
+                            {{ form.mbt }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.pdc.label}}</span>
+                            </div>
+                            {{ form.pdc }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.bfpa.label}}</span>
+                            </div>
+                            {{ form.bfpa }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.departamento.label}}</span>
+                            </div>
+                            {{ form.departamento }}
+                            
+                        </div>
+
+                        <div class="input-group mb-3 form-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.distrito.label}}</span>
+                            </div>
+                            {{ form.distrito }}
+                        </div>
+
+                        <div class="input-group mb-3 form-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.telefono.label}}</span>
+                            </div>
+                            {{ form.telefono }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.telefonoa.label}}</span>
+                            </div>
+                            {{ form.telefonoa }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.estado_civil.label}}</span>
+                            </div>
+                            {{ form.estado_civil }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.ostiene.label}}</span>
+                            </div>
+                            {{ form.ostiene }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.oscual.label}}</span>
+                            </div>
+                            {{ form.oscual }}
+                        </div>
+
+                    
+
+
+
+                    </div>
+                    
+                </div>
+            
+            
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary"><h5>EDUCACION maximo nivel alcanzado</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nivel_educacion.label}}</span>
+                            </div>
+                            {{ form.nivel_educacion }}
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            
+
+
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary"><h5>Situacion Laboral</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.situacion_laboral.label}}</span>
+                            </div>
+                            {{ form.situacion_laboral }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.horas_situacionlaboral.label}}</span>
+                            </div>
+                            {{ form.horas_situacionlaboral }}
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            
+                <div class="card bg-light ">
+                    <div class="card-header text-center bg-secondary"><h5>Categoría Ocupacional</h5></div>
+                        
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.categoria_ocupacional.label}}</span>
+                                </div>
+                                {{ form.categoria_ocupacional }}
+                            </div>
+    
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.actividad_laboral.label}}</span>
+                                </div>
+                                {{ form.actividad_laboral }}
+                            </div>
+    
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.domicilio_laboral.label}}</span>
+                                </div>
+                                {{ form.domicilio_laboral }}
+                            </div>
+    
+                        </div>
+                    </div>
+                    
+                        <div class="card bg-light ">
+                            <div class="card-header text-center bg-secondary"><h5>Categoría de Inactividad</h5></div>
+                                
+                            <div class="card-body">
+                              <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">{{ form.categoria_inactividad.label}}</span>
+                                  </div>
+                                  {{ form.categoria_inactividad }}
+                              </div>
+      
+      
+                          </div>
+                                
+                            </div>
+
+                            <div class="card bg-light ">
+                                <div class="card-header text-center bg-secondary"><h5>Miembros Convivientes</h5></div>
+                                    
+                                   
+                                    
+                                </div>
+
+                                <div class="card bg-light ">
+                                    <div class="card-header text-center bg-secondary"><h5>¿Como llega al centro de abordaje?</h5></div>
+                                        
+                                        <div class="card-body">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">{{ form.ayuda_centroa.label}}</span>
+                                                </div>
+                                                {{ form.ayuda_centroa }}
+                                            </div>
+                    
+                                            
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.ayduda_centroa_cual.label}}</span>
+                                                    </div>
+                                                    {{ form.ayduda_centroa_cual }}
+                                                </div>
+                    
+                                        
+                                        
+                                    </div>
+
+                                </div>
+    
+                                    <div class="card bg-light ">
+                                        <div class="card-header text-center bg-secondary"><h5>Datos de la Causa/Motivo de Intervención/Intervención de la Justicia</h5></div>
+                                            
+                                            <div class="card-body">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.jfinterviniente.label}}</span>
+                                                    </div>
+                                                    {{ form.jfinterviniente }}
+                                                </div>
+                        
+                                            
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.obasistencia.label}}</span>
+                                                    </div>
+                                                    {{ form.obasistencia }}
+                                                </div>
+                                            
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.detenido.label}}</span>
+                                                    </div>
+                                                    {{ form.detenido }}
+                                                </div>
+
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.prohibicion_acercamiento.label}}</span>
+                                                    </div>
+                                                    {{ form.prohibicion_acercamiento }}
+                                                </div>
+                                                
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.prohibicion_quien.label}}</span>
+                                                    </div>
+                                                    {{ form.prohibicion_quien }}
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.pulsera.label}}</span>
+                                                    </div>
+                                                    {{ form.pulsera }}
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.acceso_arma.label}}</span>
+                                                    </div>
+                                                    {{ form.acceso_arma }}
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.arma_tipo.label}}</span>
+                                                    </div>
+                                                    {{ form.arma_tipo }}
+                                                </div>
+                                                <p><b>Antecedentes Penales:</p>
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.antecedentes_vg.label}}</span>
+                                                    </div>
+                                                    {{ form.antecedentes_vg }}
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.antecedentes_otros.label}}</span>
+                                                    </div>
+                                                    {{ form.antecedentes_otros }}
+                                                </div>
+                                                
+                                                <p><b>Datos de Pareja del hecho denunciado</p>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.pddnombre.label}}</span>
+                                                    </div>
+                                                    {{ form.pddnombre }}
+                                                </div>
+
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.pddtelefono.label}}</span>
+                                                    </div>
+                                                    {{ form.pddtelefono }}
+                                                </div>
+                                            
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.pdddomicilio_conocido.label}}</span>
+                                                    </div>
+                                                    {{ form.pdddomicilio_conocido }}
+                                                  </div>
+                                                
+                                                <p><b>Antecedentes de Tratamientos Psicosociales</p>
+
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.apanteriodes.label}}</span>
+                                                    </div>
+                                                    {{ form.apanteriodes }}
+                                                  </div>
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.apvigentes.label}}</span>
+                                                    </div>
+                                                    {{ form.apvigentes }}
+                                                  </div>
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.aptratamiento.label}}</span>
+                                                    </div>
+                                                    {{ form.aptratamiento }}
+                                                  </div>
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.aptratamiento_cual.label}}</span>
+                                                    </div>
+                                                    {{ form.aptratamiento_cual }}
+                                                  </div>
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.observaciones.label}}</span>
+                                                    </div>
+                                                    {{ form.observaciones }}
+                                                  </div>
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.equipo.label}}</span>
+                                                    </div>
+                                                    {{ form.equipo }}
+                                                  </div>
+
+                                                  <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                      <span class="input-group-text">{{ form.fechacreacion.label}}</span>
+                                                    </div>
+                                                    {{ form.fechacreacion }}
+                                                  </div>
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                            
+                                    </div>
+
+                                        
+                                            
+                                    <div class="card-footer">
+                                      <button type="submit" class="btn btn-primary btn-flat">
+                                          <i class="fas fa-save"></i> Guardar registro
+                                      </button>
+                                      <a href="{{ list_url }}" class="btn btn-danger btn-flat ">
+                                          <i class="fas fa-times"></i> Cancelar
+                                        </a>
+                                  </div>
+                    
+                                        
+                                        
+                                </div>
+
+
+
+
+                              
+                    </div>
+                    
+
+           
+            
+        </div>
+    </form>
+   
+   <script>
+
+    $('form').on('submit', function (e) {
+      e.preventDefault();
+      // var parameters = $(this).serializeArray();
+      var parameters = new FormData(this);
+      submit_with_ajax(window.location.pathname, parameters, function(){
+          location.href = '{{ list_url }}';
+      });
+
+  });
+
+  {% comment %} $(function (){
+
+    $('.select2').select2({
+        theme: "bootstrap4",
+        placeholder: "Seleccione...",
+        
+   
+        
+    });
+
+  }); {% endcomment %}
+    
+
+    
+    
+      
+
+       
+      
+</script> 
+
+{% endblock %}
