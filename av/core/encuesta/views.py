@@ -142,7 +142,7 @@ class EncuestaDeleteView(DeleteView):
 
 
 class EncuestaFormView(FormView):
-    form_class = EncuestaForm
+    form_class = EncuestaForm, DdForm
     template_name = 'encuesta/encuesta_create.html'
     success_url = reverse_lazy('encuesta:encuesta_list')
 

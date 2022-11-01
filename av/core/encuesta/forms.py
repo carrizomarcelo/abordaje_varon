@@ -9,6 +9,7 @@ from xmlrpc.client import DateTime
 from django.forms import *
 from pandas import options
 from core.encuesta.models import *
+from multiselectfield import MultiSelectField
 
 
 class EncuestaForm(ModelForm):
@@ -18,9 +19,9 @@ class EncuestaForm(ModelForm):
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
-            # self.fields['nacionalidad'].widget.attrs.update({'class': 'select2'})
-            # self.fields['departamento'].widget.attrs.update({'class': 'select2'})
-            # self.fields['distrito'].widget.attrs.update({'class': 'select2'})
+            self.fields['nacionalidad'].widget.attrs.update({'class': 'select2'})
+            self.fields['departamento'].widget.attrs.update({'class': 'select2'})
+            self.fields['distrito'].widget.attrs.update({'class': 'select2'})
             # self.fields['estado_civil'].widget.attrs.update({'class': 'select2'})
             # self.fields['ostiene'].widget.attrs.update({'class': 'select2'})
             # self.fields['nivel_educacion'].widget.attrs.update({'class': 'select2'})
@@ -32,11 +33,9 @@ class EncuestaForm(ModelForm):
             # self.fields['pulsera'].widget.attrs.update({'class': 'select2'})
             # self.fields['aptratamiento'].widget.attrs.update({'class': 'select2'})
             # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
-            self.fields['atps_psiquiatrico'].widget.attrs['autofocus'] = True
-    departamento = ModelChoiceField(
-        queryset=Departamento.objects.all(), widget=Select(attrs={}))
-    distrito = ModelChoiceField(
-        queryset=Distrito.objects.all(), widget=Select(attrs={}))
+            self.fields['departamento'].widget.attrs['autofocus'] = True
+    departamento = ModelChoiceField(queryset=Departamento.objects.all())
+    distrito = ModelChoiceField(queryset=Distrito.objects.none())
 
     class Meta:
         model = Encuesta
@@ -154,7 +153,9 @@ class EncuestaForm(ModelForm):
             }),
 
             'departamento': Select(attrs={
-                'placeholder': ''
+                'placeholder': '',
+                'id':'departamento',
+                'name': 'departamento'
             }),
 
             'distrito': Select(attrs={
@@ -313,32 +314,21 @@ class EncuestaForm(ModelForm):
                 
             }),
 
-            
-            
-            
-            
-
-            # 'agresor': CheckboxSelectMultiple(attrs={
+            'agresor': CheckboxSelectMultiple(attrs={
                 
-            # }),
+            }),
 
-            # 'mujer': CheckboxSelectMultiple(attrs={
+            'mujer': CheckboxSelectMultiple(attrs={
                 
-            # }),
+            }),
 
-            # 'situacion': CheckboxSelectMultiple(attrs={
+            'situacion': CheckboxSelectMultiple(attrs={
                 
-            # }),
-
-
-
-            
-            
-            
-            
+            }),
 
 
         }
+
 
     def save(self, commit=True):
         data = {}

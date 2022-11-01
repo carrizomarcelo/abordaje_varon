@@ -48,7 +48,7 @@ class Distrito(models.Model):
     distrito = models.CharField(max_length=50, verbose_name='Distrito')
 
     def __str__(self):
-        return str(self.id)
+        return str(self.distrito)
 
     class Meta:
         db_table = 'distrito'
@@ -327,19 +327,19 @@ class Encuesta(BaseModel):
     atps_psico_psiqui_6_meses = models.ForeignKey(SeisMeses, on_delete=models.PROTECT,related_name='atps_psico_psiqui_6_meses', verbose_name='Tratamiento 6 meses', blank=True, null=True)
     observaciones = models.TextField(verbose_name='OBSERVACIONES', blank=True, null=True)
     ###
-    tv_personal = MultiSelectField(max_length=200, max_choices=6, choices=TV_PERSONAL, blank=True, null=True)
+    tv_personal = MultiSelectField(max_length=200, max_choices=6, choices=TV_PERSONAL, null=True)
 
-    tv_familiar = MultiSelectField(max_length=200, max_choices=6, choices=TV_FAMILIAR, blank=True, null=True)
+    tv_familiar = MultiSelectField(max_length=200, max_choices=6, choices=TV_FAMILIAR, null=True)
 
-    modalidad_personal = MultiSelectField(max_length=200, max_choices=6, choices=M_PERSONAL, blank=True, null=True)
+    modalidad_personal = MultiSelectField(max_length=200, max_choices=6, choices=M_PERSONAL, null=True)
 
-    modalidad_familiar = MultiSelectField(max_length=200, max_choices=6, choices=M_FAMILIAR, blank=True, null=True)
+    modalidad_familiar = MultiSelectField(max_length=200, max_choices=6, choices=M_FAMILIAR, null=True)
 
-    agresor = MultiSelectField(max_length=200, max_choices=6, choices=AGRESOR, blank=True, null=True)
+    agresor = MultiSelectField(max_length=200, max_choices=6, choices=AGRESOR, null=True)
 
-    mujer = MultiSelectField(max_length=200, max_choices=6, choices=MUJER, blank=True, null=True)
+    mujer = MultiSelectField(max_length=200, max_choices=6, choices=MUJER, null=True)
 
-    situacion = MultiSelectField(max_length=200, max_choices=6, choices=SITUACION, blank=True, null=True )
+    situacion = MultiSelectField(max_length=200, max_choices=6, choices=SITUACION, null=True )
 
     estado = models.BooleanField(default=True)
     
