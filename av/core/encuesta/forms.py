@@ -20,8 +20,8 @@ class EncuestaForm(ModelForm):
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
             self.fields['nacionalidad'].widget.attrs.update({'class': 'select2'})
-            self.fields['departamento'].widget.attrs.update({'class': 'select2'})
-            self.fields['distrito'].widget.attrs.update({'class': 'select2'})
+            # self.fields['departamento'].widget.attrs.update({'class': 'select2'})
+            # self.fields['distrito'].widget.attrs.update({'class': 'select2'})
             # self.fields['estado_civil'].widget.attrs.update({'class': 'select2'})
             # self.fields['ostiene'].widget.attrs.update({'class': 'select2'})
             # self.fields['nivel_educacion'].widget.attrs.update({'class': 'select2'})
@@ -34,8 +34,8 @@ class EncuestaForm(ModelForm):
             # self.fields['aptratamiento'].widget.attrs.update({'class': 'select2'})
             # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
             self.fields['departamento'].widget.attrs['autofocus'] = True
-    departamento = ModelChoiceField(queryset=Departamento.objects.all())
-    distrito = ModelChoiceField(queryset=Distrito.objects.none())
+    # departamento = ModelChoiceField(queryset=Departamento.objects.all())
+    # distrito = ModelChoiceField(queryset=Distrito.objects.all())
 
     class Meta:
         model = Encuesta
@@ -118,7 +118,7 @@ class EncuestaForm(ModelForm):
             }),
 
             'nro_dni': NumberInput(attrs={
-                'placeholder': 'Ingrese el Nro de DNI'
+                'placeholder': 'Ingrese el Nro del DU'
             }),
 
             'fecha_nacimiento': DateInput(
@@ -153,9 +153,7 @@ class EncuestaForm(ModelForm):
             }),
 
             'departamento': Select(attrs={
-                'placeholder': '',
-                'id':'departamento',
-                'name': 'departamento'
+                'placeholder': ''
             }),
 
             'distrito': Select(attrs={
@@ -259,7 +257,7 @@ class EncuestaForm(ModelForm):
                 'placeholder': '...Completar'
             }),
 
-            'ddapellido': NumberInput(attrs={
+            'ddapellido': TextInput(attrs={
                 'placeholder': '...Completar'
             }),
 

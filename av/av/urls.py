@@ -16,7 +16,7 @@ Including another URLconf
 from core.dashboard.views import DashboardView
 from core.homepage.views import IndexView
 from core.login.views import *
-# from views.dd.views import DdView
+from core.encuesta.views import DdView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -30,7 +30,7 @@ urlpatterns = [
     # path('user/', include('user.urls')),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     # path("select2/", include("django_select2.urls")),
-    # path('dd/', DdView.as_view(), name='dd')
+    path('dd/', DdView.as_view(), name='dd'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

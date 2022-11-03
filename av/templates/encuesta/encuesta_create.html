@@ -8,6 +8,11 @@
 <script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/select2.min.js' %}"></script>
 <script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/i18n/es.js' %}"></script>
 
+
+
+
+
+
 {% endblock head %}
 
 {% block content %}
@@ -151,7 +156,9 @@
                             </div>
                             {{ form.distrito }}
                         </div>
-
+                      
+                   
+                    </div>
                         <div class="input-group mb-3 form-group">
                             <div class="input-group-prepend">
                               <span class="input-group-text">{{ form.telefono.label}}</span>
@@ -696,7 +703,7 @@
             
         </div>
     </form>
-   
+    
    <script>
 
     $('form').on('submit', function (e) {
@@ -708,56 +715,19 @@
       });
 
   });
+  
+  $(function (){
 
-  var select_departamento = $('select[name="departamento"]');
-        $(function () {
+    $('.select2').select2({
+        theme: "bootstrap4",
+        placeholder: "Seleccione...",        
+    });
 
-            $('.select2').select2({
-                theme: "bootstrap4",
-                language: 'es'
-            });
+  });
 
-            $('select[name="distrito"]').on('change', function () {
-                var id = $(this).val();
-                var options = '<option value="">Seleccione...</option>';
-                if (id === '') {
-                    encuesta_create.html(options);
-                    return false;
-                }
-                $.ajax({
-                    url: window.location.pathname,
-                    type: 'POST',
-                    data: {
-                        'action': 'search_departamento_id',
-                        'id': id
-                    },
-                    dataType: 'json',
-                }).done(function (data) {
-                    if (!data.hasOwnProperty('error')) {
-                        encuesta_create.html('').select2({
-                            theme: "bootstrap4",
-                            language: 'es',
-                            data: data
-                        });
-                        /*$.each(data, function (key, value) {
-                            options += '<option value="' + value.id + '">' + value.name + '</option>';
-                        });*/
-                        return false;
-                    }
-                    message_error(data.error);
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert(textStatus + ': ' + errorThrown);
-                }).always(function (data) {
-                    //select_products.html(options);
-                });
-            });
 
-            select_departamento.on('change', function () {
-                var value = select_departamento.select2('data')[0];
-                console.log(value);
-            });
-        });
-    
+
+
 
     
     

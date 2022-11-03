@@ -72,10 +72,13 @@ class EncuestaCreateView(CreateView):
             data['error'] = str(e)
         return JsonResponse(data)
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Agregar Encuesta'
         context['list_url'] = reverse_lazy('encuesta:encuesta_list')
+        # context['departamento'] = Departamento.objects.none()
+        # context['distrito'] = Distrito.objects.none()
         context['action'] = 'add'
 
         return context
@@ -142,9 +145,11 @@ class EncuestaDeleteView(DeleteView):
 
 
 class EncuestaFormView(FormView):
-    form_class = EncuestaForm, DdForm
+    form_class = EncuestaForm
     template_name = 'encuesta/encuesta_create.html'
     success_url = reverse_lazy('encuesta:encuesta_list')
+
+    
 
     def form_valid(self, form):
         print(form.is_valid)
@@ -159,6 +164,33 @@ class EncuestaFormView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Agregar Encuesta - FORM'
-        context['form'] = DdForm()
         context['list_url'] = reverse_lazy('encuesta:encuesta_list')
+        return context
+
+class DdView(TemplateView):
+    template_name = 'dd.html'
+
+    @method_decorator(csrf_exempt)
+    # @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'search_distrito_id':
+                data = []
+                for i in Distrito.objects.filter(departamento=request.POST['id']):
+                    data.append({'id': i.id, 'distrito': i.distrito})
+            else:
+                data['error'] = 'ha ocurrido un error'
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data, safe=False)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tittle'] = 'Select Anidados | DJANGO'
+        context['form'] = DdForm()
         return context
