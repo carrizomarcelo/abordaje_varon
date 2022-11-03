@@ -68,7 +68,9 @@
                         //processData: false,
                         //contentType: false,
                  }).done(function (data) {
+                    console.log(data);
                      if (!data.hasOwnProperty('error')) {
+                        console.log(data);
                          $.each(data, function(key, value){
                              options+='<option value="'+value.id+'">'+value.distrito+'</option>';
                          });
@@ -77,7 +79,7 @@
                      }
                      message_error(data.error);
                  }).fail(function (jqXHR, textStatus, errorThrown) {
-                     alert(textStatus + ': ' + errorThrown);
+                    alert(textStatus + ': ' + errorThrown);
                  }).always(function (data) {
                      select_distrito.html(options);
     

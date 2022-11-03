@@ -48,7 +48,7 @@ class Distrito(models.Model):
     distrito = models.CharField(max_length=50, verbose_name='Distrito')
 
     def __str__(self):
-        return str(self.distrito)
+        return str(self.id)
 
     class Meta:
         db_table = 'distrito'
