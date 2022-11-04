@@ -41,16 +41,16 @@ class EncuestaForm(ModelForm):
         'class': 'form-control select2'
     }))
 
-    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
+    distrito = ModelChoiceField(queryset=Distrito.objects.all(), widget=Select(attrs={
         'class': 'form-control select2'
     }))
 
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['nombre']) <= 3:
-            raise forms.ValidationError('Escriba al menos 3 Caracteres')
-            # self.add_error('nombre', 'Demaciados caracteres')
-        return cleaned
+    # def clean(self):
+    #     cleaned = super().clean()
+    #     if len(cleaned['nombre']) <= 3:
+    #         raise forms.ValidationError('Escriba al menos 3 Caracteres')
+    #         # self.add_error('nombre', 'Demaciados caracteres')
+    #     return cleaned
 
     class Meta:
         model = Encuesta
@@ -167,13 +167,13 @@ class EncuestaForm(ModelForm):
                 'placeholder': 'Ingrese...'
             }),
 
-            # 'departamento': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'departamento': Select(attrs={
+                'placeholder': ''
+            }),
 
-            # 'distrito': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'distrito': Select(attrs={
+                'placeholder': ''
+            }),
 
             'telefono': NumberInput(attrs={
                 'placeholder': ''
@@ -361,7 +361,7 @@ class DdForm(Form):
         'class': 'form-control select2'
     }))
 
-    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
+    distrito = ModelChoiceField(queryset=Distrito.objects.all(), widget=Select(attrs={
         'class': 'form-control select2'
     }))
 

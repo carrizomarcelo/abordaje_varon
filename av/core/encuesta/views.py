@@ -58,11 +58,19 @@ class EncuestaCreateView(CreateView):
     # @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-
+    
+    
     def post(self, request, *args, **kwargs):
         data = {}
+        action = request.POST['action']
+        
         try:
             action = request.POST['action']
+        
+            # if action == 'search_distrito_id':
+            #     data = [{'id': '', 'text': '---------------'}]
+            #     for i in Distrito.objects.filter(dpto=request.POST['id']):
+            #         data.append({'id': i.id, 'distrito': i.distrito, 'data': i.distrito.toJSON()})    
             if action == 'add':
                 form = self.get_form()
                 data = form.save()
@@ -77,8 +85,8 @@ class EncuestaCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Agregar Encuesta'
         context['list_url'] = reverse_lazy('encuesta:encuesta_list')
-        # context['departamento'] = Departamento.objects.none()
-        # context['distrito'] = Distrito.objects.none()
+        context['departamento'] = Departamento.objects.all()
+        context['distrito'] = Distrito.objects.all()
         context['action'] = 'add'
 
         return context
@@ -148,20 +156,6 @@ class EncuestaFormView(FormView):
     form_class = EncuestaForm
     template_name = 'encuesta/encuesta_create.html'
     success_url = reverse_lazy('encuesta:encuesta_list')
-
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'search_distrito_id':
-                data = []
-                for i in Distrito.objects.filter(dpto=request.POST['id']):
-                    data.append({'id': i.id, 'distrito': i.distrito})
-            else:
-                data['error'] = 'ha ocurrido un error'
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
     
 
     def form_valid(self, form):

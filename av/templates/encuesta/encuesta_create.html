@@ -156,7 +156,10 @@
                             </div>
                             {{ form.distrito }}
                         </div>
-                      
+                       
+
+                       
+                       
                    
                     </div>
                         <div class="input-group mb-3 form-group">
@@ -716,6 +719,11 @@
 
   });
   
+  $('.select2').select2({
+    theme: "bootstrap4"
+});
+
+  {% comment %} var select_distrito = $('select[name="distrito"]');
   $(function (){
 
     $('.select2').select2({
@@ -724,7 +732,7 @@
 
      $('select[name="departamento"]').on('change', function(){
          var id = $(this).val();
-         var select_distrito = $('select[name="distrito"]');
+         
          var options = '<option value="">Seleccione Distrito</option>'
          if (id === ''){
             select_distrito.html(options);
@@ -744,9 +752,14 @@
                 console.log(data);
                  if (!data.hasOwnProperty('error')) {
                     console.log(data);
-                     $.each(data, function(key, value){
-                         options+='<option value="'+value.id+'">'+value.distrito+'</option>';
-                     });
+                     // $.each(data, function(key, value){
+                    //     options+='<option value="'+value.id+'">'+value.distrito+'</option>';
+                    // });
+                    select_distrito.select2({
+                      theme: "bootstrap4",
+                      language: 'es',
+                      data: data
+                  })
                      
                      return false;
                  }
@@ -754,12 +767,12 @@
              }).fail(function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + ': ' + errorThrown);
              }).always(function (data) {
-                 select_distrito.html(options);
+                 // select_distrito.html(options);
 
              });
 
       });
- });      
+ });       {% endcomment %}
 </script> 
 
 {% endblock %}
