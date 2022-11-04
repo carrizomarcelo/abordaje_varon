@@ -66,7 +66,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text">{{ form.equipo.label}}</span>
                           </div>
-                          {{ form.equipo }}
+                          {{ form.equipo }} es un select de efector... abm
                         </div>
 
                         <div class="input-group mb-3">
@@ -414,7 +414,7 @@
                                             
                                           </div>    
                                           <div class="card bg-light">
-                                            <div class="card-header text-center bg-secondary"><h5>Datos del Denunciante</h5></div>
+                                            <div class="card-header text-center bg-secondary"><h5>Datos - Denunciante</h5></div>
                                             <div class="card-body border border-info fondo shadow">
                                               <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -510,7 +510,7 @@
                                   
                                               <div class="card-body rounded shadow">                                                
                                                 <div class="card text-black">
-                                                  <div class="card-header bg-primary text-center">Violencia - Personal</div>
+                                                  <div class="card-header bg-primary text-center">Tipo de Violencia</div>
                                                     <div class="card-body border border-info fondo shadow">
                                                     {% for value, text in form.tv_personal.field.choices %}
                                                     <div class="ui slider checkbox">
@@ -521,7 +521,7 @@
                                                     </div>
                                                   </div>
                                                   
-                                                  <div class="card text-black">
+                                                  {% comment %} <div class="card text-black">
                                                     <div class="card-header bg-primary text-center">Violencia - Familiar</div>
                                                       <div class="card-body border border-info fondo shadow">
   
@@ -532,10 +532,10 @@
                                                       </div>
                                                       {% endfor %}
                                                       </div>
-                                                  </div>
+                                                  </div> {% endcomment %}
 
                                                   <div class="card text-black">
-                                                    <div class="card-header bg-primary text-center">Modalidad - Personal</div>
+                                                    <div class="card-header bg-primary text-center">Modalidad</div>
                                                       <div class="card-body border border-info fondo shadow">
   
                                                       {% for value, text in form.modalidad_familiar.field.choices %}
@@ -546,7 +546,7 @@
                                                       {% endfor %}
                                                       </div>
                                                   </div>
-                                                  <div class="card text-black">
+                                                  {% comment %} <div class="card text-black">
                                                     <div class="card-header bg-primary text-center">Modalidad - Familiar</div>
                                                       <div class="card-body border border-info fondo shadow">
   
@@ -557,7 +557,7 @@
                                                       </div>
                                                       {% endfor %}
                                                       </div>
-                                                  </div>
+                                                  </div> {% endcomment %}
                                                     </div>
                                                   </div>
                                                   <div class="card bg-light ">

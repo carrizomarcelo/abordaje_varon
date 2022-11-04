@@ -1,0 +1,62 @@
+abm efectores
+
+nombre
+direccion y departamento
+tipo de atencion si es provincial o departamental
+
+-----------------------------------------
+
+miembros convivientes
+
+    nombre = models.CharField(max_length=50, verbose_name='Nombre:')
+    apellido
+    edad = models.CharField(max_length=50, verbose_name='Edad:')
+    parentesco = models.CharField(max_length=50, verbose_name='Parentesco:')-> hijos = 'Hijos - Propios 
+                                                                                                o Anteriores de la PSVG')
+                                                                                                padre madre amigo.
+---------------------------------------------------
+
+
+ no son oblig-> miembros convivientes
+
+
+
+---------------------------------
+Juzgado/Fiscalía Interviniente
+
+1 oficina Fiscal (agregar detalle)
+2 Fiscalia (agregar detalle) 
+3 Juzgado Familia (agregar detalle) 
+4 Juzgado de paz (agregar detalle)
+5 Otro Juzgado (agregar detalle)
+
+-----------------------------------
+Obligatoriedad de Asistencia-> si/no
+-------------------------------------
+
+Hacia quien/es -> Denunciante, pareja/s anterior/es, hijos/as, otras
+
+-------------------------------------------
+
+Categoria Ocupacional -> campo ponerlo obligatorio
+Antecedentes Judiciales ->
+
+---------------------------------------------
+
+Antecedentes Judiciales -> si/no -> (va el checkbox  siguinte)
+
+-------------------------------------------------
+
+Datos - Denunciante -> mover abajo de datos personales
+
+--------------------------------------------------------
+
+Antecedentes de Tratamientos Psicosociales-> obligatorio
+
+---------------------------------------------
+
+Violencia - Personal - familiar -> Tipo de Violencia 
+
+------------------------------------------------------
+cambiar logo...
+-------------------------------------------------------
