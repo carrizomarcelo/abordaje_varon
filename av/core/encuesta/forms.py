@@ -20,8 +20,8 @@ class EncuestaForm(ModelForm):
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
             self.fields['nacionalidad'].widget.attrs.update({'class': 'select2'})
-            # self.fields['departamento'].widget.attrs.update({'class': 'select2'})
-            # self.fields['distrito'].widget.attrs.update({'class': 'select2'})
+            self.fields['departamento'].widget.attrs.update({'class': 'select2'})
+            self.fields['distrito'].widget.attrs.update({'class': 'select2'})
             # self.fields['estado_civil'].widget.attrs.update({'class': 'select2'})
             # self.fields['ostiene'].widget.attrs.update({'class': 'select2'})
             # self.fields['nivel_educacion'].widget.attrs.update({'class': 'select2'})
@@ -37,13 +37,13 @@ class EncuestaForm(ModelForm):
     # departamento = ModelChoiceField(queryset=Departamento.objects.all())
     # distrito = ModelChoiceField(queryset=Distrito.objects.all())
 
-    departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
-        'class': 'form-control select2'
-    }))
+    # departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
+    #     'class': 'form-control select2'
+    # }))
 
-    distrito = ModelChoiceField(queryset=Distrito.objects.all(), widget=Select(attrs={
-        'class': 'form-control select2'
-    }))
+    # distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
+    #     'class': 'form-control select2'
+    # }))
 
     # def clean(self):
     #     cleaned = super().clean()
@@ -167,13 +167,13 @@ class EncuestaForm(ModelForm):
                 'placeholder': 'Ingrese...'
             }),
 
-            'departamento': Select(attrs={
-                'placeholder': ''
-            }),
+            # 'departamento': Select(attrs={
+            #     'placeholder': ''
+            # }),
 
-            'distrito': Select(attrs={
-                'placeholder': ''
-            }),
+            # 'distrito': Select(attrs={
+            #     'placeholder': ''
+            # }),
 
             'telefono': NumberInput(attrs={
                 'placeholder': ''
@@ -361,7 +361,7 @@ class DdForm(Form):
         'class': 'form-control select2'
     }))
 
-    distrito = ModelChoiceField(queryset=Distrito.objects.all(), widget=Select(attrs={
+    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
         'class': 'form-control select2'
     }))
 

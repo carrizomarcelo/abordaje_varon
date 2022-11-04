@@ -31,6 +31,9 @@
             </div>
             <div class="card-body">
               {% csrf_token %}
+              <script>
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                </script>
                 <input type="hidden" name="action" value="{{ action }}">
                 {% if form.errors %}
                     <div class="alert alert-danger alert-dismissible">
@@ -156,7 +159,8 @@
                             </div>
                             {{ form.distrito }}
                         </div>
-                       
+
+
 
                        
                        
@@ -706,7 +710,7 @@
             
         </div>
     </form>
-    
+
    <script>
 
     $('form').on('submit', function (e) {
@@ -719,20 +723,15 @@
 
   });
   
-  $('.select2').select2({
-    theme: "bootstrap4"
-});
-
-  {% comment %} var select_distrito = $('select[name="distrito"]');
   $(function (){
 
     $('.select2').select2({
         theme: "bootstrap4"
     });
 
-     $('select[name="departamento"]').on('change', function(){
+     {% comment %} $('select[name="departamento"]').on('change', function(){
          var id = $(this).val();
-         
+         var select_distrito = $('select[name="distrito"]');
          var options = '<option value="">Seleccione Distrito</option>'
          if (id === ''){
             select_distrito.html(options);
@@ -752,14 +751,9 @@
                 console.log(data);
                  if (!data.hasOwnProperty('error')) {
                     console.log(data);
-                     // $.each(data, function(key, value){
-                    //     options+='<option value="'+value.id+'">'+value.distrito+'</option>';
-                    // });
-                    select_distrito.select2({
-                      theme: "bootstrap4",
-                      language: 'es',
-                      data: data
-                  })
+                     $.each(data, function(key, value){
+                         options+='<option value="'+value.id+'">'+value.distrito+'</option>';
+                     });
                      
                      return false;
                  }
@@ -767,12 +761,12 @@
              }).fail(function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + ': ' + errorThrown);
              }).always(function (data) {
-                 // select_distrito.html(options);
+                 select_distrito.html(options);
 
              });
 
-      });
- });       {% endcomment %}
+      }); {% endcomment %}
+ });
 </script> 
 
 {% endblock %}

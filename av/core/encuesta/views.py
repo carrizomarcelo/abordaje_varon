@@ -20,24 +20,9 @@ class EncuestaListView(LoginRequiredMixin, ListView):
     template_name = 'encuesta/encuesta_list.html'
 
     # @method_decorator(login_required)
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'searchdata':
-                data = []
-                for i in Encuesta.objects.all():
-                    data.append(i.toJSON())
-            else:
-                data['error'] = 'Ha ocurrido un Error'
-
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -62,32 +47,27 @@ class EncuestaCreateView(CreateView):
     
     def post(self, request, *args, **kwargs):
         data = {}
-        action = request.POST['action']
-        
         try:
-            action = request.POST['action']
-        
-            # if action == 'search_distrito_id':
-            #     data = [{'id': '', 'text': '---------------'}]
-            #     for i in Distrito.objects.filter(dpto=request.POST['id']):
-            #         data.append({'id': i.id, 'distrito': i.distrito, 'data': i.distrito.toJSON()})    
+            action = request.POST['action']  
             if action == 'add':
                 form = self.get_form()
                 data = form.save()
             else:
-                data['error'] = 'Nencuesta/edit/1/o ha ingresado a ninguna opción'
+                data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data)
+        
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Agregar Encuesta'
         context['list_url'] = reverse_lazy('encuesta:encuesta_list')
-        context['departamento'] = Departamento.objects.all()
-        context['distrito'] = Distrito.objects.all()
+        # context['departamento'] = Departamento.objects.all()
+        # context['distrito'] = Distrito.objects.all()
         context['action'] = 'add'
+        
 
         return context
 
@@ -156,7 +136,6 @@ class EncuestaFormView(FormView):
     form_class = EncuestaForm
     template_name = 'encuesta/encuesta_create.html'
     success_url = reverse_lazy('encuesta:encuesta_list')
-    
 
     def form_valid(self, form):
         print(form.is_valid)
