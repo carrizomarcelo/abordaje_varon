@@ -37,13 +37,13 @@ class EncuestaForm(ModelForm):
     # departamento = ModelChoiceField(queryset=Departamento.objects.all())
     # distrito = ModelChoiceField(queryset=Distrito.objects.all())
 
-    # departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
-    #     'class': 'form-control select2'
-    # }))
+    departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
+        'class': 'form-control select2'
+    }))
 
-    # distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
-    #     'class': 'form-control select2'
-    # }))
+    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2'
+    }))
 
     # def clean(self):
     #     cleaned = super().clean()

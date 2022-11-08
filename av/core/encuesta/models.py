@@ -34,6 +34,7 @@ class Departamento(models.Model):
 
     def __str__(self):
         return str(self.dpto)
+    
 
     class Meta:
         db_table = 'departamento'

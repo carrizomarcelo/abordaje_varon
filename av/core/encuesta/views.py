@@ -47,8 +47,9 @@ class EncuestaCreateView(CreateView):
     
     def post(self, request, *args, **kwargs):
         data = {}
+               
         try:
-            action = request.POST['action']  
+            action = request.POST['action']
             if action == 'add':
                 form = self.get_form()
                 data = form.save()
@@ -56,7 +57,9 @@ class EncuestaCreateView(CreateView):
                 data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
             data['error'] = str(e)
-        return JsonResponse(data)
+        return JsonResponse(data, safe=False)
+
+        
         
 
 
@@ -137,6 +140,7 @@ class EncuestaFormView(FormView):
     template_name = 'encuesta/encuesta_create.html'
     success_url = reverse_lazy('encuesta:encuesta_list')
 
+
     def form_valid(self, form):
         print(form.is_valid)
         print(form)
@@ -155,8 +159,9 @@ class EncuestaFormView(FormView):
 
 class DdView(TemplateView):
     template_name = 'dd.html'
+    form_class = DdForm
 
-    @method_decorator(csrf_exempt)
+    # @method_decorator(csrf_exempt)
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)

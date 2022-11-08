@@ -49,6 +49,10 @@
             theme: "bootstrap4"
         });
 
+        $.ajaxSetup({
+            headers: { "X-CSRFToken": '{{csrf_token}}' }
+          });
+
          $('select[name="departamento"]').on('change', function(){
              var id = $(this).val();
              var select_distrito = $('select[name="distrito"]');
