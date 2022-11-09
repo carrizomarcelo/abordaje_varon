@@ -26,11 +26,14 @@
                         <i class="fas fa-edit"></i>
                     {% endif %}
 
-                    {{ title }} {% comment %}  {{ date_now }} {% endcomment %}
+                    {{ title }}  {{ date_now }}
                 </h3>
             </div>
             <div class="card-body">
               {% csrf_token %}
+              <script>
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                </script>
                 <input type="hidden" name="action" value="{{ action }}">
                 {% if form.errors %}
                     <div class="alert alert-danger alert-dismissible">
@@ -50,7 +53,7 @@
                         <label for="email">{{ field.label }}:</label>
                         {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
                     </div>
-                {% endfor %} {% endcomment %}
+                {% endfor %}  {% endcomment %}
 
             
                 <div class="card-header text-center bg-secondary" ><h5>Datos Personales</h5></div>
@@ -156,7 +159,8 @@
                             </div>
                             {{ form.distrito }}
                         </div>
-                       
+
+
 
                        
                        
@@ -706,7 +710,7 @@
             
         </div>
     </form>
-    
+
    <script>
 
     $('form').on('submit', function (e) {
@@ -719,25 +723,24 @@
 
   });
   
-  $('.select2').select2({
-    theme: "bootstrap4"
-});
-
-  {% comment %} var select_distrito = $('select[name="distrito"]');
-  $(function (){
+  {% comment %} $(function (){
 
     $('.select2').select2({
         theme: "bootstrap4"
     });
 
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
      $('select[name="departamento"]').on('change', function(){
          var id = $(this).val();
-         
+         var select_distrito = $('select[name="distrito"]');
          var options = '<option value="">Seleccione Distrito</option>'
          if (id === ''){
             select_distrito.html(options);
             return false;
          }
+        
          $.ajax({
                      url: window.location.pathname,
                      type: 'POST',
@@ -752,27 +755,73 @@
                 console.log(data);
                  if (!data.hasOwnProperty('error')) {
                     console.log(data);
-                     // $.each(data, function(key, value){
-                    //     options+='<option value="'+value.id+'">'+value.distrito+'</option>';
-                    // });
-                    select_distrito.select2({
-                      theme: "bootstrap4",
-                      language: 'es',
-                      data: data
-                  })
+                     $.each(data, function(key, value){
+                         options+='<option value="'+value.id+'">'+value.distrito+'</option>';
+                     });
                      
                      return false;
                  }
-                 message_error(data.error);
+                  message_error(data.error);
              }).fail(function (jqXHR, textStatus, errorThrown) {
                 alert(textStatus + ': ' + errorThrown);
              }).always(function (data) {
-                 // select_distrito.html(options);
+                 select_distrito.html(options);
 
              });
 
       });
- });       {% endcomment %}
+ }); {% endcomment %}
+
+ $(function (){
+
+  $('.select2').select2({
+      theme: "bootstrap4"
+  });
+
+  $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+
+   $('select[name="departamento"]').on('change', function(){
+       var id = $(this).val();
+       var select_distrito = $('select[name="distrito"]');
+       var options = '<option value="">Seleccione Distrito</option>'
+       if (id === ''){
+          select_distrito.html(options);
+          return false;
+       }
+       $.ajax({
+                   url: window.location.pathname,
+                   type: 'POST',
+                   data: {
+                       'action': 'search_distrito_id',
+                       'id': id,
+                   },
+                   dataType: 'json',
+                  //processData: false,
+                  //contentType: false,
+           }).done(function (data) {
+              console.log(data);
+               if (!data.hasOwnProperty('error')) {
+                  console.log(data);
+                   $.each(data, function(key, value){
+                       options+='<option value="'+value.id+'">'+value.distrito+'</option>';
+                   });
+                   
+                   return false;
+               }
+               message_error(data.error);
+           }).fail(function (jqXHR, textStatus, errorThrown) {
+              alert(textStatus + ': ' + errorThrown);
+           }).always(function (data) {
+               select_distrito.html(options);
+
+           });
+
+    });
+});
+
+
 </script> 
 
 {% endblock %}

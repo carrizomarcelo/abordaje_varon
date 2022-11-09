@@ -34,6 +34,7 @@ class Departamento(models.Model):
 
     def __str__(self):
         return str(self.dpto)
+    
 
     class Meta:
         db_table = 'departamento'
@@ -44,7 +45,7 @@ class Departamento(models.Model):
 
 class Distrito(models.Model):
     id = models.AutoField(primary_key=True)
-    dpto = models.ForeignKey(Departamento, on_delete=models.PROTECT, verbose_name='id_dpto' )
+    dpto = models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name='id_dpto' )
     distrito = models.CharField(max_length=50, verbose_name='Distrito')
 
     def __str__(self):
@@ -276,42 +277,42 @@ class Encuesta(BaseModel):
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
     nro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DU')
     fecha_nacimiento = models.DateTimeField(default=datetime.now, null=True)
-    nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.PROTECT, verbose_name='Nacionalidad', null=True, default=9)
+    nacionalidad = models.ForeignKey(Nacionalidad, on_delete=models.CASCADE, verbose_name='Nacionalidad', null=True, default=9)
     calle = models.CharField(max_length=50, verbose_name='Calle', blank=True, null=True)
     nrocalle = models.PositiveIntegerField(verbose_name='Calle Nro', blank=True, null=True)
     mbt = models.CharField(max_length=50, verbose_name='Mnza/Mblck/Torre', blank=True, null=True)
     pdc = models.CharField(max_length=50, verbose_name='Piso/Casa/Dpto', blank=True, null=True)
     bfpa = models.CharField(max_length=50, verbose_name='Barrio/Finca/Puesto/Asentamiento', blank=True, null=True)
-    departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT, verbose_name='Departamento', blank=True, null=True)
-    distrito = models.ForeignKey(Distrito, on_delete=models.PROTECT, verbose_name='Distrito', blank=True, null=True)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name='Departamento', blank=True, null=True)
+    distrito = models.ForeignKey(Distrito, on_delete=models.CASCADE, verbose_name='Distrito', blank=True, null=True)
     telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
     telefonoa = models.PositiveIntegerField(verbose_name='Telefono Alternativo', blank=True, null=True)
-    estado_civil = models.ForeignKey(EstadoCivil, on_delete=models.PROTECT, verbose_name='Estado Civil', blank=True, null=True)
-    ostiene = models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='ostiene', verbose_name='Tiene Obra Social', blank=True, null=True)
+    estado_civil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, verbose_name='Estado Civil', blank=True, null=True)
+    ostiene = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='ostiene', verbose_name='Tiene Obra Social', blank=True, null=True)
     osnombre = models.CharField(max_length=50, verbose_name='Nombre de la Obra Social', blank=True, null=True)
-    nivel_educacion = models.ForeignKey(Educacion, on_delete=models.PROTECT, verbose_name='Educacion (Maximo Nivel Alcanzado)', blank=True, null=True)
-    situacion_laboral = models.ForeignKey(SituacionLaboral, on_delete=models.PROTECT, verbose_name='Situacion Laboral', blank=True, null=True)
-    incumbencia_seguridad = models.ForeignKey(IncumbenciaSeguridad, on_delete=models.PROTECT, verbose_name='Ocupación en la fuerza de seguridad, segun incumbencia', blank=True, null=True)
-    categoria_ocupacional = models.ForeignKey(CategoriaOcupacional, on_delete=models.PROTECT, verbose_name='Categoria Ocupacional', blank=True, null=True)
+    nivel_educacion = models.ForeignKey(Educacion, on_delete=models.CASCADE, verbose_name='Educacion (Maximo Nivel Alcanzado)', blank=True, null=True)
+    situacion_laboral = models.ForeignKey(SituacionLaboral, on_delete=models.CASCADE, verbose_name='Situacion Laboral', blank=True, null=True)
+    incumbencia_seguridad = models.ForeignKey(IncumbenciaSeguridad, on_delete=models.CASCADE, verbose_name='Ocupación en la fuerza de seguridad, segun incumbencia', blank=True, null=True)
+    categoria_ocupacional = models.ForeignKey(CategoriaOcupacional, on_delete=models.CASCADE, verbose_name='Categoria Ocupacional', blank=True, null=True)
     actividad_laboral = models.CharField(max_length=50, verbose_name='Actividad que Realiza', blank=True, null=True)
     domicilio_laboral = models.CharField(max_length=50, verbose_name='Domicilio Laboral', blank=True, null=True)
     
-    categoria_inactividad = models.ForeignKey(CategoriaInactividad, on_delete=models.PROTECT, verbose_name='Categoria Inactividad', blank=True, null=True)
+    categoria_inactividad = models.ForeignKey(CategoriaInactividad, on_delete=models.CASCADE, verbose_name='Categoria Inactividad', blank=True, null=True)
     
-    miembros_intervinientes = models.ForeignKey(MiembrosConvivientes, on_delete=models.PROTECT, verbose_name='Miembros Convivientes', blank=True, null=True)
+    miembros_intervinientes = models.ForeignKey(MiembrosConvivientes, on_delete=models.CASCADE, verbose_name='Miembros Convivientes', blank=True, null=True)
     
-    ayuda_centroa = models.ForeignKey(CentroAbordaje, on_delete=models.PROTECT, verbose_name='¿Como Llega al Centro de Abordaje?', blank=True, null=True)
+    ayuda_centroa = models.ForeignKey(CentroAbordaje, on_delete=models.CASCADE, verbose_name='¿Como Llega al Centro de Abordaje?', blank=True, null=True)
     ayduda_centroa_cual = models.CharField(max_length=50, verbose_name='Especificar Cual', blank=True, null=True)
     jfinterviniente = models.CharField(max_length=50, verbose_name='Juzgado/Fiscalía Interviniente', blank=True, null=True)
     obasistencia = models.CharField(max_length=50, verbose_name='Obligatoriedad de Asistencia', blank=True, null=True)
     
-    prohibicion_acercamiento = models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='prohibicion_acercamiento', verbose_name='Prohibicion de Acercamiento', blank=True, null=True)
+    prohibicion_acercamiento = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='prohibicion_acercamiento', verbose_name='Prohibicion de Acercamiento', blank=True, null=True)
     prohibicion_quien = models.CharField(max_length=50, verbose_name='Hacia quien/es', blank=True, null=True)
-    pulsera = models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='pulsera', verbose_name='Pulsera Electronica', blank=True, null=True)
-    acceso_arma =  models.ForeignKey(Opcion, on_delete=models.PROTECT, related_name='acceso_arma', verbose_name='¿Tiene Acceso a armas de fuego o similar?', blank=True, null=True)
+    pulsera = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='pulsera', verbose_name='Pulsera Electronica', blank=True, null=True)
+    acceso_arma =  models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='acceso_arma', verbose_name='¿Tiene Acceso a armas de fuego o similar?', blank=True, null=True)
     
     
-    antecedentes_judiciales = models.ForeignKey(Opcion, on_delete=models.PROTECT,related_name='antecedentes_judiciales' ,verbose_name='Antecedentes Judiciales', blank=True, null=True)
+    antecedentes_judiciales = models.ForeignKey(Opcion, on_delete=models.CASCADE,related_name='antecedentes_judiciales' ,verbose_name='Antecedentes Judiciales', blank=True, null=True)
     
     antecedentes_otros = MultiSelectField(choices=VG_OTROS, blank=True, null=True)
     
@@ -319,12 +320,12 @@ class Encuesta(BaseModel):
     ddapellido = models.CharField(max_length=50, verbose_name='Apellido/s', blank=True, null=True)
     ddnro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DU')
 
-    atps_psicologico = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Antecedente Psicologico',related_name='psicologico', blank=True, null=True)
-    atps_psiquiatrico = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Antecedente Psiquiatrico',related_name='psiquiatrico', blank=True, null=True)
-    atps_medicacion = models.ForeignKey(Opcion, on_delete=models.PROTECT, verbose_name='Toma Medicación',related_name='medicacion', blank=True, null=True)
+    atps_psicologico = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Antecedente Psicologico',related_name='psicologico', blank=True, null=True)
+    atps_psiquiatrico = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Antecedente Psiquiatrico',related_name='psiquiatrico', blank=True, null=True)
+    atps_medicacion = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Toma Medicación',related_name='medicacion', blank=True, null=True)
     atps_medicacion_nombre = models.CharField(max_length=200, verbose_name='Nombre - Medicación', blank=True, null=True)
-    atps_medicacion_vigente = models.ForeignKey(Opcion, on_delete=models.PROTECT,related_name='medicacion_vigente', verbose_name='Medicación vigente', blank=True, null=True)
-    atps_psico_psiqui_6_meses = models.ForeignKey(SeisMeses, on_delete=models.PROTECT,related_name='atps_psico_psiqui_6_meses', verbose_name='Tratamiento 6 meses', blank=True, null=True)
+    atps_medicacion_vigente = models.ForeignKey(Opcion, on_delete=models.CASCADE,related_name='medicacion_vigente', verbose_name='Medicación vigente', blank=True, null=True)
+    atps_psico_psiqui_6_meses = models.ForeignKey(SeisMeses, on_delete=models.CASCADE,related_name='atps_psico_psiqui_6_meses', verbose_name='Tratamiento 6 meses', blank=True, null=True)
     observaciones = models.TextField(verbose_name='OBSERVACIONES', blank=True, null=True)
     ###
     tv_personal = MultiSelectField(max_length=200, max_choices=6, choices=TV_PERSONAL, blank=True, null=True)
