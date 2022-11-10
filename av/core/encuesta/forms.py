@@ -11,6 +11,21 @@ from pandas import options
 from core.encuesta.models import *
 from multiselectfield import MultiSelectField
 
+class DdForm(Form):
+    departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
+        'class': 'form-control select2'
+    }))
+
+    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
+        'class': 'form-control select2'
+    }))
+
+    def clean(self):
+        cleaned = super().clean()
+        if len(cleaned['nombre']) <= 3:
+            raise forms.ValidationError('Escriba al menos 3 Caracteres')
+            # self.add_error('nombre', 'Demaciados caracteres')
+        return cleaned
 
 class EncuestaForm(ModelForm):
 
@@ -37,13 +52,13 @@ class EncuestaForm(ModelForm):
     # departamento = ModelChoiceField(queryset=Departamento.objects.all())
     # distrito = ModelChoiceField(queryset=Distrito.objects.all())
 
-    departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
-        'class': 'form-control select2'
-    }))
+    # departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
+    #     'class': 'form-control select2'
+    # }))
 
-    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
-        'class': 'form-control select2'
-    }))
+    # distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
+    #     'class': 'form-control select2'
+    # }))
 
     # def clean(self):
     #     cleaned = super().clean()
@@ -356,18 +371,3 @@ class EncuestaForm(ModelForm):
         return data
 
 
-class DdForm(Form):
-    departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
-        'class': 'form-control select2'
-    }))
-
-    distrito = ModelChoiceField(queryset=Distrito.objects.none(), widget=Select(attrs={
-        'class': 'form-control select2'
-    }))
-
-    def clean(self):
-        cleaned = super().clean()
-        if len(cleaned['nombre']) <= 3:
-            raise forms.ValidationError('Escriba al menos 3 Caracteres')
-            # self.add_error('nombre', 'Demaciados caracteres')
-        return cleaned
