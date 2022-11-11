@@ -134,7 +134,7 @@ class EncuestaForm(ModelForm):
                                            'value': datetime.now().strftime('%d/%m/%Y')
                                        }),
 
-            'equipo': TextInput(attrs={
+            'equipo': Select(attrs={
                             'placeholder': '...Completar'
                         }),
 

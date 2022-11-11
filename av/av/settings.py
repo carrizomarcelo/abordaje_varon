@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'core.encuesta',
     'core.dashboard',
     'core.login',
+    'core.equipos',
     # Libs
     'widget_tweaks',
     'django_extensions',

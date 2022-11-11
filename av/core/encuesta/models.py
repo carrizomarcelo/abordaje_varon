@@ -5,6 +5,7 @@ from django.forms.models import model_to_dict
 from av.models import BaseModel
 from crum import get_current_user
 from multiselectfield import MultiSelectField
+
 # from encuesta.forms import EncuestaForm
 
 
@@ -25,15 +26,18 @@ class Opcion(models.Model):
     class Meta:
         db_table = 'opcion'
         verbose_name = 'Opcion'
-        verbose_name_plural = 'opciones'
+        verbose_name_plural = 'Opciones'
         ordering = ['id']
+
+
+
 
 class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
     dpto = models.CharField(max_length=50, verbose_name='Departamento')
 
     def __str__(self):
-        return str(self.dpto)
+        return str(self.id)
     
 
     class Meta:
@@ -56,6 +60,40 @@ class Distrito(models.Model):
         verbose_name = 'Distrito'
         verbose_name_plural = '-distritos'
         ordering = ['id']
+
+class Atencion(models.Model):
+    id = models.AutoField(primary_key=True)
+    Atencion = models.CharField(max_length=50)
+    # nose = models.CharField(max_length=5)
+    # otra = models.CharField(max_length=5)
+
+    def __str__(self):
+        return str(self.Atencion)
+
+    class Meta:
+        db_table = 'atencion'
+        verbose_name = 'Atención'
+        verbose_name_plural = 'Atención'
+        ordering = ['id']
+
+class Equipos(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50, verbose_name='Nombre', blank=True, null=True)
+    direccion = models.CharField(max_length=50, verbose_name='Direccion', blank=True, null=True)
+    ubicaciondpto = models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name='Departamento',related_name='dpto_equipos', blank=True, null=True)
+    telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
+    tipoatencion = models.ForeignKey(Atencion, on_delete=models.CASCADE, verbose_name='Atención', blank=True, null=True)
+
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        db_table = 'equipo'
+        verbose_name = 'Equipo'
+        verbose_name_plural = 'Equipos'
+        ordering = ['id']
+
 
 class Nacionalidad(models.Model):
     id = models.AutoField(primary_key=True)
@@ -272,7 +310,7 @@ class Encuesta(BaseModel):
 
     id = models.AutoField(primary_key=True)
     fechacreacion = models.DateTimeField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
-    equipo = models.CharField(max_length=50, verbose_name='Equipo', blank=True, null=True)
+    equipo = models.ForeignKey(Equipos, on_delete=models.CASCADE, verbose_name='Equipo', blank=True, null=True)
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
     nro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DU')

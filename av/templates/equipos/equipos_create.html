@@ -1,0 +1,827 @@
+{% extends 'layout.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2.min.css' %}">
+<link href="{% static 'lib/select2-4.1.0-rc.0/dist/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+<script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/select2.min.js' %}"></script>
+<script src="{% static 'lib/select2-4.1.0-rc.0/dist/js/i18n/es.js' %}"></script>
+
+
+
+
+
+
+{% endblock head %}
+
+{% block content %}
+   <form method="post" action="." enctype="multipart/form-data">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    {% if action == 'add' %}
+                        <i class="fas fa-plus"></i>
+                    {% else %}
+                        <i class="fas fa-edit"></i>
+                    {% endif %}
+
+                    {{ title }}  {{ date_now }}
+                </h3>
+            </div>
+            <div class="card-body">
+              {% csrf_token %}
+              <script>
+                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                </script>
+                <input type="hidden" name="action" value="{{ action }}">
+                {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-ban"></i> Ha ocurrido un error al querer guardar el registro</h5>
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% comment %} {% for field in form.visible_fields %}
+                    <div class="form-group ">
+                        <label for="email">{{ field.label }}:</label>
+                        {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                    </div>
+                {% endfor %}  {% endcomment %}
+
+            
+                <div class="card-header text-center bg-secondary" ><h5>Datos Personales</h5></div>
+                    <div class="card-body bg-light">
+                      <div class="card bg-light ">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">{{ form.fechacreacion.label}}</span>
+                          </div>
+                          {{ form.fechacreacion }}
+                        </div>
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">{{ form.equipo.label}}</span>
+                          </div>
+                          {{ form.equipo }} es un select de efector... abm
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nombre.label}}</span>
+                            </div>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.apellido.label}}</span>
+                            </div>
+                            {{ form.apellido }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nro_dni.label}}</span>
+                            </div>
+                            {{ form.nro_dni }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.fecha_nacimiento.label}}</span>
+                            </div>
+                            {{ form.fecha_nacimiento }}
+                            
+                        </div>
+
+                        
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nacionalidad.label}}</span>
+                            </div>
+                            
+                            {{ form.nacionalidad }}
+                          
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.calle.label}}</span>
+                            </div>
+                            {{ form.calle }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nrocalle.label}}</span>
+                            </div>
+                            {{ form.nrocalle }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.mbt.label}}</span>
+                            </div>
+                            {{ form.mbt }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.pdc.label}}</span>
+                            </div>
+                            {{ form.pdc }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.bfpa.label}}</span>
+                            </div>
+                            {{ form.bfpa }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.departamento.label}}</span>
+                            </div>
+                            {{ form.departamento }}
+                            
+                        </div>
+
+                        <div class="input-group mb-3 form-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.distrito.label}}</span>
+                            </div>
+                            {{ form.distrito }}
+                        </div>
+
+
+
+                       
+                       
+                   
+                    </div>
+                        <div class="input-group mb-3 form-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.telefono.label}}</span>
+                            </div>
+                            {{ form.telefono }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.telefonoa.label}}</span>
+                            </div>
+                            {{ form.telefonoa }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.estado_civil.label}}</span>
+                            </div>
+                            {{ form.estado_civil }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.ostiene.label}}</span>
+                            </div>
+                            {{ form.ostiene }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.osnombre.label}}</span>
+                            </div>
+                            {{ form.nombre }}
+                        </div>
+
+                    
+
+
+
+                </div>
+                    
+                
+            
+            
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary"><h5>EDUCACION maximo nivel alcanzado</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.nivel_educacion.label}}</span>
+                            </div>
+                            {{ form.nivel_educacion }}
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            
+
+
+            <div class="card bg-light ">
+                <div class="card-header text-center bg-secondary"><h5>Situacion Laboral</h5></div>
+                    
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.situacion_laboral.label}}</span>
+                            </div>
+                            {{ form.situacion_laboral }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">{{ form.incumbencia_seguridad.label}}</span>
+                          </div>
+                          {{ form.incumbencia_seguridad }}
+                          
+                      </div>
+                        {% comment %} <div class="form-group">
+                          <label for="sel1">ocupacion en la fuerza de seguridad segun incumbencia</label>
+                          <select class="form-control" id="sel1" value="NO">
+                            <option>NO</option>
+                            <option>Policia</option>
+                            <option>Penitenciaria</option>
+                            <option>Gendarmeria</option>
+                            <option>Fuerzas Armadas</option>
+                          </select>
+                    </div> {% endcomment %}
+                  </div>
+                </div>
+                
+            
+                <div class="card bg-light ">
+                    <div class="card-header text-center bg-secondary"><h5>Categoría Ocupacional</h5></div>
+                        
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.categoria_ocupacional.label}}</span>
+                                </div>
+                                {{ form.categoria_ocupacional }}
+                            </div>
+    
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.actividad_laboral.label}}</span>
+                                </div>
+                                {{ form.actividad_laboral }}
+                            </div>
+    
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">{{ form.domicilio_laboral.label}}</span>
+                                </div>
+                                {{ form.domicilio_laboral }}
+                            </div>
+                            
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">{{ form.actividad_laboral.label}}</span>
+                              </div>
+                              {{ form.actividad_laboral }}
+                          </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="card bg-light ">
+                      <div class="card-header text-center bg-secondary"><h5>Miembros Convivientes</h5></div>
+                          
+                         
+                          
+                      </div>
+
+                      <div class="card bg-light ">
+                          <div class="card-header text-center bg-secondary"><h5>¿Como llega al centro de abordaje?</h5></div>
+                              
+                              <div class="card-body">
+                                  <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text">{{ form.ayuda_centroa.label}}</span>
+                                      </div>
+                                      {{ form.ayuda_centroa }}
+                                  </div>
+          
+                                  
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.ayduda_centroa_cual.label}}</span>
+                                          </div>
+                                          {{ form.ayduda_centroa_cual }}
+                                      </div>
+                                </div>
+
+                      </div>
+
+                          <div class="card bg-light ">
+                              <div class="card-header text-center bg-secondary"><h5>Datos de la Causa/Motivo de Intervención/Intervención de la Justicia</h5></div>
+                                  
+                                  <div class="card-body">
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.jfinterviniente.label}}</span>
+                                          </div>
+                                          {{ form.jfinterviniente }}
+                                      </div>
+              
+                                  
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.obasistencia.label}}</span>
+                                          </div>
+                                          {{ form.obasistencia }}
+                                      </div>
+
+
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.prohibicion_acercamiento.label}}</span>
+                                          </div>
+                                          {{ form.prohibicion_acercamiento }}
+                                      </div>
+                                      
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.prohibicion_quien.label}}</span>
+                                          </div>
+                                          {{ form.prohibicion_quien }}
+                                      </div>
+
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.pulsera.label}}</span>
+                                          </div>
+                                          {{ form.pulsera }}
+                                      </div>
+
+                                      <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">{{ form.acceso_arma.label}}</span>
+                                          </div>
+                                          {{ form.acceso_arma }}
+                                      </div>
+                                      
+                                      
+                                        <div class="card text-black">
+                                          <div class="card-header bg-primary text-center">Antecedentes Judiciales</div>
+                                          <div class="card-body border border-info fondo shadow">
+                                            
+                                              
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text">{{ form.antecedentes_judiciales.label}}</span>
+                                              </div>
+                                              {{ form.antecedentes_judiciales }}
+                                          </div>
+
+                                                                                                                                         
+                                      
+                                
+                                        </div>
+                                        
+                                        <div class="card text-black">
+                                          <div class="card-header bg-primary text-center">Otros Antecedentes (en relación a la figura legal por VG u otros):</div>
+                                          <div class="card-body border border-info fondo shadow">
+                                            
+
+                                            {% for value, text in form.antecedentes_otros.field.choices %}
+                                            <div class="ui slider checkbox">
+                                              <input id="id_antecedentes_otros_{{ forloop.counter0 }}" name="{{ form.encuesta.antecedentes_otros }}" type="checkbox" value="{{ value }}"{% if value in checked_agresor %} checked="checked"{% endif %}>
+                                              <label>{{ text }}</label>
+                                            </div>
+                                            {% endfor %}
+                                          </div>                                                                                                     
+                                        </div>   
+
+                                         
+                                      
+                                        
+
+                                        
+                                        </div>
+                                        
+                                      </div>
+                                     
+                                             
+                                            
+                                          </div>    
+                                          <div class="card bg-light">
+                                            <div class="card-header text-center bg-secondary"><h5>Datos - Denunciante</h5></div>
+                                            <div class="card-body border border-info fondo shadow">
+                                              <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">{{ form.ddnombre.label }}</span>
+                                                </div>
+                                                {{ form.ddnombre }}
+                                            </div>
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text">{{ form.ddapellido.label }}</span>
+                                              </div>
+                                              {{ form.ddapellido }}
+                                            </div>
+    
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">{{ form.ddnro_dni.label }}</span>
+                                                </div>
+                                                {{ form.ddnro_dni }}
+                                              <div> 
+                                              
+                                            </div>                                                                                                     
+                                        
+                                  
+                                          </div>                                                                                                
+                                
+                                        </div>                                      
+                                    
+                                      </div>
+                                      <div class="card bg-light ">
+                                        <div class="card-header text-center bg-secondary"><h5>Antecedentes de Tratamientos Psicosociales</h5></div>
+                                        <div class="card-body rounded shadow">
+                                            <div class="card-body">
+                                            
+                                              <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                  <span class="input-group-text">{{ form.atps_psicologico.label}}</span>
+                                                </div>
+                                                {{ form.atps_psicologico }}
+                                            </div>
+
+                                            <div class="input-group mb-3">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text">{{ form.atps_psiquiatrico.label}}</span>
+                                              </div>
+                                              {{ form.atps_psiquiatrico }}
+                                          </div>
+
+                                          <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">{{ form.atps_medicacion.label}}</span>
+                                            </div>
+                                            {{ form.atps_medicacion }}                                        
+                                          </div>
+
+                                          <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">{{ form.atps_medicacion_nombre.label}}</span>
+                                            </div>
+                                            {{ form.atps_medicacion_nombre }}                                        
+                                          </div>
+
+                                          <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">{{ form.atps_medicacion_vigente.label}}</span>
+                                            </div>
+                                            {{ form.atps_medicacion_vigente }}
+                                          </div>
+
+                                          <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">{{ form.atps_psico_psiqui_6_meses.label}}</span>
+                                            </div>
+                                            {{ form.atps_psico_psiqui_6_meses }}
+                                          </div>
+                                          
+                                          <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text">{{ form.observaciones.label}}</span>
+                                            </div>
+                                            {{ form.observaciones }}
+                                          </div>
+
+                                          </div>                                       
+  
+                                          
+                                              </div>
+                                            </div>
+                                             
+                                       
+                                        <div class="card bg-light ">
+                                          <div class="card-header text-center bg-secondary"><h5>ANTECEDENTES DE VIOLENCIA EN FAMILIA DE ORIGEN, GRUPO SOCIALES O INSTITUCIONES </h5></div>
+                                  
+                                              <div class="card-body rounded shadow">                                                
+                                                <div class="card text-black">
+                                                  <div class="card-header bg-primary text-center">Tipo de Violencia</div>
+                                                    <div class="card-body border border-info fondo shadow">
+                                                    {% for value, text in form.tv_personal.field.choices %}
+                                                    <div class="ui slider checkbox">
+                                                      <input id="id_tv_personal_{{ forloop.counter0 }}" name="{{ form.encuesta.tv_personal }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                      <label>{{ text }}</label>
+                                                    </div>
+                                                    {% endfor %}
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  {% comment %} <div class="card text-black">
+                                                    <div class="card-header bg-primary text-center">Violencia - Familiar</div>
+                                                      <div class="card-body border border-info fondo shadow">
+  
+                                                      {% for value, text in form.tv_familiar.field.choices %}
+                                                      <div class="custom-control custom-checkbox">
+                                                        <input id="id_tv_familiar_{{ forloop.counter0 }}" name="{{ form.encuesta.tv_familiar }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                        <label>{{ text }}</label>
+                                                      </div>
+                                                      {% endfor %}
+                                                      </div>
+                                                  </div> {% endcomment %}
+
+                                                  <div class="card text-black">
+                                                    <div class="card-header bg-primary text-center">Modalidad</div>
+                                                      <div class="card-body border border-info fondo shadow">
+  
+                                                      {% for value, text in form.modalidad_familiar.field.choices %}
+                                                      <div class="ui slider checkbox">
+                                                        <input id="id_modalidad_familiar_{{ forloop.counter0 }}" name="{{ form.encuesta.modalidad_familiar }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                        <label>{{ text }}</label>
+                                                      </div>
+                                                      {% endfor %}
+                                                      </div>
+                                                  </div>
+                                                  {% comment %} <div class="card text-black">
+                                                    <div class="card-header bg-primary text-center">Modalidad - Familiar</div>
+                                                      <div class="card-body border border-info fondo shadow">
+  
+                                                      {% for value, text in form.modalidad_familiar.field.choices %}
+                                                      <div class="ui slider checkbox">
+                                                        <input id="id_modalidad_familiar_{{ forloop.counter0 }}" name="{{ form.encuesta.modalidad_familiar }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                        <label>{{ text }}</label>
+                                                      </div>
+                                                      {% endfor %}
+                                                      </div>
+                                                  </div> {% endcomment %}
+                                                    </div>
+                                                  </div>
+                                                  <div class="card bg-light ">
+                                                    <div class="card-header text-center bg-secondary"><h5>VALORACION DE RIESGO  DE VIOLENCIA EN LA SITUACION </h5></div>
+                                                        
+                                                    <div class="card-body rounded">    
+                                                          <div class="card text-black">
+                                                            <div class="card-header bg-primary text-center">Agresor</div>
+                                                            <div class="card-body border border-info fondo shadow">
+                                                           
+                                                              {% for value, text in form.agresor.field.choices %}
+                                                              <div class="ui slider checkbox">
+                                                                <input id="id_agresor_{{ forloop.counter0 }}" name="{{ form.encuesta.agresor }}" type="checkbox" value="{{ value }}"{% if value in checked_agresor %} checked="checked"{% endif %}>
+                                                                <label>{{ text }}</label>
+                                                              </div>
+                                                              {% endfor %}
+    
+                                                            </div>                                
+                                                          </div>
+                                                          
+                                                          <div class="card text-black">
+                                                            <div class="card-header bg-primary text-center">Mujer</div>
+                                                            <div class="card-body border border-info fondo shadow">
+                                                              
+                                                              {% for value, text in form.mujer.field.choices %}
+                                                              <div class="ui slider checkbox">
+                                                                <input id="id_mujer_{{ forloop.counter0 }}" name="{{ form.encuesta.mujer }}" type="checkbox" value="{{ value }}"{% if value in checked_mujer %} checked="checked"{% endif %}>
+                                                                <label>{{ text }}</label>
+                                                              </div>
+                                                              {% endfor %}
+                                                              
+                                                            </div>                                                                                                     
+                                                        
+                                                            
+                                                          </div>      
+                                                          <div class="card text-black">
+                                                            <div class="card-header bg-primary text-center">Situacion</div>
+                                                            <div class="card-body border border-info fondo shadow">
+  
+                                                              {% for value, text in form.situacion.field.choices %}
+                                                              <div class="ui slider checkbox">
+                                                                <input id="id_situacion_{{ forloop.counter0 }}" name="{{ form.encuesta.situacion }}" type="checkbox" value="{{ value }}"{% if value in checked_situacion %} checked="checked"{% endif %}>
+                                                                <label>{{ text }}</label>
+                                                              </div>
+                                                              {% endfor %}
+                                                              </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                        </div>
+                                                </div>
+                                                  </div>
+                          
+
+                                              
+                                              
+                                              <br>
+                                              
+                                                  </div>      
+                                            
+                                        
+                                          </div>
+                                          
+                                        </div>
+
+                                        
+                                      </div>
+                                      </div>
+                                        
+                                      </div>
+                                      
+                                       
+                               
+
+
+                                      
+                 
+                                      
+                                      
+                                     
+                                  
+                                     
+                                        
+
+                                        
+                                      </div>
+
+                                    </div>  
+
+                                        
+                                        
+
+
+
+
+
+
+
+                                  </div>
+                              </div>
+                                  
+                          </div>
+
+                              
+                                  
+                          <div class="card-footer row justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-flat">
+                                <i class="fas fa-save"></i> Guardar registro
+                            </button>&nbsp&nbsp&nbsp
+                            <a href="{{ list_url }}" class="btn btn-danger btn-flat ">
+                                <i class="fas fa-times"></i> Cancelar
+                              </a>
+                        </div>
+          
+                              
+                              
+                      </div>
+
+
+
+
+                    
+          </div>
+
+                  </div>
+                    
+                  {% comment %} <div class="card bg-light ">
+                    <div class="card-header text-center bg-secondary"><h5>Categoría de Inactividad</h5></div>
+                                
+                            <div class="card-body">
+                              <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">{{ form.categoria_inactividad.label}}</span>
+                                  </div>
+                                  {{ form.categoria_inactividad }}
+                              </div>
+                            </div>
+                    </div> {% endcomment %}
+                  
+
+                           
+                    
+
+           
+            
+        </div>
+    </form>
+
+   <script>
+
+    $('form').on('submit', function (e) {
+      e.preventDefault();
+      // var parameters = $(this).serializeArray();
+      var parameters = new FormData(this);
+      submit_with_ajax(window.location.pathname, parameters, function(){
+          location.href = '{{ list_url }}';
+      });
+
+  });
+  
+  {% comment %} $(function (){
+
+    $('.select2').select2({
+        theme: "bootstrap4"
+    });
+
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+     $('select[name="departamento"]').on('change', function(){
+         var id = $(this).val();
+         var select_distrito = $('select[name="distrito"]');
+         var options = '<option value="">Seleccione Distrito</option>'
+         if (id === ''){
+            select_distrito.html(options);
+            return false;
+         }
+        
+         $.ajax({
+                     url: window.location.pathname,
+                     type: 'POST',
+                     data: {
+                         'action': 'search_distrito_id',
+                         'id': id,
+                     },
+                     dataType: 'json',
+                    //processData: false,
+                    //contentType: false,
+             }).done(function (data) {
+                console.log(data);
+                 if (!data.hasOwnProperty('error')) {
+                    console.log(data);
+                     $.each(data, function(key, value){
+                         options+='<option value="'+value.id+'">'+value.distrito+'</option>';
+                     });
+                     
+                     return false;
+                 }
+                  message_error(data.error);
+             }).fail(function (jqXHR, textStatus, errorThrown) {
+                alert(textStatus + ': ' + errorThrown);
+             }).always(function (data) {
+                 select_distrito.html(options);
+
+             });
+
+      });
+ }); {% endcomment %}
+
+ 
+ $(function (){
+
+  $('.select2').select2({
+      theme: "bootstrap4"
+  });
+
+  $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+
+   $('select[name="departamento"]').on('change', function(){
+       var id = $(this).val();
+       var select_distrito = $('select[name="distrito"]');
+       var options = '<option value="">Seleccione Distrito</option>'
+       if (id === ''){
+          select_distrito.html(options);
+          return false;
+       }
+       $.ajax({
+                   url: window.location.pathname,
+                   type: 'POST',
+                   data: {
+                       'action': 'search_distrito_id',
+                       'id': id,
+                   },
+                   dataType: 'json',
+                  //processData: false,
+                  //contentType: false,
+           }).done(function (data) {
+              console.log(data);
+               if (!data.hasOwnProperty('error')) {
+                  console.log(data);
+                   $.each(data, function(key, value){
+                       options+='<option value="'+value.id+'">'+value.distrito+'</option>';
+                   });
+                   
+                   return false;
+               }
+               message_error(data.error);
+           }).fail(function (jqXHR, textStatus, errorThrown) {
+              alert(textStatus + ': ' + errorThrown);
+           }).always(function (data) {
+               select_distrito.html(options);
+
+           });
+
+    });
+});
+
+</script> 
+
+{% endblock %}
