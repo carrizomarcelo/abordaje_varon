@@ -37,7 +37,7 @@ class Departamento(models.Model):
     dpto = models.CharField(max_length=50, verbose_name='Departamento')
 
     def __str__(self):
-        return str(self.id)
+        return str(self.dpto)
     
 
     class Meta:
@@ -86,7 +86,7 @@ class Equipos(models.Model):
 
 
     def __str__(self):
-        return str(self.id)
+        return str(self.nombre)
 
     class Meta:
         db_table = 'equipo'

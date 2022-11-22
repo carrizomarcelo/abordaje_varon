@@ -11,6 +11,65 @@ from pandas import options
 from core.encuesta.models import *
 from multiselectfield import MultiSelectField
 
+
+
+class EquiposForm(ModelForm):
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
+            self.fields['ubicaciondpto'].widget.attrs.update({'class': 'select2'})
+            self.fields['nombre'].widget.attrs['autofocus'] = True
+            
+    
+    class Meta:
+        model = Equipos
+        fields = [
+            'nombre',
+            'direccion',
+            'ubicaciondpto',
+            'telefono',
+            'tipoatencion'  
+        ]
+        widgets = {
+
+
+            'nombre': TextInput(attrs={
+                            'placeholder': 'Nombre del Equipo de Trabajo'
+                        }),
+
+            'direccion': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'ubicaciondpto': Select(attrs={
+                'placeholder': 'Seleccione...'
+            }),
+
+            'tipo': Select(attrs={
+                'placeholder': 'Seleccione...'
+            }),
+
+
+        }
+
+
+    def save(self, commit=True):
+        data = {}
+        form = super()
+        try:
+            if form.is_valid():
+                form.save()
+            else:
+                data['error'] = form.errors
+        except Exception as e:
+            data['error'] = str(e)
+        return data
+
 class DdForm(Form):
     departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
         'class': 'form-control select2'
@@ -50,7 +109,7 @@ class EncuestaForm(ModelForm):
             # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
             self.fields['departamento'].widget.attrs['autofocus'] = True
     # departamento = ModelChoiceField(queryset=Departamento.objects.all())
-    # distrito = ModelChoiceField(queryset=Distrito.objects.all())
+    # distrito = ModelChoiceField(queryset=Distrito.objects.none())
 
     # departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
     #     'class': 'form-control select2'
