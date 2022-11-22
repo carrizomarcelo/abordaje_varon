@@ -34,6 +34,7 @@ viewflow = "==0.0"
 wrapt = "==1.12.1"
 django-multiselectfield = "*"
 django-ckeditor = "*"
+django-smart-selects = "*"
 
 [dev-packages]
 
