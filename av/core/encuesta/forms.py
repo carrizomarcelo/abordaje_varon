@@ -109,7 +109,7 @@ class EncuestaForm(ModelForm):
             # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
             self.fields['departamento'].widget.attrs['autofocus'] = True
     departamento = ModelChoiceField(queryset=Departamento.objects.all())
-    distrito = ModelChoiceField(queryset=Distrito.objects.none())
+    distrito = ModelChoiceField(queryset=Distrito.objects.all())
 
     # departamento = ModelChoiceField(queryset=Departamento.objects.all(), widget=Select(attrs={
     #     'class': 'form-control select2'

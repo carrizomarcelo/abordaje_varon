@@ -5,6 +5,8 @@ from django.forms.models import model_to_dict
 from av.models import BaseModel
 from crum import get_current_user
 from multiselectfield import MultiSelectField
+from smart_selects.db_fields import ChainedForeignKey
+
 
 # from encuesta.forms import EncuestaForm
 
@@ -53,7 +55,7 @@ class Distrito(models.Model):
     distrito = models.CharField(max_length=50, verbose_name='Distrito')
 
     def __str__(self):
-        return str(self.id)
+        return str(self.distrito)
 
     class Meta:
         db_table = 'distrito'
