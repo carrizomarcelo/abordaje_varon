@@ -15,7 +15,6 @@ from core.equipos.forms import EquiposForm
 from av.mixin import ValidatePermissionRequiredMixin
 from core.encuesta.models import *
 
-
 class EncuestaListView(LoginRequiredMixin, ListView):
     model = Encuesta
     template_name = 'encuesta/encuesta_list.html'
@@ -50,13 +49,13 @@ class EncuestaCreateView(CreateView):
         data = {}
         try:
             action = request.POST['action']
-            # if action == 'search_distrito_id':
-            #     data = []
-            #     for i in Distrito.objects.filter(dpto=request.POST['id']):
-            #         data.append({'id': i.id, 'distrito': i.distrito})
-            if action == 'add':
-                form = self.get_form()
-                data = form.save()
+            if action == 'search_distrito_id':
+                data = []
+                for i in Distrito.objects.filter(dpto=request.POST['id']):
+                    data.append({'id': i.id, 'distrito': i.distrito})
+            # if action == 'add':
+            #     form = self.get_form()
+            #     data = form.save()
             else:
                 data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
@@ -102,6 +101,8 @@ class EncuestaUpdateView(UpdateView):
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data)
+    
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

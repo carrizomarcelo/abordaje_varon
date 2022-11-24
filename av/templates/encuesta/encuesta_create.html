@@ -728,15 +728,15 @@
   });
   
  
-  $(function (){
+  {% comment %} $(function (){
 
     $('.select2').select2({
         theme: "bootstrap4"
     });
-  });
+  }); {% endcomment %}
 
  
- {% comment %} $(function (){
+ $(function (){
 
   $('.select2').select2({
       theme: "bootstrap4"
@@ -783,7 +783,7 @@
            });
 
     });
-}); {% endcomment %}
+}); 
 
 </script> 
 

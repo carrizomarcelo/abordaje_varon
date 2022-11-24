@@ -23,6 +23,8 @@ class EquiposForm(ModelForm):
             form.field.widget.attrs['autocomplete'] = 'off'
             self.fields['ubicaciondpto'].widget.attrs.update({'class': 'select2'})
             self.fields['nombre'].widget.attrs['autofocus'] = True
+        
+        
             
     
     class Meta:
@@ -107,7 +109,17 @@ class EncuestaForm(ModelForm):
             # self.fields['pulsera'].widget.attrs.update({'class': 'select2'})
             # self.fields['aptratamiento'].widget.attrs.update({'class': 'select2'})
             # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
-            self.fields['departamento'].widget.attrs['autofocus'] = True
+            self.fields['fechacreacion'].widget.attrs['autofocus'] = True
+            self.fields['distrito'].queryset = Distrito.objects.none()
+
+            # if 'departamento' in self.data:
+            #     try:
+            #         departamento_id = int(self.data.get('departamento'))
+            #         self.fields['distrito'].queryset = Distrito.objects.filter(departamento_id).order_by('distrito')
+            #     except (ValueError, TypeError):
+            #         pass
+            # elif self.instance.pk:
+            #     self.fields['distrito'].queryset = self.instance.departamento.distrito_set.order_by('distrito')
     # departamento = ModelChoiceField(queryset=Departamento.objects.all())
     # distrito = ModelChoiceField(queryset=Distrito.objects.none())
 
@@ -241,13 +253,13 @@ class EncuestaForm(ModelForm):
                 'placeholder': 'Ingrese...'
             }),
 
-            # 'departamento': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'departamento': Select(attrs={
+                'placeholder': ''
+            }),
 
-            # 'distrito': Select(attrs={
-            #     'placeholder': ''
-            # }),
+            'distrito': Select(attrs={
+                'placeholder': ''
+            }),
 
             'telefono': NumberInput(attrs={
                 'placeholder': ''
@@ -415,6 +427,7 @@ class EncuestaForm(ModelForm):
 
 
         }
+
 
 
     def save(self, commit=True):

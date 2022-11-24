@@ -9,6 +9,7 @@ class EquiposForm(ModelForm):
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
+            self.fields['ubicaciondpto'].widget.attrs.update({'class': 'select2'})
             self.fields['nombre'].widget.attrs['autofocus'] = True
     
     class Meta:
