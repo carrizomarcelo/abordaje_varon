@@ -5,7 +5,8 @@ from django.forms.models import model_to_dict
 from av.models import BaseModel
 from crum import get_current_user
 from multiselectfield import MultiSelectField
-from smart_selects.db_fields import ChainedForeignKey
+from smart_selects.db_fields import ChainedForeignKey, GroupedForeignKey, ChainedManyToManyField
+
 
 
 # from encuesta.forms import EncuestaForm
@@ -324,7 +325,13 @@ class Encuesta(BaseModel):
     pdc = models.CharField(max_length=50, verbose_name='Piso/Casa/Dpto', blank=True, null=True)
     bfpa = models.CharField(max_length=50, verbose_name='Barrio/Finca/Puesto/Asentamiento', blank=True, null=True)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name='Departamento', blank=True, null=True)
-    distrito = models.ForeignKey(Distrito, on_delete=models.CASCADE, verbose_name='Distrito', blank=True, null=True)
+    distrito = ChainedForeignKey(
+        Distrito,
+        chained_field="Distrito",
+        chained_model_field="Distrito",
+        show_all=False,
+        auto_choose=True,
+        sort=True)# models.ForeignKey(Distrito, on_delete=models.CASCADE, verbose_name='Distrito', blank=True, null=True)
     telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
     telefonoa = models.PositiveIntegerField(verbose_name='Telefono Alternativo', blank=True, null=True)
     estado_civil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, verbose_name='Estado Civil', blank=True, null=True)

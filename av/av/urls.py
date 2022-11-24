@@ -25,6 +25,7 @@ from django.urls import include, path
 urlpatterns = [
     path('', IndexView.as_view()),
     path('admin/', admin.site.urls),
+    path('chaining/', include('smart_selects.urls')),
     path('login/', include('core.login.urls'), name='login'),
     path('encuesta/', include('core.encuesta.urls'), name='encuesta'),
     path('equipos/', include('core.equipos.urls'), name='equipos'),
