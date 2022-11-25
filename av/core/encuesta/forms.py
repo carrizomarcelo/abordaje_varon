@@ -98,6 +98,7 @@ class EncuestaForm(ModelForm):
             self.fields['nacionalidad'].widget.attrs.update({'class': 'select2'})
             self.fields['departamento'].widget.attrs.update({'class': 'select2'})
             self.fields['distrito'].widget.attrs.update({'class': 'select2'})
+            self.fields['distrito'].widget.attrs['autocomplete'] = False
             # self.fields['estado_civil'].widget.attrs.update({'class': 'select2'})
             # self.fields['ostiene'].widget.attrs.update({'class': 'select2'})
             # self.fields['nivel_educacion'].widget.attrs.update({'class': 'select2'})
@@ -108,7 +109,6 @@ class EncuestaForm(ModelForm):
             # self.fields['prohibicion_acercamiento'].widget.attrs.update({'class': 'select2'})
             # self.fields['pulsera'].widget.attrs.update({'class': 'select2'})
             # self.fields['aptratamiento'].widget.attrs.update({'class': 'select2'})
-            # self.fields['acceso_arma'].widget.attrs.update({'class': 'select2'})
             self.fields['fechacreacion'].widget.attrs['autofocus'] = True
             self.fields['distrito'].queryset = Distrito.objects.none()
 

@@ -49,19 +49,14 @@ class EncuestaCreateView(CreateView):
         data = {}
         try:
             action = request.POST['action']
-            if action == 'search_distrito_id':
-                data = []
-                for i in Distrito.objects.filter(dpto=request.POST['id']):
-                    data.append({'id': i.id, 'distrito': i.distrito})
-            # if action == 'add':
-            #     form = self.get_form()
-            #     data = form.save()
+            if action == 'add':
+                form = self.get_form()
+                data = form.save()
             else:
                 data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
-
 
 
     def get_context_data(self, **kwargs):
