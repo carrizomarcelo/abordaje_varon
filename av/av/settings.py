@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core.dashboard',
     'core.login',
     'core.equipos',
+    'core.asistencia',
     # Libs
     'widget_tweaks',
     'django_extensions',

@@ -67,6 +67,21 @@
                             </div>
                             {{ form.nombre }}
                         </div>
+                        
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.dispositivo.label}}</span>
+                            </div>
+                            {{ form.dispositivo }}
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">{{ form.sigla.label}}</span>
+                            </div>
+                            {{ form.sigla }}
+                        </div>
+
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text">{{ form.direccion.label}}</span>
@@ -130,55 +145,6 @@
       });
 
   });
-  
-  {% comment %} $(function (){
-
-    $('.select2').select2({
-        theme: "bootstrap4"
-    });
-
-    $.ajaxSetup({
-      headers: { "X-CSRFToken": '{{csrf_token}}' }
-    });
-     $('select[name="departamento"]').on('change', function(){
-         var id = $(this).val();
-         var select_distrito = $('select[name="distrito"]');
-         var options = '<option value="">Seleccione Distrito</option>'
-         if (id === ''){
-            select_distrito.html(options);
-            return false;
-         }
-        
-         $.ajax({
-                     url: window.location.pathname,
-                     type: 'POST',
-                     data: {
-                         'action': 'search_distrito_id',
-                         'id': id,
-                     },
-                     dataType: 'json',
-                    //processData: false,
-                    //contentType: false,
-             }).done(function (data) {
-                console.log(data);
-                 if (!data.hasOwnProperty('error')) {
-                    console.log(data);
-                     $.each(data, function(key, value){
-                         options+='<option value="'+value.id+'">'+value.distrito+'</option>';
-                     });
-                     
-                     return false;
-                 }
-                  message_error(data.error);
-             }).fail(function (jqXHR, textStatus, errorThrown) {
-                alert(textStatus + ': ' + errorThrown);
-             }).always(function (data) {
-                 select_distrito.html(options);
-
-             });
-
-      });
- }); {% endcomment %}
 
  
  $(function (){

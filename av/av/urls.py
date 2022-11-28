@@ -29,6 +29,7 @@ urlpatterns = [
     path('login/', include('core.login.urls'), name='login'),
     path('encuesta/', include('core.encuesta.urls'), name='encuesta'),
     path('equipos/', include('core.equipos.urls'), name='equipos'),
+    path('asistencia/', include('core.asistencia.urls'), name='asistencia'),
     # path('user/', include('user.urls')),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     # path("select2/", include("django_select2.urls")),

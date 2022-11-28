@@ -1,0 +1,36 @@
+{% extends 'list.html' %} {% load static %} {% block head_list %} {% endblock %}
+{% block columns %}
+
+<tr>
+  
+  <th scope="col">Apellido</th>
+  <th scope="col">Nombre</th>
+  <th scope="col">DU</th>
+  <th scope="col">A.A.</th> 
+  <th scope="col">Editar / Eliminar</th>
+</tr>
+
+{% endblock %} {% block rows %} {% for obj in object_list %}
+<tr>
+  <td>{{ obj.apellido }}</td>
+  <td>{{ obj.nombre }}</td>
+  <td>{{ obj.nro_dni }}</td>
+  <td>{{ obj.acceso_arma }}</td>
+  
+
+  <td class="text-center">
+    <a
+      {% comment %} href="{% url 'asistencia:asistencia_edit' obj.id %}" {% endcomment %}
+      class="btn btn-warning btn-xs btn-flat"
+    >
+      <i class="fas fa-edit"></i>
+    </a>
+    <a
+      {% comment %} href="{% url 'asistencia:asistencia_delete' obj.id %}" {% endcomment %}
+      class="btn btn-danger btn-xs btn-flat"
+    >
+      <i class="fas fa-trash"></i>
+    </a>
+  </td>
+</tr>
+{% endfor %} {% endblock %}

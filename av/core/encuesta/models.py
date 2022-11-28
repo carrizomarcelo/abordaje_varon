@@ -56,7 +56,7 @@ class Distrito(models.Model):
     distrito = models.CharField(max_length=50, verbose_name='Distrito')
 
     def __str__(self):
-        return str(self.id)
+        return str(self.distrito)
 
     class Meta:
         db_table = 'distrito'
@@ -79,10 +79,26 @@ class Atencion(models.Model):
         verbose_name_plural = 'Atención'
         ordering = ['id']
 
+class Dispositivos(models.Model):
+    id = models.AutoField(primary_key=True)
+    dispositivo = models.CharField(max_length=50)
+    # nose = models.CharField(max_length=5)
+    # otra = models.CharField(max_length=5)
+
+    def __str__(self):
+        return str(self.dispositivo)
+
+    class Meta:
+        db_table = 'dispositivo'
+        verbose_name = 'dispositivo'
+        verbose_name_plural = 'dispositivo'
+        ordering = ['id']
 class Equipos(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50, verbose_name='Nombre', blank=True, null=True)
     direccion = models.CharField(max_length=50, verbose_name='Direccion', blank=True, null=True)
+    dispositivo = models.ForeignKey(Dispositivos, on_delete=models.CASCADE, verbose_name='Dispositivo',related_name='dispositivos_equipos', blank=True, null=True)
+    sigla = models.CharField(max_length=50, verbose_name='Sigla', blank=True, null=True)
     ubicaciondpto = models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name='Departamento',related_name='dpto_equipos', blank=True, null=True)
     telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
     tipoatencion = models.ForeignKey(Atencion, on_delete=models.CASCADE, verbose_name='Atención', blank=True, null=True)

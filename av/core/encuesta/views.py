@@ -1,4 +1,5 @@
 # from django.contrib.auth.decorators import login_required
+import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.checks.messages import Error
 from django.http import HttpResponseRedirect, JsonResponse
@@ -49,14 +50,20 @@ class EncuestaCreateView(CreateView):
         data = {}
         try:
             action = request.POST['action']
-            if action == 'add':
+            if action == 'search_distrito_id':
+                data = [{'id': '', 'text': '---------'}]
+                for i in Distrito.objects.filter(dpto=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.distrito})
+            elif action == 'add':
                 form = self.get_form()
                 data = form.save()
+                
             else:
                 data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
+        
 
 
     def get_context_data(self, **kwargs):
@@ -88,14 +95,18 @@ class EncuestaUpdateView(UpdateView):
         data = {}
         try:
             action = request.POST['action']                    
-            if action == 'edit':
+            if action == 'search_distrito_id':
+                data = [{'id': '', 'text': '---------'}]
+                for i in Distrito.objects.filter(dpto=request.POST['id']):
+                    data.append({'id': i.id, 'text': i.distrito})
+            elif action == 'edit':
                 form = self.get_form()
                 data = form.save()
             else:
                 data['error'] = 'No ha ingresado a ninguna opción'
         except Exception as e:
             data['error'] = str(e)
-        return JsonResponse(data)
+        return JsonResponse(data, safe=False)
     
     
 

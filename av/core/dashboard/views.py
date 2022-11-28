@@ -6,5 +6,5 @@ class DashboardView(TemplateView):
 
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
-        contex['panel'] = 'Panel de Administrador'
+        contex['panel'] = 'Panel de Ingreso'
         return contex

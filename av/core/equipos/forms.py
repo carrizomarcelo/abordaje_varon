@@ -15,7 +15,10 @@ class EquiposForm(ModelForm):
     class Meta:
         model = Equipos
         fields = [
+            
+            'dispositivo',
             'nombre',
+            'sigla',
             'direccion',
             'ubicaciondpto',
             'telefono',
@@ -27,6 +30,15 @@ class EquiposForm(ModelForm):
             'nombre': TextInput(attrs={
                             'placeholder': 'Nombre del Equipo de Trabajo'
                         }),
+            
+            'dispositivo': Select(attrs={
+                'placeholder': 'Seleccione...'
+            }),
+
+            'sigla': TextInput(
+                attrs={
+                    'placeholder': 'Siglas...',
+                }),
 
             'direccion': TextInput(
                 attrs={

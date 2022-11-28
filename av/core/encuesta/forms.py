@@ -31,6 +31,8 @@ class EquiposForm(ModelForm):
         model = Equipos
         fields = [
             'nombre',
+            'dispositivo',
+            'sigla',
             'direccion',
             'ubicaciondpto',
             'telefono',
@@ -42,6 +44,15 @@ class EquiposForm(ModelForm):
             'nombre': TextInput(attrs={
                             'placeholder': 'Nombre del Equipo de Trabajo'
                         }),
+
+            'dispositivo': Select(attrs={
+                'placeholder': 'Seleccione...'
+            }),
+
+            'sigla': TextInput(
+                attrs={
+                    'placeholder': 'Siglas...',
+                }),
 
             'direccion': TextInput(
                 attrs={
@@ -98,7 +109,7 @@ class EncuestaForm(ModelForm):
             self.fields['nacionalidad'].widget.attrs.update({'class': 'select2'})
             self.fields['departamento'].widget.attrs.update({'class': 'select2'})
             self.fields['distrito'].widget.attrs.update({'class': 'select2'})
-            self.fields['distrito'].widget.attrs['autocomplete'] = False
+            # self.fields['distrito'].widget.attrs['autocomplete'] = True
             # self.fields['estado_civil'].widget.attrs.update({'class': 'select2'})
             # self.fields['ostiene'].widget.attrs.update({'class': 'select2'})
             # self.fields['nivel_educacion'].widget.attrs.update({'class': 'select2'})
@@ -110,7 +121,7 @@ class EncuestaForm(ModelForm):
             # self.fields['pulsera'].widget.attrs.update({'class': 'select2'})
             # self.fields['aptratamiento'].widget.attrs.update({'class': 'select2'})
             self.fields['fechacreacion'].widget.attrs['autofocus'] = True
-            self.fields['distrito'].queryset = Distrito.objects.none()
+            # self.fields['distrito'].queryset = Distrito.objects.none()
 
             # if 'departamento' in self.data:
             #     try:
