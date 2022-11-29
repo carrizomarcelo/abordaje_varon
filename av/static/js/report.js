@@ -1,5 +1,5 @@
 $ (function(){
-    $('#id_date_range').daterangepicker();
+    $('input[name="date_range"]').daterangepicker();
     console.log();
     
-})
+});
