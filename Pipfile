@@ -35,6 +35,8 @@ wrapt = "==1.12.1"
 django-multiselectfield = "*"
 django-ckeditor = "*"
 django-smart-selects = "*"
+xhtml2pdf = "*"
+reportlab = "==3.6.6"
 
 [dev-packages]
 

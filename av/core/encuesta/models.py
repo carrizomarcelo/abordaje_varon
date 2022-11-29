@@ -1,6 +1,6 @@
 from av.settings import STATIC_URL
 from django.db import models
-from datetime import datetime
+from datetime import date, datetime
 from django.forms.models import model_to_dict
 from av.models import BaseModel
 from crum import get_current_user
@@ -419,6 +419,8 @@ class Encuesta(BaseModel):
         # item = {'id': self.id, 'nombre': self.nombre}
         return item
 
+    def calcular_años(self):
+        return date.today().year - self.fecha_nacimiento.year
     class Meta:
         db_table = 'encuesta'
         verbose_name = 'Encuesta'

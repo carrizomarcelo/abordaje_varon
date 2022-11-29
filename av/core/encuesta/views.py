@@ -2,7 +2,7 @@
 import json
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.checks.messages import Error
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.urls.base import is_valid_path
@@ -15,6 +15,13 @@ from core.encuesta.forms import DdForm, EncuestaForm
 from core.equipos.forms import EquiposForm
 from av.mixin import ValidatePermissionRequiredMixin
 from core.encuesta.models import *
+from django.views import View
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
 
 class EncuestaListView(LoginRequiredMixin, ListView):
     model = Encuesta
@@ -335,3 +342,61 @@ class EquiposFormView(FormView):
         context['list_url'] = reverse_lazy('equipos:equipos_list')
         context['form'] = EquiposForm()
         return context
+
+
+class EncuestaInovicePdfView(View):
+    
+    def link_callback(self, uri, rel):
+            """
+            Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+            resources
+            """
+            result = finders.find(uri)
+            if result:
+                    if not isinstance(result, (list, tuple)):
+                            result = [result]
+                    result = list(os.path.realpath(path) for path in result)
+                    path=result[0]
+            else:
+                    sUrl = settings.STATIC_URL        # Typically /static/
+                    sRoot = settings.STATIC_ROOT      # Typically /home/userX/project_static/
+                    mUrl = settings.MEDIA_URL         # Typically /media/
+                    mRoot = settings.MEDIA_ROOT       # Typically /home/userX/project_static/media/
+
+                    if uri.startswith(mUrl):
+                            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+                    elif uri.startswith(sUrl):
+                            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+                    else:
+                            return uri
+
+            # make sure that file exists
+            if not os.path.isfile(path):
+                    raise Exception(
+                            'media URI must start with %s or %s' % (sUrl, mUrl)
+                    )
+            return path
+    
+    
+    
+    
+    
+    def get(self, request, *args, **kwargs):
+        try:   
+            template = get_template('encuesta/invoice.html')
+            context = {
+                'encuesta': Encuesta.objects.get(pk=self.kwargs['pk']),
+                'icon': '{}{}'.format(settings.STATIC_URL, 'img/Logotipo_de_la_Provincia_de_Mendoza.png')
+
+            }
+            html = template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            #response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+            pisaStatus = pisa.CreatePDF(
+                html, dest=response,
+                link_callback=self.link_callback
+                )
+            return response
+        except:
+            pass
+        return HttpResponseRedirect(reverse_lazy('encuesta:encuesta_list'))

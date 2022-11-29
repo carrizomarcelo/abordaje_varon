@@ -1,0 +1,97 @@
+{% extends 'list.html'%}
+{% load static %}
+{% block head_list %}
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+<script src="{% static 'js/report.js'%}"></script>
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-chart-bar"></i>
+            {{ title }}
+        </h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <label> Rango de Fechas:</label>
+                    {{ form.date_range }}
+
+                </div>
+
+            </div>
+
+        </div>
+<hr>
+        <table class="table table-bordered" id="data">
+            <thead>
+            <tr>
+                <th scope="col">DU</th>
+                <th scope="col">DU</th>
+                <th scope="col">DU</th>
+                <th scope="col">DU</th>
+                <th scope="col">DU</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+                 
+            <a href="{{ list_url }}" class="btn btn-success btn-flat">
+                <i class="fas fa-sync"></i> Actualizar
+            </a>
+        
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="application/javascript">
+$(function () {
+  $("#data").DataTable({
+    responsive: true,
+    autoWidth: false,
+
+    language: {
+      decimal: "",
+      emptyTable: "Ningún dato disponible en esta tabla",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+      infoFiltered: "(filtrado de un total de _MAX_ registros)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "No se encontraron resultados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+  });
+});
+</script>
+
+{% endblock %}
