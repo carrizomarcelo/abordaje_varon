@@ -1,32 +1,31 @@
 id,dispositivo
-Poder Judicial,
-Cable a Tierra,
-Programa de Masc. y Abordaje VG,
-"C. Salud mental, familiar y ComunitarioN1",
-Centro de Salud N31,
-"
-Ministerio Público",
-"
-Ministerio de Seguridad",
-"
-Servicio Penitenciario Provincial",
-Municipalidad ,
-,
-Municipalidad Capital,
-Municipalidad General Alvear,
-Municipalidad de Godoy Cruz,
-Municipalidad Guaymallén,
-Municipalidad de Junin,
-Municipalidad de La Paz,
-Municipalidad de Las Heras,
-Municipalidad de Lavalle,
-Municipalidad de Lujan de Cuyo,
-Municipalidad de Maipu,
-Municipalidad de Malargue,
-Municipalidad de Rivadavia,
-Municipalidad de San Carlos,
-Municipalidad San Martín,
-Municipalidad de San Rafael,
-Municipalidad de Santa Rosa,
-Municipalidad de Tunuyan,
-Municipalidad de Tupungato,
+1,Poder Judicial
+2,Cable a Tierra
+3,Programa de Masc. y Abordaje VG
+4,"C. Salud mental, familiar y ComunitarioN1"
+5,Centro de Salud N31
+6,"
+Ministerio Público"
+7,"
+Ministerio de Seguridad"
+8,"
+Servicio Penitenciario Provincial"
+9,Municipalidad 
+10,Municipalidad Capital
+11,Municipalidad General Alvear
+12,Municipalidad de Godoy Cruz
+13,Municipalidad Guaymallén
+14,Municipalidad de Junin
+15,Municipalidad de La Paz
+16,Municipalidad de Las Heras
+17,Municipalidad de Lavalle
+18,Municipalidad de Lujan de Cuyo
+19,Municipalidad de Maipu
+20,Municipalidad de Malargue
+21,Municipalidad de Rivadavia
+22,Municipalidad de San Carlos
+23,Municipalidad San Martín
+24,Municipalidad de San Rafael
+25,Municipalidad de Santa Rosa
+26,Municipalidad de Tunuyan
+27,Municipalidad de Tupungato

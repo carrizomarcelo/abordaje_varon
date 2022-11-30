@@ -151,7 +151,7 @@ class EstadoCivil(models.Model):
 
 class Educacion(models.Model):
     id = models.AutoField(primary_key=True)
-    nivel = models.CharField(max_length=50, verbose_name='Nivel Educativo (Maximo Alcanzado)')
+    nivel = models.CharField(max_length=50, verbose_name='Nivel Educativo (Máximo Alcanzado)')
 
     def __str__(self):
         return str(self.nivel)
@@ -164,7 +164,7 @@ class Educacion(models.Model):
 
 class SituacionLaboral(models.Model):
     id = models.AutoField(primary_key=True)
-    situacion_laboral = models.CharField(max_length=50, verbose_name='Situacion Laboral')
+    situacion_laboral = models.CharField(max_length=50, verbose_name='Situación Laboral')
 
     def __str__(self):
         return str(self.situacion_laboral)
@@ -176,7 +176,7 @@ class SituacionLaboral(models.Model):
 
 class IncumbenciaSeguridad(models.Model):
     id = models.AutoField(primary_key=True)
-    incumbencia_seguridad = models.CharField(max_length=50, verbose_name='Ocupacion en la fuerza de seguridad, segun incumbencia')
+    incumbencia_seguridad = models.CharField(max_length=50, verbose_name='Ocupación en la fuerza de seguridad, según incumbencia')
 
     def __str__(self):
         return str(self.incumbencia_seguridad)
@@ -189,7 +189,7 @@ class IncumbenciaSeguridad(models.Model):
 
 class CategoriaOcupacional(models.Model):
     id = models.AutoField(primary_key=True)
-    categoria_ocupacion = models.CharField(max_length=50, verbose_name='Categoria Ocupacional')
+    categoria_ocupacion = models.CharField(max_length=50, verbose_name='Categoría Ocupacional')
 
     def __str__(self):
         return str(self.categoria_ocupacion)
@@ -202,7 +202,7 @@ class CategoriaOcupacional(models.Model):
 
 class CategoriaInactividad(models.Model):
     id = models.AutoField(primary_key=True)
-    categoria_inactividad = models.CharField(max_length=50, verbose_name='Categoria de Inactividad')
+    categoria_inactividad = models.CharField(max_length=50, verbose_name='Categoría de Inactividad')
 
     def __str__(self):
         return str(self.categoria_inactividad)
@@ -232,7 +232,7 @@ class MiembrosConvivientes(models.Model):
 
 class CentroAbordaje(models.Model):
     id = models.AutoField(primary_key=True)
-    abordaje_como_llega = models.CharField(max_length=50, verbose_name='¿Como Llega al Centro de Abordaje?')
+    abordaje_como_llega = models.CharField(max_length=50, verbose_name='¿Como llega al Centro de Abordaje?')
 
     def __str__(self):
         return str(self.abordaje_como_llega)
@@ -262,23 +262,23 @@ class Encuesta(BaseModel):
 
 
     TV_PERSONAL = (('Fisica', 'Fisica'),
-               ('Violencia Psicologica', 'Violencia Psicologica'),
+               ('Violencia Psicológica', 'Violencia Psicológica'),
                ('Violencia Sexual', 'Violencia Sexual'),
-               ('Violencia Economica y patrimonial', 'Violencia Economica y patrimonial'),
-               ('Violencia Simbolica', 'Violencia Simbolica'),
+               ('Violencia Económica y patrimonial', 'Violencia Económica y patrimonial'),
+               ('Violencia Simbólica', 'Violencia Simbólica'),
                ('Violencia Ambiental', 'Violencia Ambiental'))
-    TV_FAMILIAR = (('Fisica', 'Fisica'),
-               ('Violencia Psicologica', 'Violencia Psicologica'),
+    TV_FAMILIAR = (('Física', 'Física'),
+               ('Violencia Psicológica', 'Violencia Psicológica'),
                ('Violencia Sexual', 'Violencia Sexual'),
-               ('Violencia Economica y patrimonial', 'Violencia Economica y patrimonial'),
+               ('Violencia Económica y patrimonial', 'Violencia Económica y patrimonial'),
                ('Violencia Simbolica', 'Violencia Simbolica'),
                ('Violencia Ambiental', 'Violencia Ambiental'))
 
     M_PERSONAL = (('Domestica', 'Domestica'),
                ('Institucional', 'Institucional'),
                ('Laboral', 'Laboral'),
-               ('Contra la libertad reprodictiva y obstétrica', 'Contra la libertad reprodictiva y obstétrica'),
-               ('Mediatica', 'Mediatica'))
+               ('Contra la libertad reproductiva y obstétrica', 'Contra la libertad reproductiva y obstétrica'),
+               ('Mediática', 'Mediática'))
 
     M_FAMILIAR = (('Domestica', 'Domestica'),
                ('Institucional', 'Institucional'),
@@ -292,24 +292,24 @@ class Encuesta(BaseModel):
               ('Intento de femicidio', 'Intento de femicidio'),
               ('Lesiones Leves', 'Lesiones Leves'),
               ('Lesiones Graves', 'Lesiones Graves'),
-              ('Lesiones Gravisimas', 'Lesiones Gravisimas'),
+              ('Lesiones Gravísimas', 'Lesiones Gravísimas'),
               ('Abuso de Armas (con lesiones)', 'Abuso de Armas (con lesiones)'),
               ('Abuso de Armas (sin lesiones)', 'Abuso de Armas (sin lesiones)'),
               ('Abandono de la persona', 'Abandono de la persona'),
               ('Delitos contra la integridad sexual', 'Delitos contra la integridad sexual'),
               ('Delitos contra la libertad (Amenaza)', ' Delitos contra la libertad (Amenaza)'),
-              ('Delitos contra la libertad (Violacion de Domicilio)', ' Delitos contra la libertad (Violacion de Domicilio)'),
+              ('Delitos contra la libertad (Violación de Domicilio)', ' Delitos contra la libertad (Violación de Domicilio)'),
               ('Delitos contra la propiedad (Hurto)', ' Delitos contra la propiedad (Hurto)'),
               ('Delitos contra la propiedad (Robo)', ' Delitos contra la propiedad (Robo)'),
-              ('Violacion de Domicilio (Extorsión)', ' Violacion de Domicilio (Extorsión)'),
-              ('Violacion de Domicilio (Usurpación)', ' Violacion de Domicilio (Usurpación)'),
-              ('Violacion de Domicilio (Daños)', ' Violacion de Domicilio (Daños)'),
-              ('Violacion de Domicilio (Desobediencia)', ' Violacion de Domicilio (Desobediencia)'))
+              ('Violación de Domicilio (Extorsión)', ' Violación de Domicilio (Extorsión)'),
+              ('Violación de Domicilio (Usurpación)', ' Violación de Domicilio (Usurpación)'),
+              ('Violación de Domicilio (Daños)', ' Violación de Domicilio (Daños)'),
+              ('Violación de Domicilio (Desobediencia)', ' Violación de Domicilio (Desobediencia)'))
 
-    AGRESOR = (('Condicion Migratoria', 'Condicion Migratoria'),
-              ('Estres Psicosocial', 'Estres Psicosocial'),
+    AGRESOR = (('Condición Migratoria', 'Condición Migratoria'),
+              ('Estrés Psicosocial', 'Estrés Psicosocial'),
               ('Abuso de Sustancias Psicoactivas', 'Abuso de Sustancias Psicoactivas'),
-              ('Antecedentes de Violencia en su Biografia', 'Antecedentes de Violencia en su Biografia'),
+              ('Antecedentes de Violencia en su Biografía', 'Antecedentes de Violencia en su Biografía'),
               ('Tenencia y uso de Armas', 'Tenencia y uso de Armas'),
               ('Antecedentes depresivos', 'Antecedentes depresivos'),
               ('Presencia de miedo o rechazo a los abandonos', 'Presencia de miedo o rechazo a los abandonos'),
@@ -317,15 +317,15 @@ class Encuesta(BaseModel):
               ('Egocentrismo', 'Egocentrismo'))
 
     MUJER = (('Vulnerabilidad Social', 'Vulnerabilidad Social'),
-         ('Retractarse de separacion o denuncia al agresor', 'Retractarse de separacion o denuncia al agresor'),
+         ('Retractarse de separación o denuncia al agresor', 'Retractarse de separación o denuncia al agresor'),
          ('Presencia de hijo no biológico en la convivencia con el agresor', 'Presencia de hijo no biológico en la convivencia con el agresor'))
 
-    SITUACION = (('Relacion en convivencia o matrimonial', 'Relacion en convivencia o matrimonial'),
-               ('Solicitud de separacion por parte de la mujer', 'Solicitud de separacion por parte de la mujer'),
-               ('ideación de celos del estilo posesivos', 'ideación de celos del estilo posesivos'),
+    SITUACION = (('Relación en convivencia o matrimonial', 'Relación en convivencia o matrimonial'),
+               ('Solicitud de separación por parte de la mujer', 'Solicitud de separación por parte de la mujer'),
+               ('Ideación de celos del estilo posesivos', 'Ideación de celos del estilo posesivos'),
                ('Transitar embarazo', 'Transitar embarazo'),
-               ('presedente de conductas de acoso', 'presedente de conductas de acoso'),
-               ('conductas de amenazas', 'conductas de amenazas'))
+               ('Presedente de conductas de acoso', 'Presedente de conductas de acoso'),
+               ('Conductas de amenazas', 'Conductas de amenazas'))
 
     id = models.AutoField(primary_key=True)
     fechacreacion = models.DateTimeField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
@@ -342,31 +342,31 @@ class Encuesta(BaseModel):
     bfpa = models.CharField(max_length=50, verbose_name='Barrio/Finca/Puesto/Asentamiento', blank=True, null=True)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, verbose_name='Departamento', blank=True, null=True)
     distrito = models.ForeignKey(Distrito, on_delete=models.CASCADE, verbose_name='Distrito', blank=True, null=True)
-    telefono = models.PositiveIntegerField(verbose_name='Telefono', blank=True, null=True)
-    telefonoa = models.PositiveIntegerField(verbose_name='Telefono Alternativo', blank=True, null=True)
+    telefono = models.PositiveIntegerField(verbose_name='Teléfono', blank=True, null=True)
+    telefonoa = models.PositiveIntegerField(verbose_name='Teléfono Alternativo', blank=True, null=True)
     estado_civil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, verbose_name='Estado Civil', blank=True, null=True)
     ostiene = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='ostiene', verbose_name='Tiene Obra Social', blank=True, null=True)
     osnombre = models.CharField(max_length=50, verbose_name='Nombre de la Obra Social', blank=True, null=True)
-    nivel_educacion = models.ForeignKey(Educacion, on_delete=models.CASCADE, verbose_name='Educacion (Maximo Nivel Alcanzado)', blank=True, null=True)
-    situacion_laboral = models.ForeignKey(SituacionLaboral, on_delete=models.CASCADE, verbose_name='Situacion Laboral', blank=True, null=True)
+    nivel_educacion = models.ForeignKey(Educacion, on_delete=models.CASCADE, verbose_name='Educación (Máximo Nivel Alcanzado)', blank=True, null=True)
+    situacion_laboral = models.ForeignKey(SituacionLaboral, on_delete=models.CASCADE, verbose_name='Situación Laboral', blank=True, null=True)
     incumbencia_seguridad = models.ForeignKey(IncumbenciaSeguridad, on_delete=models.CASCADE, verbose_name='Ocupación en la fuerza de seguridad, segun incumbencia', blank=True, null=True)
-    categoria_ocupacional = models.ForeignKey(CategoriaOcupacional, on_delete=models.CASCADE, verbose_name='Categoria Ocupacional', blank=True, null=True)
-    actividad_laboral = models.CharField(max_length=50, verbose_name='Actividad que Realiza', blank=True, null=True)
+    categoria_ocupacional = models.ForeignKey(CategoriaOcupacional, on_delete=models.CASCADE, verbose_name='Categoría Ocupacional', blank=True, null=True)
+    actividad_laboral = models.CharField(max_length=50, verbose_name='Actividad que realiza', blank=True, null=True)
     domicilio_laboral = models.CharField(max_length=50, verbose_name='Domicilio Laboral', blank=True, null=True)
     
-    categoria_inactividad = models.ForeignKey(CategoriaInactividad, on_delete=models.CASCADE, verbose_name='Categoria Inactividad', blank=True, null=True)
+    categoria_inactividad = models.ForeignKey(CategoriaInactividad, on_delete=models.CASCADE, verbose_name='Categoría Inactividad', blank=True, null=True)
     
     miembros_intervinientes = models.ForeignKey(MiembrosConvivientes, on_delete=models.CASCADE, verbose_name='Miembros Convivientes', blank=True, null=True)
     
     ayuda_centroa = models.ForeignKey(CentroAbordaje, on_delete=models.CASCADE, verbose_name='¿Como Llega al Centro de Abordaje?', blank=True, null=True)
-    ayduda_centroa_cual = models.CharField(max_length=50, verbose_name='Especificar Cual', blank=True, null=True)
+    ayduda_centroa_cual = models.CharField(max_length=50, verbose_name='Especificar Cúal', blank=True, null=True)
     jfinterviniente = models.CharField(max_length=50, verbose_name='Juzgado/Fiscalía Interviniente', blank=True, null=True)
     obasistencia = models.CharField(max_length=50, verbose_name='Obligatoriedad de Asistencia', blank=True, null=True)
     
-    prohibicion_acercamiento = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='prohibicion_acercamiento', verbose_name='Prohibicion de Acercamiento', blank=True, null=True)
-    prohibicion_quien = models.CharField(max_length=50, verbose_name='Hacia quien/es', blank=True, null=True)
-    pulsera = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='pulsera', verbose_name='Pulsera Electronica', blank=True, null=True)
-    acceso_arma =  models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='acceso_arma', verbose_name='¿Tiene Acceso a armas de fuego o similar?', blank=True, null=True)
+    prohibicion_acercamiento = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='prohibición_acercamiento', verbose_name='Prohibición de Acercamiento', blank=True, null=True)
+    prohibicion_quien = models.CharField(max_length=50, verbose_name='Hacia quién/es', blank=True, null=True)
+    pulsera = models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='pulsera', verbose_name='Pulsera Electrónica', blank=True, null=True)
+    acceso_arma =  models.ForeignKey(Opcion, on_delete=models.CASCADE, related_name='acceso_arma', verbose_name='¿Tiene acceso a armas de fuego o similar?', blank=True, null=True)
     
     
     antecedentes_judiciales = models.ForeignKey(Opcion, on_delete=models.CASCADE,related_name='antecedentes_judiciales' ,verbose_name='Antecedentes Judiciales', blank=True, null=True)
@@ -377,8 +377,8 @@ class Encuesta(BaseModel):
     ddapellido = models.CharField(max_length=50, verbose_name='Apellido/s', blank=True, null=True)
     ddnro_dni = models.CharField(max_length=11, unique=True, verbose_name='N° DU')
 
-    atps_psicologico = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Antecedente Psicologico',related_name='psicologico', blank=True, null=True)
-    atps_psiquiatrico = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Antecedente Psiquiatrico',related_name='psiquiatrico', blank=True, null=True)
+    atps_psicologico = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Antecedente Psicológico',related_name='psicologico', blank=True, null=True)
+    atps_psiquiatrico = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Antecedente Psiquíatrico',related_name='psiquiatrico', blank=True, null=True)
     atps_medicacion = models.ForeignKey(Opcion, on_delete=models.CASCADE, verbose_name='Toma Medicación',related_name='medicacion', blank=True, null=True)
     atps_medicacion_nombre = models.CharField(max_length=200, verbose_name='Nombre - Medicación', blank=True, null=True)
     atps_medicacion_vigente = models.ForeignKey(Opcion, on_delete=models.CASCADE,related_name='medicacion_vigente', verbose_name='Medicación vigente', blank=True, null=True)

@@ -5,7 +5,8 @@
 
 
     <script src="{% static 'lib/daterangepicker/moment.min.js' %}"></script>
-    <script src="{% static 'lib/daterangepicker/daterangepicker.min.js' %}"></script>
+    <script src="{% static 'lib/daterangepicker/spanish.js' %}"></script>
+    <script src="{% static 'lib/daterangepicker/daterangepicker.js' %}"></script>
     <link rel="stylesheet" href="{% static 'lib/daterangepicker/daterangepicker.css' %}"/>
 {% comment %} <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -68,7 +69,12 @@
 
 {% block javascript %}
 <script type="application/javascript">
-$(function () {
+
+</script>
+
+{% endblock %}
+
+{% comment %} $(function () {
   $("#data").DataTable({
     responsive: true,
     autoWidth: false,
@@ -94,7 +100,4 @@ $(function () {
       },
     },
   });
-});
-</script>
-
-{% endblock %}
+}); {% endcomment %}
