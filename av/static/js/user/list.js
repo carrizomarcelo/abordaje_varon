@@ -13,12 +13,14 @@ $(function () {
             dataSrc: "",
             },
         columns: [
-            { "data": "position"},
+            { "data": "id"},
             { "data": "last_name"},
             { "data": "first_name"},
-            { "data": "user_depto_id_id"},
-            { "data": "date_joined" },
+            { "data": "username"},
+            { "data": "email" },
             { "data": "date_joined"},
+            { "data": "image"},
+            { "data": "id"},
             ],
         columnDefs: [
                 {
@@ -30,6 +32,15 @@ $(function () {
                     buttons += '<a href="/user/delete'+row.id+'/" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
                     return buttons;
                 },
+                
+    },
+    {
+        targets: [-2],
+        class: 'text-center',
+        orderable: false,
+        render: function (data, type, row) {
+            return '<img src="'+row.image+'" class="img-fluid mx-auto dblock" style="width= 20px, height= 20px">';
+        },
     },
 ],
 initComplete: function(settings, json) {

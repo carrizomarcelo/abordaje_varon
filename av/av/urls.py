@@ -28,6 +28,7 @@ urlpatterns = [
     path('chaining/', include('smart_selects.urls')),
     path('login/', include('core.login.urls'), name='login'),
     path('encuesta/', include('core.encuesta.urls'), name='encuesta'),
+    path('user/', include('core.user.urls'), name='user'),
     path('equipos/', include('core.equipos.urls'), name='equipos'),
     path('asistencia/', include('core.asistencia.urls'), name='asistencia'),
     path('reports/', include('core.reports.urls'), name='reports'),

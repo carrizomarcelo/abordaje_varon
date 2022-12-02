@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 # Create your views here.
 # from django.contrib.auth.decorators import login_required
 import json
@@ -11,9 +10,7 @@ from django.urls import reverse_lazy
 from django.urls.base import is_valid_path
 from django.utils.decorators import async_only_middleware, method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import (CreateView, DeleteView, FormView, ListView,
-                                  TemplateView, UpdateView)
-
+from django.views.generic import (CreateView, DeleteView, FormView, ListView, TemplateView, UpdateView)
 from core.encuesta.forms import DdForm, EncuestaForm
 from core.equipos.forms import EquiposForm
 from av.mixin import ValidatePermissionRequiredMixin
@@ -28,7 +25,7 @@ from django.contrib.staticfiles import finders
 
 class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = User
-    template_name = 'user/list.html'
+    template_name = 'user/list_user.html'
     permission_required = 'user.view_user'
 
     # @method_decorator(login_required)
@@ -53,8 +50,9 @@ class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado'
-        context['create_url'] = reverse_lazy('encuesta:encuesta_add')
-        context['list_url'] = reverse_lazy('encuesta:encuesta_list')
+        context['title'] = 'Listado usuarios'
+        context['create_url'] = '' # reverse_lazy('encuesta:encuesta_add')
+        context['list_url'] = '' # reverse_lazy('encuesta:encuesta_list')
+        context['entity'] = 'Usuarios'
         # print(reverse_lazy('encuesta:encuesta_list'))
         return context
