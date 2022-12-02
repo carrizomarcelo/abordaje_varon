@@ -64,3 +64,4 @@ class ReportSaleView(TemplateView):
         context['list_url'] = reverse_lazy('sale_report')
         context['form'] = ReportForm()
         return context
+
