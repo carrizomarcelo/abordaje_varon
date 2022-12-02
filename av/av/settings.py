@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'core.equipos',
     'core.asistencia',
     'core.reports',
+    'core.user',
     # Libs
     'widget_tweaks',
     'django_extensions',
@@ -153,7 +154,7 @@ LOGIN_URL = '/login/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = os.path.join(BASE_DIR, 'media/')
 
 # AUTH_USER_MODEL = 'user.User'
 

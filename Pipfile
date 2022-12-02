@@ -37,6 +37,7 @@ django-ckeditor = "*"
 django-smart-selects = "*"
 xhtml2pdf = "*"
 reportlab = "==3.6.6"
+pytest-django = "*"
 
 [dev-packages]
 
