@@ -25,7 +25,7 @@ from django.contrib.staticfiles import finders
 
 class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = User
-    template_name = 'user/list_user.html'
+    template_name = 'user/list_users.html'
     permission_required = 'user.view_user'
 
     # @method_decorator(login_required)

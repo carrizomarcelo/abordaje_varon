@@ -19,27 +19,4 @@
   <th scope="col" style="width: 15%">Opciones</th>
 </tr>
 
-{% endblock %} {% block rows %} {% for obj in object_list %}
-<tr>
-  <td>{{ obj.nombre }}</td>
-  <td>{{ obj.direccion }}</td>
-  <td>{{ obj.ubicaciondpto }}</td>
-  <td>{{ obj.telefono }}</td>
-  <td>{{ obj.tipoatencion }}</td>
-
-  <td class="text-center">
-    <a
-      href="{% url 'equipos:equipos_edit' obj.id %}"
-      class="btn btn-warning btn-xs btn-flat"
-    >
-      <i class="fas fa-edit"></i>
-    </a>
-    <a
-      href="{% url 'equipos:equipos_delete' obj.id %}"
-      class="btn btn-danger btn-xs btn-flat"
-    >
-      <i class="fas fa-trash"></i>
-    </a>
-  </td>
-</tr>
-{% endfor %} {% endblock %}
+{% endblock %} 

@@ -6,7 +6,7 @@ from core.user.views import UserListView
 app_name = 'user'
 
 urlpatterns = [
-    path('list/', UserListView.as_view(), name='users_list'),
+    path('list/', UserListView.as_view(), name='list'),
     # path('add/', AsistenciaCreateView.as_view(), name='asistencia_add'),
     # path('edit/<int:pk>/', AsistenciaUpdateView.as_view(), name='asistencia_edit'),
     # path('delete/<int:pk>/', AsistenciaDeleteView.as_view(), name='asistencia_delete'),
