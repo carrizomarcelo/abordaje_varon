@@ -1,60 +1,47 @@
 # from django.db.models.fields.files import ImageFieldFile
 # from django.contrib.admin.widgets import AutocompleteSelect
 # from django.contrib import admin
-from datetime import date
-from multiprocessing.sharedctypes import Value
-from optparse import Option
-from select import select
-from xmlrpc.client import DateTime
 from django.forms import *
-from pandas import options
 from core.user.models import User
-from multiselectfield import MultiSelectField
-
 
 
 class UserForm(ModelForm):
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
-            self.fields['first_name'].widget.attrs['autofocus'] = True
-    
+        self.fields['first_name'].widget.attrs['autofocus'] = True
+        
     class Meta:
         model = User
-        fields = '__all__'
-        exclude = ['groups', 'user_permissions', 'last_login', 'date_joined']
+        fields = [
+            'equipo',
+            'first_name',
+            'last_name',
+            'email',
+            'username',
+            'password'
+     ]
         widgets = {
 
-            'equipo': Select(attrs={
-                            'placeholder': 'Seleccione...'
-                        }),
+            'equipo': Select(attrs={}),
 
-            'first_name': TextInput(attrs={
-                            'placeholder': 'Ingrese nombre/s'
-                        }),
+            'first_name': TextInput(attrs={}),
+            
+            'last_name': TextInput(attrs={}),
+            
+            
+            'email': EmailInput(attrs={}),
+            
+            'username': TextInput(attrs={}),
+            
+            'password': PasswordInput(attrs={}),
 
-            'lastname': TextInput(attrs={
-                'placeholder': 'Ingrese apellido/s'
-            }),
-
-            'email': EmailField(attrs={
-                    'placeholder': 'Ingrese dirección de correo ',
-                }),
-
-            'username': TextInput(
-                attrs={
-                    'placeholder': 'Ingrese nombre de usuario',
-                }),
-
-            'password': PasswordInput(attrs={
-                'placeholder': 'Ingrese su contraseña'
-            }),
-            }
-
+        }
+        exclude = ['groups', 'user_permissions', 'last_login', 'date_joined', 'is_superuser', 'is_active', 'is_staf']
+    
     def save(self, commit=True):
         data = {}
         form = super()
@@ -67,3 +54,4 @@ class UserForm(ModelForm):
             data['error'] = str(e)
         return data
  
+    

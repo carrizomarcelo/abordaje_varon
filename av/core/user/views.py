@@ -11,17 +11,11 @@ from django.urls.base import is_valid_path
 from django.utils.decorators import async_only_middleware, method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import (CreateView, DeleteView, FormView, ListView, TemplateView, UpdateView)
-from core.encuesta.forms import DdForm, EncuestaForm
-from core.equipos.forms import EquiposForm
-from av.mixin import ValidatePermissionRequiredMixin
-from core.user.models import User
-from django.views import View
-import os
-from django.conf import settings
+
 from django.http import HttpResponse
 from django.template.loader import get_template
-from xhtml2pdf import pisa
-from django.contrib.staticfiles import finders
+from av.mixin import ValidatePermissionRequiredMixin
+from core.user.models import User
 from core.user.forms import UserForm
 
 class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
@@ -52,24 +46,24 @@ class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado usuarios'
-        context['create_url'] = '' # reverse_lazy('encuesta:encuesta_add')
-        context['list_url'] = reverse_lazy('user:list_user')
+        context['create_url'] = reverse_lazy('user:user_create')
+        context['list_url'] = reverse_lazy('user:user_list')
         context['entity'] = 'Usuarios'
         # print(reverse_lazy('encuesta:encuesta_list'))
         return context
 
-class UserCreateView(CreateView):
+class UserCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = User
     form_class = UserForm
     template_name = 'user/user_create.html'
     success_url = reverse_lazy('user:user_list')
     permission_required = 'user.add_user'
+    url_redirect = success_url
 
     # @method_decorator(login_required)
-    # @method_decorator(csrf_exempt)
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-    
     
     def post(self, request, *args, **kwargs):
         data = {}
@@ -89,6 +83,7 @@ class UserCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Creación de un usuario'
-        context['list_url'] = reverse_lazy('user:user_list')
+        context['entity'] = 'Usuarios'
+        context['list_url'] = self.success_url
         context['action'] = 'add'
         return context

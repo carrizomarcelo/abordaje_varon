@@ -1,14 +1,13 @@
 from django.urls import path
-from core.user.views import UserListView, UserCreateView
-# AsistenciaCreateView, AsistenciaUpdateView, AsistenciaDeleteView
-# , AsistenciaFormView
+from core.user.views import UserListView, UserCreateView #, UserUpdateView, UserDeleteView
+# , EncuestaFormView
 
 app_name = 'user'
 
 urlpatterns = [
-    path('list/', UserListView.as_view(), name='list_user'),
-    path('add/', UserCreateView.as_view(), name='user_add'),
-    # path('edit/<int:pk>/', AsistenciaUpdateView.as_view(), name='asistencia_edit'),
-    # path('delete/<int:pk>/', AsistenciaDeleteView.as_view(), name='asistencia_delete'),
-    # path('form/', AsistenciaFormView.as_view(), name='Asistencia_form'),
-    ]
+    path('list/', UserListView.as_view(), name='user_list'),
+    path('add/', UserCreateView.as_view(), name='user_create'),
+    # path('edit/<int:pk>/', EquiposUpdateView.as_view(), name='equipos_edit'),
+    # path('delete/<int:pk>/', EquiposDeleteView.as_view(), name='equipos_delete'),
+    # path('form/', EncuestaFormView.as_view(), name='encuesta_form'),
+]
