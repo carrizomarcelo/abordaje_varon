@@ -3,7 +3,7 @@
 
 {% block head_list %} 
 
-<script src="{% static 'js/user/list.js' %}"></script>
+<script src="{% static 'js/user/list.js' %}"></script> 
 
 {% endblock %}
 {% block columns %}
@@ -20,3 +20,38 @@
 </tr>
 
 {% endblock %} 
+
+{% block rows %}
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+{% comment %} {% block rows %} {% for obj in object_list %}
+<tr>
+  <td>{{ obj.id }}</td>
+  <td>{{ obj.lastname }}</td>
+  <td>{{ obj.first_name }}</td>
+  <td>{{ obj.username }}</td>
+  <td>{{ obj.email }}</td>
+  <td>{{ obj.image }}</td>
+  <td>{{ obj.equipo }}</td>
+  
+  
+
+  <td class="text-center">
+    <a
+      href="{% url 'equipos:equipos_edit' obj.id %}"
+      class="btn btn-warning btn-xs btn-flat"
+    >
+      <i class="fas fa-edit"></i>
+    </a>
+    <a
+      href="{% url 'equipos:equipos_delete' obj.id %}"
+      class="btn btn-danger btn-xs btn-flat"
+    >
+      <i class="fas fa-trash"></i>
+    </a>
+  </td>
+</tr>
+{% endfor %} {% endblock %} {% endcomment %}

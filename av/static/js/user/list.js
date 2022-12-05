@@ -20,7 +20,7 @@ $(function () {
             { "data": "email" },
             { "data": "date_joined"},
             { "data": "image"},
-            { "data": "id"},
+            { "data": "date_joined"},
             ],
         columnDefs: [
                 {
@@ -39,7 +39,7 @@ $(function () {
         class: 'text-center',
         orderable: false,
         render: function (data, type, row) {
-            return '<img src="'+row.image+'" class="img-fluid mx-auto dblock" style="width= 20px, height= 20px">';
+            return '<img src="'+row.image+'" class="img-fluid mx-auto d-block" style="width: 20px; height: 20px;">';
         },
     },
 ],

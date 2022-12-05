@@ -1,12 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.forms import model_to_dict
+from core.encuesta.models import Equipos
 
 from av.settings import MEDIA_URL, STATIC_URL
 
 
 class User(AbstractUser):
     image = models.ImageField(upload_to='users/%Y/%m/%d', null=True, blank=True)
+    equipo = models.ForeignKey(Equipos, on_delete=models.CASCADE, verbose_name='Equipo de trabajo', null=True)
 
     def get_image(self):
         if self.image:
@@ -17,6 +19,6 @@ class User(AbstractUser):
         item = model_to_dict(self, exclude=['password', 'groups', 'user_permissions'])
         if self.last_login:
             item['last_login'] = self.last_login.strftime('%Y-%m-%d')
-            item['date_joined'] = self.date_joined.strftime('%Y-%m-%d')
-            item['image'] = self.get_image()
+        item['date_joined'] = self.date_joined.strftime('%Y-%m-%d')
+        item['image'] = self.get_image()
         return item
