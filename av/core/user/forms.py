@@ -37,7 +37,7 @@ class UserForm(ModelForm):
             
             'username': TextInput(attrs={}),
             
-            'password': PasswordInput(attrs={}),
+            'password': PasswordInput(render_value = True, attrs={}),
 
         }
         exclude = ['groups', 'user_permissions', 'last_login', 'date_joined', 'is_superuser', 'is_active', 'is_staf']

@@ -13,7 +13,7 @@ $(function () {
             dataSrc: "",
             },
         columns: [
-            { "data": "id"},
+            { "data": "position"},
             { "data": "last_name"},
             { "data": "first_name"},
             { "data": "username"},
@@ -28,8 +28,8 @@ $(function () {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    var buttons = '<a href="/user/update'+row.id+'/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
-                    buttons += '<a href="/user/delete'+row.id+'/" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
+                    var buttons = '<a href="/user/edit/'+row.id+'/" class="btn btn-warning btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
+                    buttons += '<a href="/user/delete/'+row.id+'/" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
                     return buttons;
                 },
                 
