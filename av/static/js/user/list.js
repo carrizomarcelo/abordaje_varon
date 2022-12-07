@@ -14,13 +14,16 @@ $(function () {
             },
         columns: [
             { "data": "position"},
-            { "data": "last_name"},
-            { "data": "first_name"},
+            { "data": "full_name"},
+            
             { "data": "username"},
             { "data": "email" },
-            { "data": "date_joined"},
+            { "data": "equipo" },
+            { "data": "groups"},
             { "data": "image"},
-            { "data": "date_joined"},
+            { "data": "id"},
+
+            
             ],
         columnDefs: [
                 {
@@ -40,6 +43,20 @@ $(function () {
         orderable: false,
         render: function (data, type, row) {
             return '<img src="'+row.image+'" class="img-fluid mx-auto d-block" style="width: 20px; height: 20px;">';
+        },
+    },
+
+    {
+        targets: [-3],
+        class: 'text-center',
+        orderable: false,
+        render: function (data, type, row) {
+            var html = '';
+            $.each(row.groups, function (key, value){
+                html+='<span class="badge badge-success">'+value.name+'</span> ';
+
+            });
+            return html;
         },
     },
 ],

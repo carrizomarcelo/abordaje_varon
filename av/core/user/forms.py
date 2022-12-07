@@ -13,6 +13,8 @@ class UserForm(ModelForm):
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
         self.fields['first_name'].widget.attrs['autofocus'] = True
+        self.fields['groups'].widget.attrs.update({'class': 'form-control select2',
+        'multiple': 'multiple'})
         
     class Meta:
         model = User
@@ -22,7 +24,9 @@ class UserForm(ModelForm):
             'last_name',
             'email',
             'username',
-            'password'
+            'password',
+            'groups',
+
      ]
         widgets = {
 
@@ -39,8 +43,12 @@ class UserForm(ModelForm):
             
             'password': PasswordInput(render_value = True, attrs={}),
 
+            # 'groups': SelectMultiple(attrs={
+            #     })
+            
+            
         }
-        exclude = ['groups', 'user_permissions', 'last_login', 'date_joined', 'is_superuser', 'is_active', 'is_staf']
+        exclude = ['user_permissions', 'last_login', 'date_joined', 'is_superuser', 'is_active', 'is_staf']
     
     def save(self, commit=True):
         data = {}
@@ -56,6 +64,9 @@ class UserForm(ModelForm):
                     if user.password != pwd:
                         u.set_password(pwd)
                 u.save()
+                u.groups.clear()
+                for g in self.cleaned_data['groups']:
+                    u.groups.add(g)
             else:
                 data['error'] = form.errors
         except Exception as e:

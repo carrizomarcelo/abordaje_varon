@@ -107,6 +107,11 @@ class Equipos(models.Model):
     def __str__(self):
         return str(self.nombre)
 
+    # def toJSON(self):
+    #     item = model_to_dict(self)
+    #     item = {'nombre': self.nombre}
+    #     return item
+
     class Meta:
         db_table = 'equipo'
         verbose_name = 'Equipo'
