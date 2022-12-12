@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # Create your views here.
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 import json
 from django.contrib.auth.models import Group
 from django.contrib.auth.mixins import LoginRequiredMixin

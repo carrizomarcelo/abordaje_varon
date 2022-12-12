@@ -26,7 +26,7 @@ class LoginFormView(LoginView):
 class LoginFormView2(FormView):
     form_class = AuthenticationForm
     template_name = 'login/login.html'
-    success_url = reverse_lazy('dashboard')
+    success_url = reverse_lazy(settings.LOGIN_REDIRECT_URL)
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -45,6 +45,7 @@ class LoginFormView2(FormView):
 
 class LogoutRedirectView(RedirectView):
     pattern_name = 'login'
+    
 
     def dispatch(self, request, *args, **kwargs):
         logout(request)

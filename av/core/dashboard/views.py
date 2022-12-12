@@ -1,13 +1,15 @@
-from itertools import count
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 from datetime import datetime
-
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from core.encuesta.models import Encuesta
 from django.db.models.functions import Coalesce
 
 
-class DashboardView(TemplateView):
+
+class DashboardView(TemplateView, LoginRequiredMixin):
     template_name = 'dashboard.html'
+    
 
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
