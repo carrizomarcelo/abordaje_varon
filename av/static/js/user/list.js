@@ -18,7 +18,7 @@ $(function () {
             
             { "data": "username"},
             { "data": "email" },
-            { "data": "equipo" },
+            // { "data": "equipo_nombre" },
             { "data": "groups"},
             { "data": "image"},
             { "data": "id"},

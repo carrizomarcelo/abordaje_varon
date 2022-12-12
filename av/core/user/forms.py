@@ -19,7 +19,7 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = [
-            'equipo',
+            'equipo_nombre',
             'first_name',
             'last_name',
             'email',
@@ -30,7 +30,7 @@ class UserForm(ModelForm):
      ]
         widgets = {
 
-            'equipo': Select(attrs={}),
+            'equipo_nombre': Select(attrs={}),
 
             'first_name': TextInput(attrs={}),
             
