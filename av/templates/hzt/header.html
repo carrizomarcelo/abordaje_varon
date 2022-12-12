@@ -17,52 +17,42 @@
 
                         <li class="nav-item"><a href="{% url 'dashboard' %}" class="nav-link"><i class="fas fa-user-alt"></i> inicio</a></li>
                         <li class="nav-item"><a href="{% url 'encuesta:encuesta_list' %}" class="nav-link "><i class="fas fa-list-alt"></i> Encuestas</a></li>
+                        <li class="nav-item"><a href="{% url 'reports:encuesta_report' %}" class="nav-link "><i class="fas fa-list-alt"></i> Reportes </a></li>
                         <li class="nav-item"><a href="{% url 'equipos:equipos_list' %}" class="nav-link "><i class="fas fa-list-alt"></i> Equipos de Trabajo</a></li>
                         <li class="nav-item"><a href="{% url 'asistencia:asistencia_list' %}" class="nav-link "><i class="fas fa-list-alt"></i> Asistencia</a></li>
+                        <li class="nav-item"><a href="{% url 'user:user_list' %}" class="nav-link "><i class="fas fa-list-alt"></i> Ususarios </a></li>
             </ul>
         </div>
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            
+            {% if request.user.groups.all %}
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" >
+                <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ request.session.group }}</a>
+                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+                    
+                    {% for g in request.user.groups.all %}
+                    
+                    {% if g.id != request.session.group.id %}
+                    <li><a href="{% url 'user:user_change_group' g.id %}" class="dropdown-item">{{ g.name }}</a></li>
+                    {% endif %}
+
+                    {% endfor %}
+                </ul>
+              </li>
+        </li>  
+            {% endif %}
+                
+                      
+            
+            
+            
+            
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#" >
                     <i class="fas fa-users-cog"></i> {{ request.user.username }}
                 </a>
-                
-                <li class="nav-item dropdown">
-                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-                      <li><a href="#" class="dropdown-item">Some action </a></li>
-                      <li><a href="#" class="dropdown-item">Some other action</a></li>
-        
-                      <li class="dropdown-divider"></li>
-        
-                      <!-- Level two dropdown-->
-                      <li class="dropdown-submenu dropdown-hover">
-                        <a id="dropdownSubMenu2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">Hover for action</a>
-                        <ul aria-labelledby="dropdownSubMenu2" class="dropdown-menu border-0 shadow">
-                          <li>
-                            <a tabindex="-1" href="#" class="dropdown-item">level 2</a>
-                          </li>
-        
-                          <!-- Level three dropdown-->
-                          <li class="dropdown-submenu">
-                            <a id="dropdownSubMenu3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">level 2</a>
-                            <ul aria-labelledby="dropdownSubMenu3" class="dropdown-menu border-0 shadow">
-                              <li><a href="#" class="dropdown-item">3rd level</a></li>
-                              <li><a href="#" class="dropdown-item">3rd level</a></li>
-                            </ul>
-                          </li>
-                          <!-- End Level three -->
-        
-                          <li><a href="#" class="dropdown-item">level 2</a></li>
-                          <li><a href="#" class="dropdown-item">level 2</a></li>
-                        </ul>
-                      </li>
-                      <!-- End Level two -->
-                    </ul>
-                  </li>
-                
-                
-                {% comment %} <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span class="dropdown-header">
                         {{ request.user.last_login }}
                     </span>
@@ -81,8 +71,9 @@
                     <a href="#" class="dropdown-item dropdown-footer">
                         <p>Este sistema te permitira realizar diferentes actividades</p>
                     </a>
-                </div> {% endcomment %}
-            </li>
+                </div>
+                
+
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">
                     <i class="fas fa-power-off" aria-hidden="true"></i>

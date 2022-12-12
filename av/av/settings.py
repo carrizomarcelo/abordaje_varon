@@ -166,3 +166,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True
 
 JQUERY_URL = True
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

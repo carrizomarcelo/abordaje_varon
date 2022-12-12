@@ -2,6 +2,7 @@ from django.shortcuts import render
 # Create your views here.
 # from django.contrib.auth.decorators import login_required
 import json
+from django.contrib.auth.models import Group
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.checks.messages import Error
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -10,7 +11,7 @@ from django.urls import reverse_lazy
 from django.urls.base import is_valid_path
 from django.utils.decorators import async_only_middleware, method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import (CreateView, DeleteView, FormView, ListView, TemplateView, UpdateView)
+from django.views.generic import (CreateView, DeleteView, FormView, ListView, TemplateView, UpdateView, View)
 
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -159,3 +160,13 @@ class UserDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Delete
         context['list_url'] = self.success_url
         context['action'] = 'edit'
         return context
+
+
+class UserChangeGroup(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        try:
+            request.session['group'] = Group.objects.get(pk=self.kwargs['pk'])
+        except:
+            pass
+        return HttpResponseRedirect(reverse_lazy('dashboard'))
