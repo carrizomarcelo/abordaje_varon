@@ -168,3 +168,5 @@ CSRF_COOKIE_SECURE = True
 JQUERY_URL = True
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+# ALLOWED_HOSTS = ['*']
