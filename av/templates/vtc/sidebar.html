@@ -1,11 +1,11 @@
 {% load static %}
 <aside class="main-sidebar sidebar-light-primary elevation-4">
-    <a href="{% url 'dashboard' %}" class="brand-link bg-primary">
-        <img src="{% static 'img/Abordaje-al-varon.png' %}"
+    <a href="{% url 'dashboard' %}" class="brand-link bg-primary text-center">
+        {% comment %} <img src="{% static 'img/Abordaje-al-varon.png' %}"
              alt="Abordaje al Varon"
              class="brand-image elevation-2"
-             style="opacity: .8">
-        <span class="brand-text font-weight-light"> <strong>Avordaje al varon</strong></span></a>
+             style="opacity: .8"> {% endcomment %}
+        <span class="brand-text font-weight-light"> <strong>RUV</strong></span></a>
     <div class="sidebar bg-ligth">
         <!--<div class="user-panel mt-3 pb-3 mb-3 d-flex">
              <div class="image">
@@ -18,16 +18,37 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
                 <!-- <li class="nav-header text-center">Accesos</li> -->
-                
-                
+
                 <li class="nav-item">
-                    <a href="{% url 'encuesta:encuesta_list' %}" class="nav-link">
-                        <i class="nav-icon fas fa-id-card btn-outline-primary"></i>
+                    <a href="{% url 'dashboard' %}" class="nav-link">
+                        <i class="nav-icon btn-outline-primary fas fa-columns"></i>
                         <p>
-                            Encuestas
+                            inicio
                         </p>
                     </a>
                 </li>
+                
+                <li class="nav-item">
+                    <a href="{% url 'encuesta:encuesta_list' %}" class="nav-link ">
+                        <i class="nav-icon btn-outline-primary fas fa-id-card"></i>
+                        <p>
+                        Encuestas
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'equipos:equipos_list' %}" class="nav-link ">
+                        <i class="nav-icon btn-outline-primary fas fa-users"></i>Equipos de Trabajo
+                    </a>
+                </li>
+
+
+                <li class="nav-item"><a href="{% url 'reports:encuesta_report' %}" class="nav-link "><i class=" nav-icon btn-outline-primary fas fa-file-alt"></i> Reportes </a></li>
+                        
+                <li class="nav-item"><a href="{% url 'asistencia:asistencia_list' %}" class="nav-link "><i class=" nav-icon btn-outline-primary fas fa-calendar-alt"></i> Asistencia</a></li>
+                
+                <li class="nav-item"><a href="{% url 'user:user_list' %}" class="nav-link "><i class=" nav-icon btn-outline-primary fas fa-users"></i> Usuarios </a></li>
                 
                 
             </ul>

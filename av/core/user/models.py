@@ -10,7 +10,7 @@ from av.settings import MEDIA_URL, STATIC_URL
 
 class User(AbstractUser):
     image = models.ImageField(upload_to='users/%Y/%m/%d', null=True, blank=True)
-    equipo_nombre = models.ForeignKey(Equipos, on_delete=models.CASCADE, verbose_name='Equipo de trabajo', null=True)
+    equipo_nombre = models.ForeignKey(Equipos, on_delete=models.SET_NULL, verbose_name='Equipo de trabajo', null=True)
 
     def get_image(self):
         if self.image:
@@ -34,7 +34,7 @@ class User(AbstractUser):
             groups = self.groups.all()
             if groups.exists():
                 if 'group' not in request.session:
-                    request.session['group'] = groups[0]
+                    request.session['group'] = groups["0"]
         except:
             pass
 

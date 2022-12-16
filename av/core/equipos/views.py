@@ -26,6 +26,25 @@ class EquiposListView(LoginRequiredMixin, ListView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+    # def post(self, request, *args, **kwargs):
+    #     data = {}
+    #     try:
+    #         action = request.POST['action']
+    #         if action == 'searchdata':
+    #             data = []
+    #             position = 1
+    #             for i in Equipos.objects.all():
+    #                 item = i.toJSON()
+    #                 item['position'] = position
+    #                 data.append(item)
+    #                 position += 1
+                
+    #         else:
+    #             data['error'] = 'No ha ingresado a ninguna opción'
+    #     except Exception as e:
+    #         data['error'] = str(e)
+    #     return JsonResponse(data, safe=False)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Listado'

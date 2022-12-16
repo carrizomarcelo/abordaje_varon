@@ -23,9 +23,9 @@ class DashboardView(TemplateView, LoginRequiredMixin):
         data = []
         try:
             year = datetime.now().year
-            for m in range(1,13):
+            for m in range():
         
-                total = Encuesta.objects.filter(fechacreacion__year=year, fechacreacion__month=m)
+                total = Encuesta.objects.all()
                 data.append(total)
         except:
             pass
