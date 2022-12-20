@@ -9,12 +9,85 @@
 <script src=" {% static 'lib/Highcharts-10.3.2/code/modules/export-data.js' %} "></script>
 <script src=" {% static 'lib/Highcharts-10.3.2/code/modules/accessibility.js' %} "></script>
 
+
+
 {% endblock %}
 
 
 {% block content %}
 {% csrf_token %}
 <div id="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{ encuestas_count }}</h3>
+
+              <p>Encuestas Registradas</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-list"></i>
+            </div>
+            <a href="#" class="small-box-footer">Mas infirmación <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{ equipos_count }}</h3>
+
+              <p>Equipos de trabajo</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{ users_count }}</h3>
+
+              <p>Usuarios Registrados</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{% url 'user:user_list' %}" class="small-box-footer">Info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>  </h3>
+
+              <p>Unique Visitors</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">Detalle <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+   
+            {% comment %} <div id="container">
+                
+                
+            </div> {% endcomment %}
+
+        </div>
+    </div>
    
             {% comment %} <div id="container">
                 

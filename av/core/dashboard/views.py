@@ -1,8 +1,11 @@
+from django.template import RequestContext
 from django.views.generic import TemplateView, View
 from datetime import datetime
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from core.encuesta.models import Encuesta
+from core.encuesta.models import Encuesta, Equipos
+from core.user.models import User
+from django.shortcuts import render
 from django.db.models.functions import Coalesce
 
 
@@ -30,10 +33,14 @@ class DashboardView(TemplateView, LoginRequiredMixin):
         except:
             pass
         return data
-
+    
+          
 
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
         contex['panel'] = 'Panel de Ingreso'
         contex['graph_encuestas_year_month'] = self.get_graph_encuestas_year_month()
+        contex['users_count'] = User.objects.all().count()
+        contex['encuestas_count'] = Encuesta.objects.all().count()
+        contex['equipos_count'] = Equipos.objects.all().count()
         return contex
