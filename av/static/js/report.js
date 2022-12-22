@@ -1,14 +1,11 @@
-
-
-
 var date_range = null;
 var date_now = new moment().format('DD-MM-YYYY');
 
 function generate_report() {
     var parameters = {
         'action': 'search_report',
-        'start_date': date_now,
-        'end_date': date_now,
+        'start_date': 16-12-2022, // date_now,
+        'end_date': 16-12-2022, // date_now,
     };
 
     if (date_range !== null) {
@@ -95,6 +92,7 @@ function generate_report() {
                 }
             }
         ],
+        
         // columns: [
         //     {"data": "id"},
         //     {"data": "name"},
@@ -107,14 +105,16 @@ function generate_report() {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return '$' + parseFloat(data).toFixed(2);
+                    return '$' + data // parseFloat(data).toFixed(2);
                 }
             },
         ],
         initComplete: function (settings, json) {
 
+
         }
     });
+
 }
 
 $(function () {
@@ -134,5 +134,8 @@ $(function () {
         generate_report();
     });
 
+   
     generate_report();
+    
+    
 });

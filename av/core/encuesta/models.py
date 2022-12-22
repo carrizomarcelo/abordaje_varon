@@ -421,6 +421,9 @@ class Encuesta(BaseModel):
     
     def toJSON(self):
         item = model_to_dict(self)
+        item['nombre'] = self.nombre.toJSON()
+        item['nro_dni'] = self.nro_dni.toJSON()
+        item['fechacreacion'] = self.fechacreacion.strftime('%d-%m-%Y')
         # item = {'id': self.id, 'nombre': self.nombre}
         return item
 

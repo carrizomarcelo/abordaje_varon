@@ -16,9 +16,11 @@
 
 {% block content %}
 {% csrf_token %}
-<div id="container-fluid">
-
-    <div class="row">
+<div class="card bg bg-secondary bg-shadow card-deck ">
+    
+<div class="container"id="container-fluid">
+    <hr>
+    <div class="container row">
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
@@ -30,7 +32,7 @@
             <div class="icon">
               <i class="ion ion-ios-list"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas infirmación <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{% url 'encuesta:encuesta_list' %}" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -43,9 +45,9 @@
               <p>Equipos de trabajo</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-android-people"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{% url 'equipos:equipos_list' %}" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -60,7 +62,7 @@
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="{% url 'user:user_list' %}" class="small-box-footer">Info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{% url 'user:user_list' %}" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -80,49 +82,55 @@
         </div>
         <!-- ./col -->
       </div>
+
+        </div>
+
+    </div>
    
-            {% comment %} <div id="container">
+            <div id="container_grafico">                
                 
-                
-            </div> {% endcomment %}
+            </div>
 
         </div>
     </div>
-   
-            {% comment %} <div id="container">
-                
-                
-            </div> {% endcomment %}
 
-        </div>
-    </div>
+</div>
 </div>
 
+
+
+
 <script type="application/javascript">
-    Highcharts.chart('container', {
+    Highcharts.chart('container_grafico', {
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Cantidad de Encuestas año 2022'
+            text: 'Registros por departamentos'
         },
         subtitle: {
-            text: 'Distribución por dispositivos'
+            text: ''
         },
         xAxis: {
             categories: [
-                'Enero',
-                'Febrero',
-                'Marzo',
-                'Abril',
-                'Mayo',
-                'Junio',
-                'Julio',
-                'Agosto',
-                'Septiembre',
-                'Octubre',
-                'Noviembre',
-                'Diciembre'
+                'CAPITAL',
+                'GENERAL ALVEAR',
+                'GODOY CRUZ',
+                'GUAYMALLÉN',
+                'JUNÍN',
+                'LA PAZ',
+                'LAS HERAS',
+                'LAVALLE',
+                'LUJÁN DE CUYO',
+                'MAIPÚ',
+                'MALARGÜE',
+                'RIVADAVIA',
+                'SAN CARLOS',
+                'SAN MARTÍN',
+                'SAN RAFAEL',
+                'SANTA ROSA',
+                'TUNUYÁN',
+                'TUPUNGATO'
             ],
             crosshair: true
         },
@@ -150,7 +158,7 @@
             name: 'Cantidad',
             showInLegend: false,
             colorByPoint: true,
-            data: {{ graph_encuestas_year_month|safe }}
+            data: {{ get_graph_encuestas_dpto|safe }}
                   
         }]
     });

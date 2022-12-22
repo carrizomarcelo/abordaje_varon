@@ -30,8 +30,9 @@ class ReportEncuestaView(TemplateView):
                 for s in search:
                     data.append([
                         s.id,
-                        s.apellido,
-                        s.fechacreacion.strftime('%d-%m-%Y'),
+                        s.nombre,
+                        s.nro_dni,
+                        s.fechacreacion.strftime('%d-%m-%Y')
                         
                     ])
             else:

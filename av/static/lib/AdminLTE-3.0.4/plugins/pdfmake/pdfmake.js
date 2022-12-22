@@ -712,7 +712,7 @@ module.exports = {
 	    };
 
 	    /**
-	     * Abstract buffered block algorithm templates.
+	     * Abstract buffered block algorithm template.
 	     *
 	     * The property blockSize must be implemented in a concrete subtype.
 	     *
@@ -828,7 +828,7 @@ module.exports = {
 	    });
 
 	    /**
-	     * Abstract hasher templates.
+	     * Abstract hasher template.
 	     *
 	     * @property {number} blockSize The number of 32-bit words this hasher operates on. Default: 16 (512 bits)
 	     */
@@ -2873,7 +2873,7 @@ module.exports = $export;
 	    var EvpKDF = C_algo.EvpKDF;
 
 	    /**
-	     * Abstract base cipher templates.
+	     * Abstract base cipher template.
 	     *
 	     * @property {number} keySize This cipher's key size. Default: 4 (128 bits)
 	     * @property {number} ivSize This cipher's IV size. Default: 4 (128 bits)
@@ -3053,7 +3053,7 @@ module.exports = $export;
 	    });
 
 	    /**
-	     * Abstract base stream cipher templates.
+	     * Abstract base stream cipher template.
 	     *
 	     * @property {number} blockSize The number of 32-bit words this cipher operates on. Default: 1 (32 bits)
 	     */
@@ -3074,7 +3074,7 @@ module.exports = $export;
 	    var C_mode = C.mode = {};
 
 	    /**
-	     * Abstract base block cipher mode templates.
+	     * Abstract base block cipher mode template.
 	     */
 	    var BlockCipherMode = C_lib.BlockCipherMode = Base.extend({
 	        /**
@@ -3279,7 +3279,7 @@ module.exports = $export;
 	    };
 
 	    /**
-	     * Abstract base block cipher templates.
+	     * Abstract base block cipher template.
 	     *
 	     * @property {number} blockSize The number of 32-bit words this cipher operates on. Default: 4 (128 bits)
 	     */

@@ -22,11 +22,11 @@ class DashboardView(TemplateView, LoginRequiredMixin):
         request.user.get_group_session()
         return super().get(request, *args, **kwargs)
 
-    def get_graph_encuestas_year_month(self):
+    def get_graph_encuestas_dpto(self):
         data = []
         try:
             year = datetime.now().year
-            for m in range():
+            for d in range():
         
                 total = Encuesta.objects.all()
                 data.append(total)
@@ -39,7 +39,7 @@ class DashboardView(TemplateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
         contex['panel'] = 'Panel de Ingreso'
-        contex['graph_encuestas_year_month'] = self.get_graph_encuestas_year_month()
+        contex['get_graph_encuestas_dpto'] = self.get_graph_encuestas_dpto()
         contex['users_count'] = User.objects.all().count()
         contex['encuestas_count'] = Encuesta.objects.all().count()
         contex['equipos_count'] = Equipos.objects.all().count()
