@@ -4,14 +4,14 @@ var date_now = new moment().format('DD-MM-YYYY');
 function generate_report() {
     var parameters = {
         'action': 'search_report',
-        'start_date': 16-12-2022, // date_now,
-        'end_date': 16-12-2022, // date_now,
+        'start_date': date_now,
+        'end_date': date_now,
     };
 
     if (date_range !== null) {
-        parameters['start_date'] = date_range.startDate.format('DD-MM-YYYY');
-        parameters['end_date'] = date_range.endDate.format('DD-MM-YYYY');
-    }
+        parameters['start_date'] = date_range.start_date.format('DD-MM-YYYY');
+        parameters['end_date'] = date_range.end_date.format('DD-MM-YYYY');
+    };
 
     $('#data').DataTable({
         responsive: true,
@@ -105,7 +105,7 @@ function generate_report() {
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    return '$' + data // parseFloat(data).toFixed(2);
+                    return '$' + data;// parseFloat(data).toFixed(2);
                 }
             },
         ],
@@ -133,9 +133,7 @@ $(function () {
         date_range = picker;
         generate_report();
     });
-
-   
-    generate_report();
     
+    generate_report();
     
 });

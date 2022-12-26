@@ -262,6 +262,18 @@ class SeisMeses(models.Model):
         ordering = ['id']
 
 
+class Parentesco(models.Model):
+    id = models.AutoField(primary_key=True)
+    descripcion = models.CharField(max_length=50,blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.descripcion)
+
+    class Meta:
+        db_table = 'parentesco'
+        verbose_name = 'Parentesco'
+        verbose_name_plural = 'Parentesco'
+        ordering = ['id']
 
 class Encuesta(BaseModel):
 
@@ -333,7 +345,7 @@ class Encuesta(BaseModel):
                ('Conductas de amenazas', 'Conductas de amenazas'))
 
     id = models.AutoField(primary_key=True)
-    fechacreacion = models.DateTimeField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
+    fechacreacion = models.DateField(default=datetime.now, null=True, verbose_name='Fecha Ficha')
     equipo = models.ForeignKey(Equipos, on_delete=models.CASCADE, verbose_name='Equipo', blank=True, null=True)
     nombre = models.CharField(max_length=50, verbose_name='Nombre')
     apellido = models.CharField(max_length=50, verbose_name='Apellido')
@@ -357,8 +369,31 @@ class Encuesta(BaseModel):
     incumbencia_seguridad = models.ForeignKey(IncumbenciaSeguridad, on_delete=models.CASCADE, verbose_name='Ocupación en la fuerza de seguridad, segun incumbencia', blank=True, null=True)
     categoria_ocupacional = models.ForeignKey(CategoriaOcupacional, on_delete=models.CASCADE, verbose_name='Categoría Ocupacional', blank=True, null=True)
     actividad_laboral = models.CharField(max_length=50, verbose_name='Actividad que realiza', blank=True, null=True)
-    domicilio_laboral = models.CharField(max_length=50, verbose_name='Domicilio Laboral', blank=True, null=True)
     
+    domicilio_laboral = models.CharField(max_length=50, verbose_name='Domicilio Laboral', blank=True, null=True)
+    #####MC#####
+    mc_nombre = models.CharField(max_length=50, verbose_name='Nombre:', blank=True, null=True)
+    mc_apellido = models.CharField(max_length=50, verbose_name='Apellido:', blank=True, null=True)
+    mc_fechanacimiento = models.DateField(default=datetime.now, verbose_name='Fecha de Nacimiento:', blank=True, null=True)
+    parentesco = models.ForeignKey(Parentesco, on_delete=models.CASCADE, verbose_name='Parentesco:',related_name='parentesco', blank=True, null=True)
+
+    mc_nombre1 = models.CharField(max_length=50, verbose_name='Nombre:', blank=True, null=True)
+    mc_apellido1 = models.CharField(max_length=50, verbose_name='Apellido:', blank=True, null=True)
+    mc_fechanacimiento1 = models.DateField(default=datetime.now, verbose_name='Fecha de Nacimiento:', blank=True, null=True)
+    parentesco1 = models.ForeignKey(Parentesco, on_delete=models.CASCADE, verbose_name='Parentesco:',related_name='parentesco1', blank=True, null=True)
+
+    mc_nombre2 = models.CharField(max_length=50, verbose_name='Nombre:', blank=True, null=True)
+    mc_apellido2 = models.CharField(max_length=50, verbose_name='Apellido:', blank=True, null=True)
+    mc_fechanacimiento2 = models.DateField(default=datetime.now, verbose_name='Fecha de Nacimiento:', blank=True, null=True)
+    parentesco2 = models.ForeignKey(Parentesco, on_delete=models.CASCADE, verbose_name='Parentesco:',related_name='parentesco2', blank=True, null=True)
+
+    mc_nombre3 = models.CharField(max_length=50, verbose_name='Nombre:', blank=True, null=True)
+    mc_apellido3 = models.CharField(max_length=50, verbose_name='Apellido:', blank=True, null=True)
+    mc_fechanacimiento3 = models.DateField(default=datetime.now, verbose_name='Fecha de Nacimiento:', blank=True, null=True)
+    parentesco3 = models.ForeignKey(Parentesco, on_delete=models.CASCADE, verbose_name='Parentesco:',related_name='parentesco3', blank=True, null=True)
+
+
+
     categoria_inactividad = models.ForeignKey(CategoriaInactividad, on_delete=models.CASCADE, verbose_name='Categoría Inactividad', blank=True, null=True)
     
     miembros_intervinientes = models.ForeignKey(MiembrosConvivientes, on_delete=models.CASCADE, verbose_name='Miembros Convivientes', blank=True, null=True)
@@ -407,7 +442,7 @@ class Encuesta(BaseModel):
     estado = models.BooleanField(default=True)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.nombre)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
@@ -424,7 +459,7 @@ class Encuesta(BaseModel):
         item['nombre'] = self.nombre.toJSON()
         item['nro_dni'] = self.nro_dni.toJSON()
         item['fechacreacion'] = self.fechacreacion.strftime('%d-%m-%Y')
-        # item = {'id': self.id, 'nombre': self.nombre}
+        # item = {'id': self.id, 'nombre': self.nombre,'fechacreacion': self.fechacreacion.strftime('%d-%m-%Y')}
         return item
 
     def calcular_años(self):

@@ -44,11 +44,10 @@
         <table class="table table-bordered" id="data">
             <thead>
             <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">DU</th>
-                <th scope="col">DU</th>
-                <th scope="col">DU</th>
-                <th scope="col">DU</th>
-                <th scope="col">DU</th>
+                <th scope="col">Fecha Encuesta</th>
             </tr>
             </thead>
             <tbody>
@@ -67,36 +66,35 @@
 {% endblock %}
 
 {% block javascript %}
-<script type="application/javascript">
 
-</script>
+{% comment %} 
+$(function () {
+    $("#data").DataTable({
+      responsive: true,
+      autoWidth: false,
+  
+      language: {
+        decimal: "",
+        emptyTable: "Ningún dato disponible en esta tabla",
+        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "Mostrar _MENU_ Entradas",
+        loadingRecords: "Cargando...",
+        processing: "Procesando...",
+        search: "Buscar:",
+        zeroRecords: "No se encontraron resultados",
+        paginate: {
+          first: "Primero",
+          last: "Ultimo",
+          next: "Siguiente",
+          previous: "Anterior",
+        },
+      },
+    });
+  }); {% endcomment %}
 
 {% endblock %} 
 
-{% comment %} $(function () {
-  $("#data").DataTable({
-    responsive: true,
-    autoWidth: false,
-
-    language: {
-      decimal: "",
-      emptyTable: "Ningún dato disponible en esta tabla",
-      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-      infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
-      infoFiltered: "(filtrado de un total de _MAX_ registros)",
-      infoPostFix: "",
-      thousands: ",",
-      lengthMenu: "Mostrar _MENU_ Entradas",
-      loadingRecords: "Cargando...",
-      processing: "Procesando...",
-      search: "Buscar:",
-      zeroRecords: "No se encontraron resultados",
-      paginate: {
-        first: "Primero",
-        last: "Ultimo",
-        next: "Siguiente",
-        previous: "Anterior",
-      },
-    },
-  });
-}); {% endcomment %}

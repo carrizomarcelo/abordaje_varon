@@ -45,31 +45,31 @@ function generate_report() {
                 download: 'open',
                 orientation: 'landscape',
                 pageSize: 'LEGAL',
-                customize: function (doc) {
-                    doc.styles = {
-                        header: {
-                            fontSize: 18,
-                            bold: true,
-                            alignment: 'center'
-                        },
-                        subheader: {
-                            fontSize: 13,
-                            bold: true
-                        },
-                        quote: {
-                            italics: true
-                        },
-                        small: {
-                            fontSize: 8
-                        },
-                        tableHeader: {
-                            bold: true,
-                            fontSize: 11,
-                            color: 'white',
-                            fillColor: '#2d4154',
-                            alignment: 'center'
-                        }
-                    };
+                // customize: function (doc) {
+                //     doc.styles = {
+                //         header: {
+                //             fontSize: 18,
+                //             bold: true,
+                //             alignment: 'center'
+                //         },
+                //         subheader: {
+                //             fontSize: 13,
+                //             bold: true
+                //         },
+                //         quote: {
+                //             italics: true
+                //         },
+                //         small: {
+                //             fontSize: 8
+                //         },
+                //         tableHeader: {
+                //             bold: true,
+                //             fontSize: 11,
+                //             color: 'white',
+                //             fillColor: '#2d4154',
+                //             alignment: 'center'
+                //         }
+                //     };
                     doc.content[1].table.widths = ['20%', '20%', '15%', '15%', '15%', '15%'];
                     doc.content[1].margin = [0, 35, 0, 0];
                     doc.content[1].layout = {};

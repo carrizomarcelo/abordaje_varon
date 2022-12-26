@@ -205,10 +205,101 @@ class EncuestaForm(ModelForm):
             'modalidad_familiar',
             'agresor',
             'mujer',
-            'situacion'
+            'situacion',
+            'mc_nombre',
+            'mc_apellido',
+            'mc_fechanacimiento',
+            'parentesco',
+            'mc_nombre1',
+            'mc_apellido1',
+            'mc_fechanacimiento1',
+            'parentesco1',
+            'mc_nombre2',
+            'mc_apellido2',
+            'mc_fechanacimiento2',
+            'parentesco2',
+            'mc_nombre3',
+            'mc_apellido3',
+            'mc_fechanacimiento3',
+            'parentesco3'
             
         ]
         widgets = {
+
+            'parentesco': Select(attrs={
+                                        'placeholder': '...'
+                                    }),
+            'parentesco1': Select(attrs={
+                                        'placeholder': '...'
+                                    }),
+            'parentesco2': Select(attrs={
+                                        'placeholder': '...'
+                                    }),
+            'parentesco3': Select(attrs={
+                                        'placeholder': '...'
+                                    }),
+
+            'mc_nombre': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_nombre1': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_nombre2': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+            
+            'mc_nombre3': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_apellido': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_apellido1': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_apellido2': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_apellido3': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre/s',
+                }),
+
+            'mc_fechanacimiento': DateInput(
+                                       attrs={
+                                        
+                                       }),
+
+            'mc_fechanacimiento1': DateInput(
+                                       attrs={
+                                        
+                                       }),
+            
+            'mc_fechanacimiento2': DateInput(
+                                       attrs={
+                                        
+                                       }),
+
+            'mc_fechanacimiento3': DateInput(
+                                       attrs={
+                                        
+                                       }),
+            
+            
 
 
             'fechacreacion': DateInput(format='%d/%m/%Y',
