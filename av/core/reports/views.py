@@ -26,13 +26,13 @@ class ReportEncuestaView(TemplateView):
                 end_date = request.POST.get('end_date', '')
                 search = Encuesta.objects.all()
                 if len(start_date) and len(end_date):
-                    search = search.filter(date_joined_range=[start_date, end_date])
+                    search = search.filter(date_joined__range=[start_date, end_date])
                 for s in search:
                     data.append([
                         s.id,
                         s.nombre,
                         s.nro_dni,
-                        s.fechacreacion.strftime('%d-%m-%Y')
+                        s.fechacreacion.strftime('%d-%m-%Y'),
                         
                     ])
             else:

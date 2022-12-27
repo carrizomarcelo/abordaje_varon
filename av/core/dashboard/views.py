@@ -26,15 +26,14 @@ class DashboardView(TemplateView, LoginRequiredMixin):
         data = []
         try:
             year = datetime.now().year
-            for d in range():
-        
-                total = Encuesta.objects.all()
+            for d in range(1,19):
+                total = Encuesta.departamento().count()
                 data.append(total)
         except:
             pass
         return data
     
-          
+        
 
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
