@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from core.encuesta.models import Encuesta, Equipos
 from core.user.models import User
 from django.shortcuts import render
+from django.utils.decorators import async_only_middleware, method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.db.models.functions import Coalesce
 
 
@@ -13,7 +15,7 @@ from django.db.models.functions import Coalesce
 class DashboardView(TemplateView, LoginRequiredMixin):
     template_name = 'dashboard.html'
     
-
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 

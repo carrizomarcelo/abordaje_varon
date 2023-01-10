@@ -17,9 +17,10 @@ from av.mixin import ValidatePermissionRequiredMixin
 
 
 
-class EquiposListView(LoginRequiredMixin, ListView):
+class EquiposListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
     model = Equipos
     template_name = 'equipos/equipos_list.html'
+    permission_required = 'view_equipos'
 
     # @method_decorator(login_required)
     # @method_decorator(csrf_exempt)
@@ -53,11 +54,12 @@ class EquiposListView(LoginRequiredMixin, ListView):
         return context
 
 
-class EquiposCreateView(CreateView):
+class EquiposCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, CreateView):
     model = Equipos
     form_class = EquiposForm
     template_name = 'equipos/equipos_create.html'
     success_url = reverse_lazy('equipos:equipos_list')
+    permission_required = 'add_equipos'
 
     # @method_decorator(login_required)
     # @method_decorator(csrf_exempt)
@@ -89,12 +91,13 @@ class EquiposCreateView(CreateView):
         return context
 
 
-class EquiposUpdateView(UpdateView):
+class EquiposUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, UpdateView):
 
     model = Equipos
     form_class = EquiposForm
     template_name = 'equipos/equipos_update.html'
     success_url = reverse_lazy('equipos:equipos_list')
+    permission_required = 'change_equipo'
 
     # @method_decorator(login_required)
     # @method_decorator(csrf_exempt)
@@ -123,10 +126,11 @@ class EquiposUpdateView(UpdateView):
         return context
 
 
-class EquiposDeleteView(DeleteView):
+class EquiposDeleteView(LoginRequiredMixin, ValidatePermissionRequiredMixin, DeleteView):
     model = Equipos
     template_name = 'equipos/equipos_delete.html'
     success_url = reverse_lazy('equipos:equipos_list')
+    permission_required = 'delete_equipo'
 
     # @method_decorator(login_required)
     # @method_decorator(csrf_exempt)
